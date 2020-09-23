@@ -1,5 +1,7 @@
 package com.example.work_2;
 
+//Android活动的四种启动模式
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
