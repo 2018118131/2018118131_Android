@@ -19,4 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    protected void onPause(){
+        super.onPause();
+    }
+
 }
