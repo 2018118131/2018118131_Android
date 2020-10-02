@@ -23,4 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    protected void onStop(){
+        super.onStop();
+    }
+
 }
