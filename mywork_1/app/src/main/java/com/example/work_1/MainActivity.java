@@ -27,4 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+    }
+
 }
