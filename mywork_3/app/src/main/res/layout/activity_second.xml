@@ -22,6 +22,31 @@
             android:layout_marginLeft="17dp"
             android:layout_marginTop="40dp"
             app:srcCompat="@drawable/p3" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="130dp"
+            android:background="#FBF0B7"
+            android:baselineAligned="false"
+            android:queryHint="输入日期查找具体数据"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="136dp"
+            android:layout_height="117dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="215dp"
+            android:background="@drawable/p4" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
