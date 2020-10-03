@@ -12,6 +12,16 @@
         android:background="#F9F9F7"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="367dp"
+            android:layout_height="56dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="40dp"
+            app:srcCompat="@drawable/p3" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
