@@ -3,6 +3,7 @@ package com.example.mywork_3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.tv.TvContract;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,11 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         Button button2 = (Button) findViewById(R.id.button2);
+        Button button5 = (Button) findViewById(R.id.button5);
         button2.setOnClickListener(this);
+        button5.setOnClickListener(this);
+
+
     }
 
 
@@ -29,6 +34,9 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 progressDialog.setCancelable(true);
                 progressDialog.show();
                 break;
+            case R.id.button5:
+                Intent intent = new Intent(SecondActivity.this,ThridActivity.class);
+                startActivity(intent);
             default:
                 break;
         }
