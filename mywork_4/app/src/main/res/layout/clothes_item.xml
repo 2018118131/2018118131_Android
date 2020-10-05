@@ -18,6 +18,7 @@
         android:layout_gravity="left"
         android:layout_marginTop="10dp"
         android:textColor="#4B4A4A"
+        android:onClick="alert_edit"
         android:textSize="18sp" />
 
 </LinearLayout>
