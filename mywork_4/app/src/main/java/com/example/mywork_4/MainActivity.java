@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //按下确定键后的事件
+                        final ClothesAdapter.ViewHolder holder = new ClothesAdapter.ViewHolder(view);
+                        holder.clothesName.setText(et.getText().toString());
                     }
                 }).setNegativeButton("取消",null).show();
     }
