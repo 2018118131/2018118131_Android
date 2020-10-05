@@ -1,6 +1,8 @@
 package com.example.mywork_4;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -15,6 +17,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initClothes();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        ClothesAdapter adapter = new ClothesAdapter(clothesList);
+        recyclerView.setAdapter(adapter);
     }
 
     private void initClothes(){
