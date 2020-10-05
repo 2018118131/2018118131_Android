@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,4 +66,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return builder.toString();
     }
+
+    public void alert_edit(final View view){
+        final EditText et = new EditText(this);
+        new AlertDialog.Builder(this).setTitle("请输入服装的名称")
+                .setView(et)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //按下确定键后的事件
+                    }
+                }).setNegativeButton("取消",null).show();
+    }
+
 }
