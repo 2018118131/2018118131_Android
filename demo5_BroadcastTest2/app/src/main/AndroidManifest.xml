@@ -12,7 +12,11 @@
         <receiver
             android:name=".AnotherBroadcastReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.demo5_broadcasttest.MY_BROADCAST"/>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".MainActivity">
             <intent-filter>
