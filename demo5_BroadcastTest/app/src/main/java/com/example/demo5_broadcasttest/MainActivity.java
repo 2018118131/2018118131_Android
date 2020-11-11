@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent("com.example.demo5_broadcasttest.MY_BROADCAST");
-                sendBroadcast(intent);
+                sendOrderedBroadcast(intent,null);
             }
         });
         intentFilter = new IntentFilter();
