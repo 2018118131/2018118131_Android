@@ -20,8 +20,9 @@ public class FirstActivity extends AppCompatActivity {
         Button button1 = (Button) findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent inent = new Intent("com.example.mywork_5.ACTION_START");
-                startActivity(inent);
+                Intent intent = new Intent("com.example.mywork_5.ACTION_START");
+                intent.addCategory("com.example.mywork_5.MY_CATEGORY");
+                startActivity(intent);
             }
         });
     }
