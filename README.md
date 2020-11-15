@@ -18,6 +18,12 @@
 
 
 
+作业四(Intent应用)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_5
+
+作业四(Intent应用)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_5/mywork_5%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
+
+
+
 作业五(设计界面)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_3
 
 作业五(设计界面)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_3/mywork_3%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
