@@ -20,7 +20,7 @@ public class FirstActivity extends AppCompatActivity {
         Button button1 = (Button) findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent inent = new Intent(FirstActivity.this,SecondActivity.class);
+                Intent inent = new Intent("com.example.mywork_5.ACTION_START");
                 startActivity(inent);
             }
         });
