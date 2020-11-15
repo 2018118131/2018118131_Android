@@ -33,3 +33,9 @@
 作业六(RecyclerView控件)代码:https://github.com/JacCloud/2018118131_Android/tree/master/mywork_4
 
 作业六(RecyclerView控件)报告:https://github.com/JacCloud/2018118131_Android/blob/master/mywork_4/mywork_4%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
+
+
+
+作业七(广播)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_6
+
+作业七(广播)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_6/mywork_6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
