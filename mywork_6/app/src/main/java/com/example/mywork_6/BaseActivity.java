@@ -50,7 +50,7 @@ public class BaseActivity extends AppCompatActivity {
             builder.setCancelable(false);
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int which) {
+                public void onClick(DialogInterface dialog, int which) {
                     ActivityCollector.finishAll();
                     Intent intent = new Intent(context,LoginActivity.class);
                     context.startActivity(intent);
