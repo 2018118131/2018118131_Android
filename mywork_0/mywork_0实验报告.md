@@ -1,8 +1,8 @@
-实验目的：搭建Android运行的环境
+**实验目的：搭建Android运行的环境**
 
-实验要求：安装工具链并运行HelloWord程序
+**实验要求：安装工具链并运行HelloWord程序**
 
-实验内容：
+**实验内容：**
 
 **一、Git:**
 
@@ -44,7 +44,7 @@
 
 
 
-二、GitHub:
+**二、GitHub:**
 
 SSH授权管理：
 
@@ -92,7 +92,7 @@ SSH授权管理：
 
 
 
-三、SourceTree:
+**三、SourceTree:**
 
 连接到云端的GitHub：
 
@@ -106,9 +106,9 @@ SSH授权管理：
 
  
 
-2、 点击添加，并打开GitHub，选择克隆并复制SSH：
+2、 点击添加，并打开GitHub，选择克隆并复制HTTPS：
 
-![img](mywork_0实验报告.assets/clip_image004-1605437528823.jpg)
+![image-20201115213459964](mywork_0实验报告.assets/image-20201115213459964.png)
 
  
 
@@ -124,7 +124,7 @@ SSH授权管理：
 
 
 
-四：MarkDown:
+**四：MarkDown:**
 
 1、 下载并安装好Typora:
 
@@ -132,7 +132,7 @@ SSH授权管理：
 
 
 
-五、Android Studio：
+**五、Android Studio：**
 
 1、 下载Android studio安装包，可以从 http://www.android-studio.org/ 下载最新版本
 
@@ -178,7 +178,7 @@ SSH授权管理：
 
 
 
-六、运行HelloWord程序：
+**六、运行HelloWord程序：**
 
 1、选择新建一个项目：
 
@@ -201,3 +201,9 @@ SSH授权管理：
 4、运行结果：
 
 ![image-20201115185632159](mywork_0实验报告.assets/image-20201115185632159.png)
+
+
+
+**实验总结：**
+
+通过本次实验，逐渐搭建起工具链中的各个软件并进行配置，体会到项目的回滚和云端存放的重要性
