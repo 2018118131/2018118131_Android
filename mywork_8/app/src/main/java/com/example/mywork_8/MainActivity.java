@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pb = (ProgressBar)findViewById(R.id.pb);
+        tv = (TextView)findViewById(R.id.tv);
+
+        download = (Button)findViewById(R.id.download);
+        download.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                DownloadTask dTask = new DownloadTask();
+                dTask.execute(100);
+            }
+        });
     }
 
     class DownloadTask extends AsyncTask<Integer,Integer,String>{
