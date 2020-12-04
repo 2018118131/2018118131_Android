@@ -25,5 +25,9 @@ public class MyService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    public void onDestroy(){
+        Log.d("MyService","执行OnDestroy()方法");
+        super.onDestroy();
+    }
 
 }
