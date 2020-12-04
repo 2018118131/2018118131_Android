@@ -15,4 +15,11 @@
         android:layout_height="wrap_content"
         android:text="Download" />
 
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="当前进度条显示"/>
+
 </LinearLayout>
