@@ -22,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     class DownloadTask extends AsyncTask<Integer,Integer,String>{
 
+        public void onPreExecute(){
+            super.onPreExecute();
+        }
+
         @Override
         protected String doInBackground(Integer... params){
             for(int i = 0;i<=100;i++){
