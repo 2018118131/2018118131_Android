@@ -7,18 +7,26 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private SonThread sonThread = null;//子线程
     private static final String TAG = "线程通信";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sonThread = new SonThread();
+        sonThread.start();
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                threadExchangeData(sonThread.sonHandler);
+            }
+        });
     }
 
     private void threadExchangeData(Handler handler){
