@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         handler.sendMessage(msg);
     }
 
-    private Handler mianHandler = new Handler(){
+    private Handler mainHandler = new Handler(){
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             int data = (int)msg.obj;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     int data = (int)msg.obj;
                     String threadName = Thread.currentThread().getName();
                     Log.d(TAG,"["+threadName+"]收到随机数"+data);
-                    threadExchangeData(mianHandler);
+                    threadExchangeData(mainHandler);
                 }
             };
             Looper.loop();
