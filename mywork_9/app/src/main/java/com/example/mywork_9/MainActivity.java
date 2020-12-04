@@ -3,6 +3,7 @@ package com.example.mywork_9;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,4 +39,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    static class Thread extends AsyncTask<Integer, Integer, Void> {
+
+
+        @Override
+        protected Void doInBackground(Integer... params) {
+            try {
+                publishProgress(params);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+
+
+    }
+
 }
