@@ -39,3 +39,9 @@
 作业七(广播)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_6
 
 作业七(广播)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_6/mywork_6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
+
+
+
+作业八(安卓多线程)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_7
+
+作业八(安卓多线程)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_7/mywork_7%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
