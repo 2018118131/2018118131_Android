@@ -57,6 +57,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return null;
         }
 
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            MainActivity.textView.setText("Nice to meet you");
+            super.onProgressUpdate(values);
+        }
+
 
 
 
