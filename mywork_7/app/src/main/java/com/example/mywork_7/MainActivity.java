@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
@@ -37,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG,"["+threadName+"]收到随机数：" +data);
         }
     };
+
+    private final class SonThread extends Thread{
+        private Handler sonHandler = null;
+
+        public void run(){
+            super.run();
+            Looper.prepare();
+            sonHandler = new Handler(){
+                public void handleMessage(Message msg){
+                    super.handleMessage(msg);
+                    int data = (int)msg.obj;
+                    String threadName = Thread.currentThread().getName();
+                    Log.d(TAG,"["+threadName+"]收到随机数"+data);
+                    threadExchangeData(mianHandler);
+                }
+            };
+            Looper.loop();
+        }
+    }
 
 
 }
