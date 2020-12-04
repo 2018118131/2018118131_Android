@@ -29,4 +29,14 @@ public class MainActivity extends AppCompatActivity {
         handler.sendMessage(msg);
     }
 
+    private Handler mianHandler = new Handler(){
+        public void handleMessage(Message msg){
+            super.handleMessage(msg);
+            int data = (int)msg.obj;
+            String threadName = Thread.currentThread().getName();
+            Log.d(TAG,"["+threadName+"]收到随机数：" +data);
+        }
+    };
+
+
 }
