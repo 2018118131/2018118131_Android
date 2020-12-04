@@ -6,6 +6,9 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class MyService extends Service {
+
+    private MainActivity.Thread thread;
+
     public MyService() {
     }
 
@@ -22,6 +25,13 @@ public class MyService extends Service {
 
     public int onStartCommand(Intent intent,int flags,int startId) {
         Log.d("MyService", "执行OnStartCommand()方法");
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                thread = new MainActivity.Thread();
+                thread.execute();
+            }
+        }).start();
         return super.onStartCommand(intent, flags, startId);
     }
 
