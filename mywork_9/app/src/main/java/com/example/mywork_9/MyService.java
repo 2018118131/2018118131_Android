@@ -20,5 +20,10 @@ public class MyService extends Service {
         Log.d("MyService","执行OnCreate()方法");
     }
 
+    public int onStartCommand(Intent intent,int flags,int startId) {
+        Log.d("MyService", "执行OnStartCommand()方法");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
 
 }
