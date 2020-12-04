@@ -24,7 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... params){
-            return null;
+            for(int i = 0;i<=100;i++){
+                pb.setProgress(i);
+                publishProgress(i);
+                try{
+                    Thread.sleep(params[0]);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            return "执行完毕";
         }
     }
 
