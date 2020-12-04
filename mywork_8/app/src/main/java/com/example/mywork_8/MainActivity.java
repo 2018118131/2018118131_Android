@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
             tv.setText(progress[0]+"%");
             super.onProgressUpdate(progress);
         }
+
+        protected void onPostExecute(String result){
+            setTitle(result);
+            super.onPostExecute(result);
+        }
     }
 
 }
