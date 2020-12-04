@@ -45,3 +45,9 @@
 作业八(安卓多线程)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_7
 
 作业八(安卓多线程)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_7/mywork_7%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
+
+
+
+作业九(异步任务)代码https://github.com/JacCloud/2018118131_Android/tree/master/mywork_8
+
+作业九(异步任务)报告https://github.com/JacCloud/2018118131_Android/blob/master/mywork_8/mywork_8%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md
