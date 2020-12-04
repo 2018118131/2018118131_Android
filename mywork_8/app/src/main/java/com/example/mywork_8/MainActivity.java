@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return "执行完毕";
         }
+
+        protected void onProgressUpdate(Integer... progress){
+            tv.setText(progress[0]+"%");
+            super.onProgressUpdate(progress);
+        }
     }
 
 }
