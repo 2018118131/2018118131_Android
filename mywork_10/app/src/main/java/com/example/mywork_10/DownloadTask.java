@@ -102,6 +102,16 @@ public class DownloadTask extends AsyncTask<String,Integer,Integer> {
         return TYPE_FAILED;
     }
 
+    @Override
+    protected void onProgressUpdate(Integer... values){
+        int progress = values[0];
+        if(progress > lastProgress){
+            listener.onProgress(progress);
+            lastProgress = progress;
+        }
+    }
+
+
     private long getContentLength(String downloadUrl) throws IOException{
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(downloadUrl).build();
