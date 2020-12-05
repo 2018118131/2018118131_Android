@@ -111,6 +111,26 @@ public class DownloadTask extends AsyncTask<String,Integer,Integer> {
         }
     }
 
+    @Override
+    protected void onPostExecute(Integer status){
+        switch (status){
+            case TYPE_SUCCESS:
+                listener.onSuccess();
+                break;
+            case TYPE_FAILED:
+                listener.onFailed();
+                break;
+            case TYPE_PAUSED:
+                listener.onPaused();
+                break;
+            case TYPE_CANCELED:
+                listener.onCanceled();
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private long getContentLength(String downloadUrl) throws IOException{
         OkHttpClient client = new OkHttpClient();
