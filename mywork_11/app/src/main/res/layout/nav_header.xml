@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Keelong1720@gmail.com"
+        android:text="1064972820@qq.com"
         android:textColor="#FFF"
         android:textSize="14sp"/>
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/mailText"
-        android:text="Keeling1720"
+        android:text="一起来看流霞"
         android:textColor="#FFF"
         android:textSize="14sp"/>
 </RelativeLayout>
