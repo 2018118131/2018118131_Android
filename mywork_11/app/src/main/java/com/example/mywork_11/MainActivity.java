@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Toast.makeText(MainActivity.this,"FAB clicked",Toast.LENGTH_SHORT).show();
+            public void onClick(View view){
+                Snackbar.make(view,"Data deleted",Snackbar.LENGTH_SHORT).setAction("Undo",new View.OnClickListener(){
+                    public void onClick(View v){
+                        Toast.makeText(MainActivity.this,"Data restored",Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
             }
         });
 
