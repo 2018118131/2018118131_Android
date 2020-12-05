@@ -1,9 +1,14 @@
 package com.example.mywork_10;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
@@ -35,6 +40,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startDownload.setOnClickListener(this);
         pauseDownload.setOnClickListener(this);
         cancelDownload.setOnClickListener(this);
+        Intent intent = new Intent(this, DownloadService.class);
+        startService(intent);//启动服务
+        bindService(intent,connection,BIND_AUTO_CREATE);//绑定服务
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    1);
+        }
     }
 
     @Override
