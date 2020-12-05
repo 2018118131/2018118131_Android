@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.IBinder;
 
 public class DownloadService extends Service {
+
+    private DownloadTask downloadTask;
+    private String downloadUrl;
+
     public DownloadService() {
     }
 
