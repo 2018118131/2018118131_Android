@@ -82,6 +82,14 @@ public class DownloadService extends Service {
                         "Downloading...",Toast.LENGTH_SHORT).show();
             }
         }
+
+        public void pauseDownload(){
+            if(downloadTask != null){
+                downloadTask.pauseDownload();
+            }
+        }
+
+
     }
 
     private NotificationManager getNotificationManager() {
