@@ -7,10 +7,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Binder;
+import android.os.Environment;
 import android.os.IBinder;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+
+import java.io.File;
 
 public class DownloadService extends Service {
 
@@ -88,6 +91,28 @@ public class DownloadService extends Service {
                 downloadTask.pauseDownload();
             }
         }
+
+        public void cancelDownload(){
+            if (downloadTask != null){
+                downloadTask.cancelDownload();
+            }
+            if (downloadUrl != null){
+                //取消下载时需将文件删除，并通知关闭。
+                String fileName = downloadUrl.
+                        substring(downloadUrl.lastIndexOf("/"));
+                String directory = Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DOWNLOADS).getPath();
+                File file = new File(directory + fileName);
+                if(file.exists()){
+                    file.delete();
+                }
+                getNotificationManager().cancel(1);
+                stopForeground(true);
+                Toast.makeText(DownloadService.this,
+                        "Canceled",Toast.LENGTH_SHORT).show();
+            }
+        }
+
 
 
     }
