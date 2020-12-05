@@ -52,7 +52,10 @@ public class DownloadService extends Service {
 
         @Override
         public void onCanceled() {
-
+            downloadTask = null;
+            stopForeground(true);
+            Toast.makeText(DownloadService.this,
+                    "Canceled",Toast.LENGTH_SHORT).show();
         }
     };
 
