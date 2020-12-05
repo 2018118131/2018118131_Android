@@ -53,7 +53,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        if (downloadBinder == null){
+            return;
+        }
+        switch (v.getId()){
+            case R.id.start_download:
+                String url = "https://d1.music.126.net/dmusic/cloudmusicsetup2.7.4.198374.exe";
+                //String url = "http://d0.ananas.chaoxing.com/download/41795e207d5d4b65f82c7b47295f709b?fn=&mt=";
+                downloadBinder.startDownload(url);
+                break;
+            case R.id.pause_download:
+                downloadBinder.pauseDownload();
+                break;
+            case R.id.cancel_download:
+                downloadBinder.cancelDownload();
+                break;
+            default:
+                break;
+        }
     }
 }
