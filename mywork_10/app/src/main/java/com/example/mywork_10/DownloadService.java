@@ -44,7 +44,10 @@ public class DownloadService extends Service {
 
         @Override
         public void onPaused() {
-
+            downloadTask = null;
+            stopForeground(true);
+            Toast.makeText(DownloadService.
+                    this,"Pause",Toast.LENGTH_SHORT).show();
         }
 
         @Override
