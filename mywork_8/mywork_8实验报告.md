@@ -64,7 +64,7 @@
 
 ![image-20201204101646071](mywork_8实验报告.assets/image-20201204101646071.png)
 
-在doInBackground 执行完成后，onPostExecute 方法将被UI 线程调用，后台的计算结果将通过该方法传递到UI 线程，并且在界面上展示给用户
+在doInBackground 执行完成后，onPostExecute ()方法将被UI 线程调用，后台的计算结果将通过该方法传递到UI 线程，并且在界面上展示给用户。
 
 
 
