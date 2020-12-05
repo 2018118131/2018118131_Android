@@ -131,6 +131,10 @@ public class DownloadTask extends AsyncTask<String,Integer,Integer> {
         }
     }
 
+    public void pauseDownload(){
+        isPaused = true;
+    }
+
 
     private long getContentLength(String downloadUrl) throws IOException{
         OkHttpClient client = new OkHttpClient();
