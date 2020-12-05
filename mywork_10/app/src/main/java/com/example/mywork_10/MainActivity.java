@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -73,4 +74,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions,
+                                           int[] grantResults){
+        switch (requestCode){
+            case 1:
+                if (grantResults.length > 0 &&
+                        grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this,"拒绝权限将无法使用程序",
+                            Toast.LENGTH_LONG).show();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }
