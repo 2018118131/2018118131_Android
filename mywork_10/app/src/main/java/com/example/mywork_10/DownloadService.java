@@ -34,7 +34,12 @@ public class DownloadService extends Service {
 
         @Override
         public void onFailed() {
-
+            downloadTask = null;
+            //下载失败时将前台服务通知关闭，并创建一个下载失败的通知
+            stopForeground(true);
+            getNotificationManager().notify(1,getNotification("Download Failed",-1));
+            Toast.makeText(DownloadService.this,
+                    "Download Failed",Toast.LENGTH_SHORT).show();
         }
 
         @Override
