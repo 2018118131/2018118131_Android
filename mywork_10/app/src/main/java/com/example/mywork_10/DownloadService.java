@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Binder;
 import android.os.IBinder;
 import android.widget.Toast;
 
@@ -62,10 +63,16 @@ public class DownloadService extends Service {
     public DownloadService() {
     }
 
+
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    class DownloadBinder extends Binder {
+
     }
 
     private NotificationManager getNotificationManager() {
