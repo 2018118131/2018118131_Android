@@ -1,13 +1,18 @@
 package mrkj.healthylife.activity;
 
 import android.app.DatePickerDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Map;
+
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.GetBMIValuesHelper;
+import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
 
 /**
@@ -72,9 +77,22 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         setContentView(R.layout.activity_planning);
     }
 
+    /**
+     * 初始化相关变量
+     */
     @Override
     protected void initValues() {
-
+        //设置默认加载发现界面
+        SaveKeyValues.putIntValues("launch_which_fragment", Constant.MAKE_PLAN);
+        getNowDate();
+        int height = SaveKeyValues.getIntValues("height",0);
+        int weight = SaveKeyValues.getIntValues("weight",0);
+        Log.e("身高体重值","身高："+height + "\t\t体重："+weight);
+        getBMIValuesHelper = new GetBMIValuesHelper();
+        Map<String,Double> map = getBMIValuesHelper.getNormalWeightRange(height);
+        min_normal_weight = map.get("min");
+        max_normal_weight = map.get("max");
+        now_weight = weight;
     }
 
     @Override
