@@ -11,6 +11,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import mrkj.healthylife.R;
 import mrkj.healthylife.application.DemoApplication;
 import mrkj.healthylife.base.BaseActivity;
@@ -267,6 +272,39 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
         if (thread != null){
             isClose = true;
         }
+    }
+
+    /**
+     * 读取文件返回String字符串
+     */
+
+    private String getMyText(int type){
+
+        InputStream is = null;
+        BufferedReader reader = null;
+        StringBuffer buffer = new StringBuffer();
+        try {
+            is = getAssets().open("sport/sport"+type+".txt");
+            reader = new BufferedReader(new InputStreamReader(is));
+            String str;
+            while ((str = reader.readLine()) != null){
+                buffer.append(str);
+            }
+            String text = buffer.toString();
+            return text;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (is != null){
+                try {
+                    is.close();
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 
 }
