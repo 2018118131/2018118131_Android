@@ -177,11 +177,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
 
     }
 
+    /**
+     * 获取日历信息
+     * @param map
+     */
     @Override
     public void getMessage(Map<String, Object> map) {
-
+        year = (int) map.get("year");
+        month = (int) map.get("month");
+        day = (int) map.get("day");
+        custom_age = Integer.parseInt(map.get("age").toString());
+        input_birthday.setText(year + getString(R.string.year) + month + getString(R.string.month) + day + getString(R.string.day));
     }
-
     /**
      * 存入第一部分资料
      */
