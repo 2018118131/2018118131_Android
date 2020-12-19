@@ -108,6 +108,15 @@
                     android:layout_weight="1"
                     android:src="@mipmap/mrkj_next_btn" />
             </LinearLayout>
+            <Button
+                android:id="@+id/back_sport"
+                android:layout_marginTop="@dimen/width_size_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@null"
+                android:text="完成热身"
+                android:textSize="@dimen/font_size_20"
+                android:background="@drawable/btn_blue_selector"/>
 
         </LinearLayout>
 
