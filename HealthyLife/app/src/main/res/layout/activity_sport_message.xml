@@ -164,6 +164,29 @@
                         android:text="大卡"/>
                 </RelativeLayout>
             </LinearLayout>
+                <TextView
+                    android:layout_marginTop="@dimen/font_size_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font_size_16"
+                    android:textColor="@color/black"
+                    android:text="累计的运动天数(当前/最大)"/>
+            <ProgressBar
+                android:id="@+id/data_progress"
+                style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width_size_10"
+                android:progress="1"
+                android:max="7" />
+            <TextView
+                android:layout_marginTop="@dimen/font_size_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_size_16"
+                android:gravity="right"
+                android:textColor="@color/black"
+                android:text="1天/7天"/>
         </LinearLayout>
 
     </LinearLayout>
