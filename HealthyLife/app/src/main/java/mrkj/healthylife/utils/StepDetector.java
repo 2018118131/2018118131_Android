@@ -4,6 +4,7 @@ import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 
 /**
  * 实现计步的算法
@@ -31,6 +32,21 @@ public class StepDetector implements SensorEventListener {
 	private float mLastExtremes[][] = { new float[3 * 2], new float[3 * 2] };
 	private float mLastDiff[] = new float[3 * 2];
 	private int mLastMatch = -1;
+
+	/**
+	 * 传入上下文的构造函数
+	 *
+	 * @param context
+	 */
+	public StepDetector(Context context) {
+		super();
+		this.context = context;
+		// 用于判断是否计步的值
+		int h = 480;
+		mYOffset = h * 0.5f;
+		mScale[0] = -(h * 0.5f * (1.0f / (SensorManager.STANDARD_GRAVITY * 2)));//重力加速度
+		mScale[1] = -(h * 0.5f * (1.0f / (SensorManager.MAGNETIC_FIELD_EARTH_MAX)));//地球最大磁场
+	}
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
