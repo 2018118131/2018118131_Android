@@ -1,12 +1,19 @@
 package mrkj.healthylife.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 import mrkj.healthylife.R;
-import mrkj.healthylife.adapter.MyAdapter;
+import mrkj.healthylife.application.DemoApplication;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.db.DatasDao;
+import mrkj.healthylife.fragment.FindFragment;
+import mrkj.healthylife.service.ExecuteHealthyPlanService;
+import mrkj.healthylife.utils.Constant;
 
 public class MinePlanActivity extends BaseActivity {
 
@@ -154,4 +164,105 @@ public class MinePlanActivity extends BaseActivity {
             cursor.close();//关闭游标
         }
     }
+
+    /**
+     * 自定义适配器
+     */
+    class MyAdapter extends BaseAdapter {
+
+
+        private void noti(){
+            this.notifyDataSetChanged();
+        }
+        @Override
+        public int getCount() {
+            return plan_List.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return plan_List.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, final ViewGroup parent) {
+            final ViewHolder holder;
+            if (convertView == null){
+                convertView = getLayoutInflater().inflate(R.layout.plan_item,null);
+                holder = new ViewHolder();
+                holder.date = (TextView) convertView.findViewById(R.id.date);
+                holder.hint_time = (TextView) convertView.findViewById(R.id.hint_time);
+                holder.name = (TextView) convertView.findViewById(R.id.xiangmu);
+                holder.count = (TextView) convertView.findViewById(R.id.cishu1);
+                holder.change = (TextView) convertView.findViewById(R.id.add_plan);
+                holder.delete = (TextView) convertView.findViewById(R.id.delete_plan);
+                holder.image = (ImageView) convertView.findViewById(R.id.image_show);
+                convertView.setTag(holder);
+            }else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            Map<String,Object> map = plan_List.get(position);
+            holder.date.setText(map.get("date").toString());//时间段
+            holder.hint_time.setText("提示时间："+map.get("time").toString());//时间点
+            holder.name.setText(DemoApplication.shuoming[((int) map.get("type"))]);//类型
+            holder.count.setText(FindFragment.cishu);
+            holder.change.setText("更改计划");
+            holder.delete.setText("删除计划");
+            holder.image.setImageBitmap(DemoApplication.bitmaps[((int) map.get("type"))]);//类型
+
+            final int id = (int) map.get("id");
+            holder.change.setTag(id);
+            holder.delete.setTag(id);
+            holder.change.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (id == (int)holder.change.getTag()){
+                        startActivityForResult(new Intent(MinePlanActivity.this,UpdateActivity.class).putExtra("position",position).putExtra("id",id),3000);
+                        Toast.makeText(getApplicationContext(), "更改计划", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            //***************************** DELETE *****************************
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (id == (int)holder.delete.getTag()){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MinePlanActivity.this);
+                        builder.setTitle("删除计划");
+                        builder.setMessage("确定删除吗？");
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                datasDao.deleteValue("plans", "_id=?", new String[]{String.valueOf(id)});
+                                startService(new Intent(MinePlanActivity.this, ExecuteHealthyPlanService.class).putExtra("code", Constant.CHANGE_PLAN));
+                                plan_List.remove(position);
+                                noti();
+                                Toast.makeText(getApplicationContext(), "删除计划", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        builder.create();
+                        builder.show();
+                    }
+                }
+            });
+            return convertView;
+        }
+    }
+
+    class ViewHolder{
+        TextView date,name,count,change,delete,hint_time;//日期，名称，次数，更改，删除
+        ImageView image;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }
