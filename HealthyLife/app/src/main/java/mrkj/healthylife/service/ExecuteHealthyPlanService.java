@@ -121,4 +121,35 @@ public class ExecuteHealthyPlanService extends Service {
         cursor.close();
     }
 
+    /**
+     * 校验全部数据
+     */
+    private void compareAllData(){
+//        long nowDate = DateUtils.getNowDateMillisecondValues();//当前日期
+//        Map<String,Object>  times = DateUtils.getDate();
+        Cursor cursor = datasDao.selectAll("plans");
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            int stop_year = cursor.getInt(cursor.getColumnIndex("stop_year"));//结束日期--->年
+            int stop_month = cursor.getInt(cursor.getColumnIndex("stop_month"));//结束日期--->月
+            int stop_day = cursor.getInt(cursor.getColumnIndex("stop_day"));//结束日期--->日
+            Log.e("结束日期",stop_year +"-"+stop_month+"-"+stop_day );
+//            long stopDate = DateUtils.getMillisecondValues(stop_year, stop_month, stop_day);
+//            Log.e("当前时间",nowDate+"" );
+//            Log.e("结束时间",stopDate+"" );
+            Log.e("==","**************************" );
+
+            if (stop_year == (int)(DateUtils.getDate().get("year"))
+                    && stop_month == (int)(DateUtils.getDate().get("month"))
+                    && stop_day == (int)(DateUtils.getDate().get("day"))){//此时意味着当前数据将不再保存在数据中-->删除该条数据
+                Log.e("==","执行了" );
+                finish_plans = SaveKeyValues.getIntValues("finish_plan" , 0);
+                SaveKeyValues.putIntValues("finish_plan",++finish_plans);
+                datasDao.deleteValue("plans", "_id=?", new String[]{String.valueOf(id)});
+                break;
+            }
+        }
+        cursor.close();
+    }
+
 }
