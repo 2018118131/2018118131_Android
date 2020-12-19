@@ -17,6 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/width_size_5"
         android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="@dimen/width_size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </RelativeLayout>
 
     </LinearLayout>
 
