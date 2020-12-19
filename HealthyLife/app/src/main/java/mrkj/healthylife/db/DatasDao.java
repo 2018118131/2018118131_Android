@@ -71,4 +71,9 @@ public class DatasDao {
         db.close();
     }
 
+    // 清空表中数据
+    public void clear(String name) {
+        db.execSQL("delete from " + name);
+    }
+
 }
