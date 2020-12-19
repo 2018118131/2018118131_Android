@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -251,6 +252,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         showAnimation(next_action, R.anim.fade_out);
         next_action.setVisibility(View.INVISIBLE);
         nextShow = false;
+    }
+
+    /**
+     * 设置动画
+     * @param view
+     * @param animID
+     */
+    private Animation showAnimation(View view,int animID){
+        Animation animation = AnimationUtils.loadAnimation(this,animID);
+        view.setAnimation(animation);
+        animation.start();
+        return animation;
     }
 
 
