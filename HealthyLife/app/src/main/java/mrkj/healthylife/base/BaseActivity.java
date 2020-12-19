@@ -42,5 +42,9 @@ public abstract class BaseActivity extends AppCompatActivity{
         paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置下滑线
         view.invalidate();
     }
+    /**
+     * 初始化标题
+     */
+    protected abstract void setActivityTitle();
 
 }
