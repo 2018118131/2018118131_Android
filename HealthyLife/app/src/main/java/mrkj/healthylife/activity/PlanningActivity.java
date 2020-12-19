@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.GetBMIValuesHelper;
 import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
@@ -53,9 +54,14 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
 
     }
 
+    /**
+     * 设置标题
+     */
     @Override
     protected void setActivityTitle() {
-
+        initTitle();//初始化标题
+        setTitle(getString(R.string.target));//设置标题
+        setTitleTextColor(getResources().getColor(R.color.black));//设置字体颜色
     }
 
     @Override
