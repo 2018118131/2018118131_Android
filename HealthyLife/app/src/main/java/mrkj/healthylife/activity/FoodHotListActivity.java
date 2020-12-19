@@ -5,7 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,4 +152,99 @@ public class FoodHotListActivity extends BaseActivity {
     protected void setViewsFunction() {
 
     }
+
+
+
+
+    /**
+     * 适配器
+     */
+
+    class MyFoodAdapter extends BaseExpandableListAdapter {
+
+        //Group的数量
+        @Override
+        public int getGroupCount() {
+            return food_list.size();
+        }
+        //每个Group中的Child的数量
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return food_list.get(groupPosition).getFood_list().size();
+        }
+        //获取对应位置的Group
+        @Override
+        public Object getGroup(int groupPosition) {
+            return food_list.get(groupPosition);
+        }
+        //获取对应位置中的Child
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            return food_list.get(groupPosition).getFood_list().get(childPosition);
+        }
+        //获取对应位置的Group的ID
+        @Override
+        public long getGroupId(int groupPosition) {
+            return groupPosition;
+        }
+        //获取对应位置的Child的ID
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return childPosition;
+        }
+        //判断同一个ID是否指向同一个对象
+        @Override
+        public boolean hasStableIds() {
+            return true;
+        }
+        //获取Group的视图
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+            GroupViewHolder holder;
+            if (convertView == null){
+                holder = new GroupViewHolder();
+                convertView = getLayoutInflater().inflate(R.layout.group_item , null);
+                holder.image = (ImageView) convertView.findViewById(R.id.group_image);
+                holder.title = (TextView) convertView.findViewById(R.id.group_title);
+                convertView.setTag(holder);
+            }else {
+                holder = (GroupViewHolder) convertView.getTag();
+            }
+            holder.image.setImageBitmap(bitmaps[groupPosition]);
+            holder.title.setText(food_type_array[groupPosition]);
+            return convertView;
+        }
+        //获取child的视图
+        @Override
+        public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+            ChildViewHolder holder;
+            if (convertView == null){
+                holder = new ChildViewHolder();
+                convertView = getLayoutInflater().inflate(R.layout.child_item,null);
+                holder.name = (TextView) convertView.findViewById(R.id.food_name);
+                holder.hot = (TextView) convertView.findViewById(R.id.food_hot);
+                convertView.setTag(holder);
+            }else {
+                holder = (ChildViewHolder) convertView.getTag();
+            }
+            FoodMessage food = food_list.get(groupPosition).getFood_list().get(childPosition);
+            holder.name.setText(food.getFood_name());
+            holder.hot.setText(food.getHot()+"千卡/克");
+            return convertView;
+        }
+        //判断child是否可以被选择
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return true;
+        }
+    }
+
+    class GroupViewHolder{
+        ImageView image;
+        TextView title;
+    }
+    class ChildViewHolder{
+        TextView name,hot;
+    }
+
 }
