@@ -66,5 +66,13 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 设置相关管功能
      */
     protected abstract void setViewsFunction();
+    /**
+     * 设置标题的名称
+     * @param name
+     */
+    public void setTitle(String name){
+        title_center.setText(name);
+        title_left.setVisibility(View.INVISIBLE);
+    }
 
 }
