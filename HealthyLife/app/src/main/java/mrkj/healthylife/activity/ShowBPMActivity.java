@@ -39,7 +39,10 @@ public class ShowBPMActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        bpm_show = (ColorArcProgressBar) findViewById(R.id.heat_bpm_values);
+        one = (TextView) findViewById(R.id.one);
+        two = (TextView) findViewById(R.id.two);
+        three = (TextView) findViewById(R.id.three);
     }
 
     @Override
