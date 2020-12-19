@@ -2,6 +2,9 @@ package mrkj.healthylife.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -128,4 +131,28 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 break;
         }
     }
+
+    /**
+     * 显示上部分和显示下部分
+     */
+    public void showMessage() {
+        //上
+        String name = SaveKeyValues.getStringValues("nick", "未填写");//获取名称
+        String image_path = SaveKeyValues.getStringValues("path", "path");//获取图片路径
+        //设置显示和功能
+        custom_name.setText(name);
+        if (!"path".equals(image_path)) {
+            Bitmap bitmap = BitmapFactory.decodeFile(image_path);
+            head_image.setImageBitmap(bitmap);
+        }
+        //中
+        int today_steps = SaveKeyValues.getIntValues("sport_steps", 0);
+        show_steps.setText(today_steps + "步");
+        //设置图表
+        //获取保存的数据
+        Cursor cursor = datasDao.selectAll("step");
+        int counts = cursor.getCount();
+        getDataValues(counts);
+    }
+
 }
