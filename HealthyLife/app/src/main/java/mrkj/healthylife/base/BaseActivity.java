@@ -130,4 +130,12 @@ public abstract class BaseActivity extends AppCompatActivity{
         title_center.setTextColor(colorID);
     }
 
+    /**
+     * 设置标题左侧图片按钮的图片
+     * @param picID
+     */
+    public void setTitleLeftImage(int picID){
+        title_left.setImageResource(picID);
+    }
+
 }
