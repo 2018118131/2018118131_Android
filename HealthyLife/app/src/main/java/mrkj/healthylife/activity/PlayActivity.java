@@ -155,4 +155,14 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 //        Log.e("说明","【"+ message +"】");
         play_message.setText(message);
     }
+
+    private void setShow(){
+        one.setVisibility(View.VISIBLE);
+        two.setVisibility(View.GONE);
+    }
+    private void setShow2(){
+        one.setVisibility(View.GONE);
+        two.setVisibility(View.VISIBLE);
+    }
+
 }
