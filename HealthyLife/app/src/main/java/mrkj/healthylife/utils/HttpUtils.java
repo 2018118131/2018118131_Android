@@ -241,5 +241,33 @@ public class HttpUtils {
         return null;
     }
 
+    /**
+     * 向天气集合中添加数据
+     * @param josnObj
+     * @param mapObj
+     */
+    private static void setWeatherDataToMap(JSONObject josnObj, Map<String, Object> mapObj) {
+        try {
+            JSONArray day = josnObj.getJSONArray("day");
+            JSONArray night = josnObj.getJSONArray("night");
+            // 加入白天的信息
+            mapObj.put("DAY_WQ", day.get(0).toString());// 温度-->区间前
+            mapObj.put("DAY_TQ", day.get(1).toString());// 天气状况
+            mapObj.put("DAY_WH", day.get(2).toString());// 温度-->区间后
+            mapObj.put("DAY_WW", day.get(3).toString());// 风向
+            mapObj.put("DAY_WJ", day.get(4).toString());// 风级
+            mapObj.put("DAY_SJ", day.get(5).toString());// 时间
+            // 加入夜晚的信息
+            mapObj.put("NIGHT_WQ", night.get(0).toString());
+            mapObj.put("NIGHT_TQ", night.get(1).toString());
+            mapObj.put("NIGHT_WH", night.get(2).toString());
+            mapObj.put("NIGHT_WW", night.get(3).toString());
+            mapObj.put("NIGHT_WJ", night.get(4).toString());
+            mapObj.put("NIGHT_SJ", night.get(5).toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
