@@ -38,4 +38,29 @@ public class GetBMIValuesHelper {
         return bmi;
     }
 
+    /**
+     * 获取健康信息
+     * @param height
+     * @param weight
+     * @return
+     */
+    public String getHealthyMessage(int height, int weight){
+        double bmi = getBMI_Value(height, weight);
+        String bodyStr = null;
+        if (bmi < 18.5) {// 体重过低
+            bodyStr = "体重过低";
+        } else if (bmi < 24) {// 体重正常
+            bodyStr = "体重正常";
+        } else if (bmi < 27) {// 体重偏胖
+            bodyStr = "体重偏胖";
+        } else if (bmi < 30) {// Ⅰ度肥胖
+            bodyStr = "Ⅰ度肥胖";
+        } else if (bmi < 35) {// Ⅱ度肥胖
+            bodyStr = "Ⅱ度肥胖";
+        } else {// Ⅲ度肥胖
+            bodyStr = "Ⅲ度肥胖";
+        }
+        return bodyStr;
+    }
+
 }
