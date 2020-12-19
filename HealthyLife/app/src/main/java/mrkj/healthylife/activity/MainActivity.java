@@ -233,6 +233,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 显示下一步按钮
+     */
+    private void showNextBtn(){
+        if (closeDataPicker == false && closeHeightPicker== false){
+            next_action.setVisibility(View.VISIBLE);
+            showAnimation(next_action, R.anim.fade_in);
+            nextShow = true;
+        }
+    }
+
 
 
 
