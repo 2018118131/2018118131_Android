@@ -2,6 +2,7 @@ package mrkj.healthylife.utils;
 
 import android.text.TextUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,6 +13,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import mrkj.healthylife.entity.TodayInfo;
 
@@ -128,4 +131,29 @@ public class HttpUtils {
 
         return null;
     }
+
+    /**
+     * 返回map集合
+     *
+     * @param obj
+     * @return
+     */
+    private static Map<String, Object> getLifeMaps(JSONArray obj) {
+        try {
+            Map<String, Object> map = new HashMap<String, Object>();
+
+            String objStr1 = obj.get(0).toString();
+            String objStr2 = obj.get(1).toString();
+            // Log.e("Q", objStr1);
+            // Log.e("H", objStr2);
+            map.put("Q", objStr1);
+            map.put("H", objStr2);
+            return map;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
