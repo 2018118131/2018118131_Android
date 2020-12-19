@@ -14,4 +14,14 @@
         android:textSize="@dimen/font_size_18"
         android:textColor="@color/theme_blue_two"
         />
+    <TextView
+        android:id="@+id/hint_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_size_5"
+        android:text="提示时间"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_18"
+        android:textColor="@color/theme_blue_two"
+        />
 </LinearLayout>
