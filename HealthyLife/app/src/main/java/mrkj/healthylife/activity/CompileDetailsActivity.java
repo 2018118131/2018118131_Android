@@ -2,6 +2,9 @@ package mrkj.healthylife.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -169,6 +172,19 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         }else{
             startActivityForResult(intent, PHOTO_REQUEST_GALLERY2);
         }
+    }
+
+    /**
+     * 从相机获取
+     */
+    public void camera() {
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        // 判断存储卡是否可以用，可用进行存储
+        if (hasSdcard()) {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                    Uri.fromFile(new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME)));
+        }
+        startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
     }
 
     @Override
