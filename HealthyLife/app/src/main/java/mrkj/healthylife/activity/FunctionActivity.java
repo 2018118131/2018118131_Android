@@ -1,15 +1,19 @@
 package mrkj.healthylife.activity;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.fragment.FindFragment;
 import mrkj.healthylife.fragment.HeartFragment;
 import mrkj.healthylife.fragment.MineFragment;
 import mrkj.healthylife.fragment.SportFragment;
+import mrkj.healthylife.utils.Constant;
 
 /**
  * 功能界面
@@ -29,9 +33,43 @@ public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheck
     private HeartFragment heartFragment;//心率
     private MineFragment mineFragment;//我的
 
+    /**
+     * 切换界面
+     * @param group
+     * @param checkedId
+     */
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (checkedId){
+            case R.id.sport_btn://运动
+                if (!sportFragment.isAdded()){
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("is_launch", false);
+                    sportFragment.setArguments(bundle);
+                    transaction.replace(R.id.frag_home,sportFragment,Constant.SPORT_TAG);
+                }
+                break;
+            case R.id.find_btn://发现
+                if (!findFragment.isAdded()){
+                    transaction.replace(R.id.frag_home, findFragment,Constant.FIND_TAG);
+                }
+                break;
+            case R.id.heart_btn://心率
+                if (!heartFragment.isAdded()){
+                    transaction.replace(R.id.frag_home,heartFragment, Constant.HEART_TAG);
+                }
+                break;
+            case R.id.mine_btn://我的
+                if (!mineFragment.isAdded()){
+                    transaction.replace(R.id.frag_home,mineFragment,Constant.MINE_TAG);
+                }
+                break;
+            default:
+                break;
+        }
+        transaction.commit();
     }
 
     @Override
