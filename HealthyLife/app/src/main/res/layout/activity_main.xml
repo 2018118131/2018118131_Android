@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
-
+    <include layout="@layout/title_layout" android:id="@+id/title_chunk"/>
+    <!-- 完善资料1/2布局 用于设置性别、昵称、生日、身高 -->
 
 </RelativeLayout>
