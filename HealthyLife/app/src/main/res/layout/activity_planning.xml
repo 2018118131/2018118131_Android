@@ -9,5 +9,45 @@
     android:paddingRight="@dimen/width_size_30"
     tools:context="mrkj.healthylife.activity.PlanningActivity">
     <include layout="@layout/title_layout"/>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/change_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/now_weight"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginBottom="@dimen/width_size_10"/>
+        <mrkj.library.wheelview.scalerulerview.ScaleRulerView
+            android:id="@+id/plan_input_weight"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_size_60"
+            app:mSelectPaintColor="@color/theme_blue_two"
+            app:mNormalLineColor="@color/btn_gray"
+            android:background="@color/white"
+            android:layout_marginBottom="@dimen/width_size_10"/>
+        <TextView
+            android:id="@+id/plan_show_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_weight"
+            android:textColor="@color/theme_blue_two"
+            android:gravity="center"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginBottom="@dimen/width_size_10"/>
+        <TextView
+            android:id="@+id/show_normal_weight_range"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:gravity="right"
+            android:textSize="@dimen/font_size_16"
+            android:layout_marginBottom="@dimen/width_size_10"/>
+    </LinearLayout>
 </RelativeLayout>
