@@ -198,6 +198,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     }
 
     /**
+     * 存入第二部分资料
+     */
+    private void saveMessageTwo(){
+        SaveKeyValues.putIntValues("weight",weight);//体重值
+        SaveKeyValues.putStringValues("weight_str", weight_str);//体重信息
+        SaveKeyValues.putIntValues("length", length);//步长值
+        SaveKeyValues.putStringValues("length_str", length_str);//步长信息
+        SaveKeyValues.putIntValues("count",1);//用于判断不是第一次启动
+    }
+
+    /**
      * 初始化标题
      */
     @Override
