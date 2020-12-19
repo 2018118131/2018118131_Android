@@ -32,4 +32,13 @@ public class DBHelper {
 
     }
 
+    /**
+     * 关闭数据库操作
+     */
+    public void dbHelpclose(){
+        if (db.isOpen()){
+            db.close();
+        }
+    }
+
 }
