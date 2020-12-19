@@ -47,4 +47,19 @@ public class DateUtils {
         return calendar.getTimeInMillis();
     }
 
+    /**
+     * 获取日期的毫秒值
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    public static long getMillisecondValues(int year,int month,int day){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        calendar.set(year,month - 1,day);
+        return calendar.getTimeInMillis();
+    }
+
 }
