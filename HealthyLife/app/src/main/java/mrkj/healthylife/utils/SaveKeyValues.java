@@ -35,4 +35,18 @@ public class SaveKeyValues {
         return result;
     }
 
+    /**
+     * 存入String类型的值
+     * @param key
+     * @param values
+     * @return
+     */
+    public static boolean putStringValues(String key,String values){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.putString(key,values);
+        return editor.commit();
+    }
+
 }
