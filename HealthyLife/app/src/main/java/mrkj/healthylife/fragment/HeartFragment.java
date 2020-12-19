@@ -207,6 +207,20 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
     }
     //设置图像的显示
 
+    /**
+     * 配置摄像头
+     */
+    private void configureCamera() {
+        //开启后置摄像头
+        camera = openCameraGingerbread(Camera.CameraInfo.CAMERA_FACING_BACK);
+        setCameraDisplayOrientation(getActivity(), mCurrentCamIndex, camera);
+        Camera.Parameters parameters = camera.getParameters();
+        parameters.setPreviewSize(640, 480);
+        parameters.setPictureSize(640, 480);
+        camera.setParameters(parameters);
+//        Toast.makeText(context,"开启摄像头执行了！",Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onClick(View view) {
 
