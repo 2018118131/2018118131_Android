@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
@@ -433,4 +434,16 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         renderer.addSeriesRenderer(r);
         return renderer;
     }
+
+    /**
+     * 对图标进行设置
+     *
+     * @param renderer
+     */
+    protected void setChartSettings(XYMultipleSeriesRenderer renderer) {
+        renderer.setYLabelsAlign(Paint.Align.RIGHT);
+        renderer.setPointSize((float) 3);
+        renderer.setShowLegend(false);
+    }
+
 }
