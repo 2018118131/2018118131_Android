@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mrkj.healthylife.R;
+import mrkj.healthylife.application.DemoApplication;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.SaveKeyValues;
 
@@ -135,6 +136,23 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void setViewsFunction() {
+        if (what == 1){
+            play_next.setVisibility(View.GONE);
+            back_sport.setVisibility(View.GONE);
+        }else {
+            play_next.setVisibility(View.VISIBLE);
+            back_sport.setVisibility(View.VISIBLE);
+        }
+        setShow();
+        play_name.setText(DemoApplication.shuoming[index]);
+        imageView.setImageResource(frameRes[index]);
+        animationDrawable = (AnimationDrawable) imageView.getDrawable();
+        if (animationDrawable.isRunning()){
+            animationDrawable.stop();
+        }
 
+        String message = getMyText(index);
+//        Log.e("说明","【"+ message +"】");
+        play_message.setText(message);
     }
 }
