@@ -211,6 +211,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 显示或隐藏身高选择器
+     * @param flag
+     */
+    private void openHeightPickerOrClose(boolean flag){
+        if (flag){
+            Log.e(TAG, "获取身高-->获取焦点了");
+            hideKeyBoard();
+            choose_height.setVisibility(View.VISIBLE);
+            hideNextBtn();
+            showAnimation(choose_height, R.anim.push_left_in);
+            closeHeightPicker = true;
+        }else {
+            if (closeHeightPicker == true){
+                showAnimation(choose_height,R.anim.push_left_out);
+                choose_height.setVisibility(View.GONE);
+                showNextBtn();
+                closeHeightPicker = false;
+            }
+        }
+    }
+
 
 
 
