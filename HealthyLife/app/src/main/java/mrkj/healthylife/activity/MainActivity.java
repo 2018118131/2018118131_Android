@@ -202,13 +202,59 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     };
 
+    /**
+     * 初始化控件的监听
+     */
     @Override
     protected void setViewsListener() {
 
+        //======================================= 完善资料1/2 =======================================
+
+        group.setOnCheckedChangeListener(this);
+        input_birthday.setOnClickListener(this);
+        input_height.setOnClickListener(this);
+        next_action.setOnClickListener(this);
+        dateViewHelper.setOnResultMessageListener(this);
+        input_nick.setOnFocusChangeListener(this);
+        input_birthday.setOnFocusChangeListener(this);
+        input_height.setOnFocusChangeListener(this);
+        height_picker.setOnSelectListener(this);
+        personal_information_page_one.setOnTouchListener(messageListener);
+
+        //======================================= 完善资料2/2 =======================================
+
+        input_weight.setValueChangeListener(input_weight_listener);
+        input_length.setValueChangeListener(input_length_listener);
+        go_walk.setOnClickListener(this);
+        go_make.setOnClickListener(this);
     }
 
+    /**
+     * 设置相关管功能
+     */
     @Override
     protected void setViewsFunction() {
 
+        //======================================= 完善资料1/2 =======================================
+
+        personal_information_page_one.setVisibility(View.VISIBLE);
+        input_nick.setClickable(true);
+        input_birthday.setClickable(true);
+        input_height.setClickable(true);
+        input_nick.setFocusableInTouchMode(true);
+        input_birthday.setFocusableInTouchMode(true);
+        input_height.setFocusableInTouchMode(true);
+        //设置日期选择器
+        choose_date.addView(dateViewHelper.getDataPick(inflater));
+        //设置身高选择器
+        height_picker.setData(height_list);
+
+        //======================================= 完善资料2/2 =======================================
+
+        personal_information_page_two.setVisibility(View.GONE);
+        //默认50千克，最小30千克，最大130千克-->单位千克
+        input_weight.initViewParam(50, 130, 30);
+        //默认70厘米，最小40厘米，最大100厘米-->单位厘米
+        input_length.initViewParam(70, 100, 40);
     }
 }
