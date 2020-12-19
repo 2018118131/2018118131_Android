@@ -141,6 +141,15 @@
                     android:layout_marginTop="@dimen/width_size_3"
                     android:background="@color/black" />
 
+                <lecho.lib.hellocharts.view.LineChartView
+                    android:id="@+id/step_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_size_240"
+                    android:layout_marginBottom="@dimen/width_size_10"
+                    android:layout_marginLeft="@dimen/width_size_20"
+                    android:layout_marginRight="@dimen/width_size_20"
+                    android:layout_marginTop="@dimen/width_size_10" />
+
         </LinearLayout>
         </LinearLayout>
     </ScrollView>
