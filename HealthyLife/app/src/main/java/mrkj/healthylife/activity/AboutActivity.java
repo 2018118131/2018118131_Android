@@ -8,6 +8,7 @@ import org.apache.http.util.EncodingUtils;
 import java.io.IOException;
 import java.io.InputStream;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 
 public class AboutActivity extends BaseActivity {
@@ -55,7 +56,7 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        showTxt = (TextView) findViewById(R.id.about_txt);
     }
 
     @Override
