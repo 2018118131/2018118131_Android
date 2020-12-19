@@ -1,5 +1,6 @@
 package mrkj.healthylife.activity;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,15 @@ public class ShowBPMActivity extends BaseActivity {
 
     @Override
     protected void setViewsFunction() {
+        bpm_show.setMaxValues(220);
+        bpm_show.setCurrentValues(bpm_values);
 
+        if (bpm_values <= 60){
+            one.setTextColor(Color.RED);
+        }else if(bpm_values > 60 && bpm_values <= 100){
+            two.setTextColor(Color.RED);
+        }else {
+            three.setTextColor(Color.RED);
+        }
     }
 }
