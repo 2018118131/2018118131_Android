@@ -73,6 +73,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_size_2"
+                android:layout_marginBottom="@dimen/width_size_3"
+                android:layout_marginTop="@dimen/width_size_3"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/plan_start"
+                    android:layout_width="@dimen/width_size_0"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@null"
+                    android:layout_marginBottom="@dimen/width_size_3"
+                    android:layout_marginRight="@dimen/width_size_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_red2_selector"
+                    android:gravity="center"
+                    android:text="开始日期"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_20"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/plan_stop"
+                    android:layout_width="@dimen/width_size_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/width_size_3"
+                    android:layout_marginLeft="@dimen/width_size_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_red2_selector"
+                    android:gravity="center"
+                    android:minHeight="@null"
+                    android:text="结束日期"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
