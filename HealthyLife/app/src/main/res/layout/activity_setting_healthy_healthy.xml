@@ -116,6 +116,19 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/set_clock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/width_size_2"
+                android:layout_weight="1"
+                android:background="@drawable/btn_red_selector"
+                android:minHeight="@null"
+                android:text="设置计划"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_20"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
     </RelativeLayout>
