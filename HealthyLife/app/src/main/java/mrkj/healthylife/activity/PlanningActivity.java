@@ -106,8 +106,18 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         nowDate = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * 初始化控件
+     */
     @Override
     protected void initViews() {
+        hint = (TextView) findViewById(R.id.change_txt);
+        setStartTime = (TextView) findViewById(R.id.plan_start_time);
+        setStopTime = (TextView) findViewById(R.id.plan_stop_time);
+        setPlanWeight = (ScaleRulerView) findViewById(R.id.plan_input_weight);
+        show_plan_weight = (TextView) findViewById(R.id.plan_show_weight);
+        capion = (TextView) findViewById(R.id.show_normal_weight_range);
+        finish = (Button) findViewById(R.id.finish);
 
     }
 
