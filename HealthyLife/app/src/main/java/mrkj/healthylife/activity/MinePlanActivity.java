@@ -1,7 +1,10 @@
 package mrkj.healthylife.activity;
 
 import android.database.Cursor;
+import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,8 +89,25 @@ public class MinePlanActivity extends BaseActivity {
 
     }
 
+    /**
+     * 设置控件的功能
+     */
     @Override
     protected void setViewsFunction() {
-
+        if (plan_List.size() > 0){
+            myAdapter = new MyAdapter();//构建适配器
+            listView.setAdapter(myAdapter);//绑定适配器
+        }
+        //设置EmptyView当List中的数据为空的时候将显示
+        TextView textView = new TextView(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        textView.setLayoutParams(params);
+        textView.setText("没有数据");
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextSize(50);
+        addContentView(textView,params);
+        listView.setEmptyView(textView);
     }
 }
