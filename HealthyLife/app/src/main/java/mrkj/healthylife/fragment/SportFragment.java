@@ -15,10 +15,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseFragment;
 import mrkj.healthylife.entity.PMInfo;
 import mrkj.healthylife.entity.TodayInfo;
+import mrkj.healthylife.service.StepCounterService;
 import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.healthylife.utils.StepDetector;
@@ -148,6 +152,46 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
             alertDialog.show();//显示弹窗
         }
         return view;
+    }
+
+    /**
+     * 初始化相关的属性
+     */
+    private void initValues() {
+        //1、获取所在城市并获取该城市的天气信息
+        query_city_name = SaveKeyValues.getStringValues("city", "北京");
+        try {
+            //使用URLEncoder这个方法
+            // 请在gradle中依赖
+            // compile 'org.apache.httpcomponents:httpcore:4.4.4'
+            weather_url = String.format(Constant.GET_DATA,
+                    URLEncoder.encode(query_city_name, "utf-8"));
+            downLoadDataFromNet();//下载网络数据
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        //2、获取计算里程和热量的相关参数-->默认步数：1000、步长：70cm、体重：50kg
+        isStop = false;
+        duration = 800;
+        //获取默认值用于计算公里数和消耗的热量
+        custom_steps = SaveKeyValues.getIntValues("step_plan", 6000);//用户的步数
+        custom_step_length = SaveKeyValues.getIntValues("length", 70);//用户的步长
+        custom_weight = SaveKeyValues.getIntValues("weight", 50);//用户的体重
+//        Log.e("步数", custom_steps + "步");
+//        Log.e("步长", custom_step_length + "厘米");
+//        Log.e("体重", custom_weight + "公斤");
+        //开启计步服务
+        int history_values = SaveKeyValues.getIntValues("sport_steps", 0);
+//        Log.e("获取存储的值", "" + history_values);
+        int service_values = StepDetector.CURRENT_SETP;
+//        Log.e("关闭程序后的值",service_values+"");
+        boolean isLaunch = getArguments().getBoolean("is_launch", false);
+        if (isLaunch) {
+            StepDetector.CURRENT_SETP = history_values + service_values;
+        }
+        //开启计步服务
+        step_service = new Intent(getContext(), StepCounterService.class);
+        getContext().startService(step_service);
     }
 
 }
