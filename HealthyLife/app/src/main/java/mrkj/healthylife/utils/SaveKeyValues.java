@@ -91,4 +91,18 @@ public class SaveKeyValues {
         return int_value;
     }
 
+    /**
+     * 存入long类型的值
+     * @param key
+     * @param values
+     * @return
+     */
+    public static boolean putLongValues(String key,long values){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.putLong(key, values);
+        return editor.commit();
+    }
+
 }
