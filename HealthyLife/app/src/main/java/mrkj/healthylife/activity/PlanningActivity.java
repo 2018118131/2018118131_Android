@@ -3,6 +3,7 @@ package mrkj.healthylife.activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -277,6 +278,20 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         SaveKeyValues.putFloatValues("plan_max_normal_weight_values",(float)((double)max_normal_weight));
         //4.
         SaveKeyValues.putIntValues("plan_want_weight_values",plan_want_weight);
+    }
+
+    /**
+     * 屏蔽返回键
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            return false;
+        }
+        return false;
     }
 
 
