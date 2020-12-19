@@ -7,5 +7,42 @@
     tools:context="mrkj.healthylife.activity.SportMessageActivity">
     <include layout="@layout/title_layout"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_0"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/width_size_10"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/data_all"
+                android:background="@drawable/btn_green3_selector"
+                android:layout_width="@dimen/width_size_0"
+                android:layout_weight="1"
+                android:minHeight="@null"
+                android:layout_height="wrap_content"
+                android:text="@string/all"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_20"/>
+            <Button
+                android:id="@+id/data_day"
+                android:minHeight="@null"
+                android:background="@drawable/btn_blue2_selector"
+                android:layout_width="@dimen/width_size_0"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="@string/find_day"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_20"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
