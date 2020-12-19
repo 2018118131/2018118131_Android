@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.io.File;
 
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circleimageview.CircleImageView;
 
 /**
@@ -75,7 +76,19 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initValues() {
+        path = SaveKeyValues.getStringValues("path","path");
+        nick_str = SaveKeyValues.getStringValues("nick","未填写");
+        sex_str = SaveKeyValues.getStringValues("gender","男");
+        //获取今日日期
+        getTodayDate();
+        birth_year = SaveKeyValues.getIntValues("birth_year",now_year);
+        birth_month = SaveKeyValues.getIntValues("birth_month",now_month);
+        birth_day = SaveKeyValues.getIntValues("birth_day",now_day);
+        date = birth_year+"-"+birth_month+"-"+birth_day;
 
+        height = SaveKeyValues.getIntValues("height",0);
+        weight = SaveKeyValues.getIntValues("weight",0);
+        length = SaveKeyValues.getIntValues("length",0);
     }
 
     @Override
