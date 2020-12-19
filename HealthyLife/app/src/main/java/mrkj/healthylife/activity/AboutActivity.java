@@ -19,7 +19,11 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void setActivityTitle() {
-
+        initTitle();
+        setTitle("关于我们", this);
+        setMyBackGround(R.color.watm_background_gray);
+        setTitleTextColor(R.color.theme_blue_two);
+        setTitleLeftImage(R.mipmap.mrkj_back_blue);
     }
 
     @Override
