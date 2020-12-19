@@ -299,4 +299,50 @@ public class ExecuteHealthyPlanService extends Service {
         cursor.close();
     }
 
+    /**
+     * 循环一个任务
+     */
+    private void setCirculationTaskAtOnlyOneDataInDataList() {
+        long nowTime = DateUtils.getNowMillisecondValues();//当前时间
+        long nowDate = DateUtils.getNowDateMillisecondValues();//当前日期
+        long hintTime;//提示时间
+        long stopDate;//提示日期
+        Log.e("设置定时","循环数据表中唯一的任务");
+        Cursor cursor = datasDao.selectAll("plans");
+        int counts = cursor.getCount();
+        while (cursor.moveToNext()){
+            //查询出相关的数值
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));//id
+            int number = cursor.getInt(cursor.getColumnIndex("number_values"));//排列顺序
+            int hint_type = cursor.getInt(cursor.getColumnIndex("sport_type"));//提示类型
+            int hour = cursor.getInt(cursor.getColumnIndex("hint_hour"));//提示时间--->时
+            int minute = cursor.getInt(cursor.getColumnIndex("hint_minute"));//提示时间--->分
+            int stop_year = cursor.getInt(cursor.getColumnIndex("stop_year"));//结束日期--->年
+            int stop_month = cursor.getInt(cursor.getColumnIndex("stop_month"));//结束日期--->月
+            int stop_day = cursor.getInt(cursor.getColumnIndex("stop_day"));//结束日期--->日
+            //设置提示时间-->此时重新获取要提示的long型的毫秒值用于设置定时的开始时间
+            hintTime = DateUtils.getMillisecondValues(hour, minute);
+            stopDate = DateUtils.getMillisecondValues(stop_year,stop_month,stop_day);
+            if (counts == 1){
+                if (hintTime < nowTime){
+                    hintTime += Constant.DAY_FOR_24_HOURS;
+                }
+                if (stopDate < nowDate){//设置循环的下一次定时
+                    Log.e("通知","设置服务");
+                    //设置定时
+                    setAlarmService(1, id, number, hint_type, hintTime);
+                }else{//通知广播关闭服务
+                    Log.e("通知","关闭服务");
+                    //清空表中数据
+                    datasDao.clear("plans");
+                    sendBroadcast(new Intent(this, FunctionBroadcastReceiver.class).setAction("mrkj.healthylife.PLAN").putExtra("mode", 3));
+                }
+            }else{
+                Log.e("数据以增加","将执行排列后再设置定时！");
+            }
+            break;
+        }
+        cursor.close();
+    }
+
 }
