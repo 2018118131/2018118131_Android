@@ -34,6 +34,9 @@ public class ExecuteHealthyPlanService extends Service {
 
     private int finish_plans;//完成计划
 
+    public ExecuteHealthyPlanService() {
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
