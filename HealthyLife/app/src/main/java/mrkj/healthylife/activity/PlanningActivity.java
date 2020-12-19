@@ -121,6 +121,20 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
 
     }
 
+    /**
+     * 设置标尺与TextView关联
+     */
+    private ScaleRulerView.OnValueChangeListener set_plan_weight_listener = new ScaleRulerView.OnValueChangeListener() {
+        @Override
+        public void onValueChange(float value) {
+            show_plan_weight.setText((int)value + getString(R.string.kg));
+            plan_want_weight = (int) value;
+            if ((int)value != now_weight){
+                hint.setText(getString(R.string.plan_weight));
+            }
+        }
+    };
+
     @Override
     protected void setViewsListener() {
 
