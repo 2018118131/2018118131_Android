@@ -237,6 +237,22 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
 
+            <TextView
+                android:id="@+id/about_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/width_size_10"
+                android:layout_marginTop="@dimen/width_size_5"
+                android:background="@color/watm_background_gray"
+                android:drawableRight="@mipmap/mrkj_go_to"
+                android:paddingBottom="@dimen/width_size_5"
+                android:paddingLeft="@dimen/width_size_20"
+                android:paddingRight="@dimen/width_size_20"
+                android:paddingTop="@dimen/width_size_5"
+                android:text="@string/about"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
