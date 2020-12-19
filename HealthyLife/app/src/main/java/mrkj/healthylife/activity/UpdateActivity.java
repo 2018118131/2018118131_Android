@@ -122,8 +122,17 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    /**
+     * 时间控件
+     * @param view
+     * @param hourOfDay
+     * @param minute
+     */
     @Override
-    public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+        this.hour = hourOfDay;
+        this.minute = minute;
+//        Log.e("时",this.hour + "");
+//        Log.e("分",this.minute + "");
     }
 }
