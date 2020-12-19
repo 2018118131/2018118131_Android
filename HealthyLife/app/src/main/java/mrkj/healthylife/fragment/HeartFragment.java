@@ -31,6 +31,7 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -368,7 +369,47 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.start_heart_test:
+                //开始闪光灯
+                try {
+                    if (camera == null) {
+                        configureCamera();
+                        try {
+                            camera.setPreviewDisplay(previewHolder);
+                            camera.setPreviewCallback(previewCallback);
+                            camera.startPreview();
+                            progess = 0;
+                            bpm = "000";
+                            Camera.Parameters parameters = camera.getParameters();
+                            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                            camera.setParameters(parameters);
+                            layout.setVisibility(View.VISIBLE);
+                            start_heart_test_btn.setVisibility(View.GONE);
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            //这里的Handler实例将配合下面的Timer实例，完成定时更新图表的功能
+                            timer = new Timer();
+                            task = new TimerTask() {
+                                @Override
+                                public void run() {
+                                    Message message = new Message();
+                                    message.what = 1;
+                                    handler.sendMessage(message);
+                                }
+                            };
 
+                            timer.schedule(task, 1, 20);//曲线
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
