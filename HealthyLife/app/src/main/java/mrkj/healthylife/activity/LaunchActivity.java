@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import mrkj.healthylife.R;
@@ -44,6 +45,20 @@ public class LaunchActivity extends AppCompatActivity {
         int count = SaveKeyValues.getIntValues("count" , 0);
         isFirst = (count == 0)? true : false;
         handler.sendEmptyMessageDelayed(1, 3000);
+    }
+
+    /**
+     * 屏蔽返回键
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            return false;
+        }
+        return false;
     }
 
 
