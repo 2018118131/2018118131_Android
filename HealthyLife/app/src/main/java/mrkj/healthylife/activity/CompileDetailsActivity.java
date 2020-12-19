@@ -276,6 +276,18 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void setViewsFunction() {
-
+        //1、设置更换头像
+        if (!"path".equals(path)) {
+            Log.e("图片路径", path);
+            head_image.setImageBitmap(BitmapFactory.decodeFile(path));
+        }
+        change_nick.setHint(nick_str);
+        change_nick.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_height.setHint(String.valueOf(height));
+        change_height.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_length.setHint(String.valueOf(length));
+        change_length.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_weight.setHint(String.valueOf(weight));
+        change_weight.setHintTextColor(getResources().getColor(R.color.btn_gray));
     }
 }
