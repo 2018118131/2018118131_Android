@@ -66,6 +66,6 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void setViewsFunction() {
-
+        showTxt.setText(aboutTxt);
     }
 }
