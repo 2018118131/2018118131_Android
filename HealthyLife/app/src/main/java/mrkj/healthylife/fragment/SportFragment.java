@@ -319,4 +319,17 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
 
+    /**
+     * 在当前Fragment结束之前，销毁一些不需要的变量
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(get_step_thread);
+        isStop = true;
+        get_step_thread = null;
+        steps_values = 0;
+        duration = 800;
+    }
+
 }
