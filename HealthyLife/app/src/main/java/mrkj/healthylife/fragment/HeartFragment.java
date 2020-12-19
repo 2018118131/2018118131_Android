@@ -261,6 +261,18 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
+    /**
+     * 释放照相机的资源
+     */
+    private void toRelease() {
+        if (camera != null) {
+            camera.setPreviewCallback(null);
+            camera.stopPreview();
+            camera.release();
+            camera = null;
+        }
+    }
+
     @Override
     public void onClick(View view) {
 
