@@ -77,4 +77,18 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 取出int类型的值
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static int getIntValues(String key,int defValue){
+        if (isUnCreate()){
+            return 0;
+        }
+        int int_value = sharedPreferences.getInt(key, defValue);
+        return int_value;
+    }
+
 }
