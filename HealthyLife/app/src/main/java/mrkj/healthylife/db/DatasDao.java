@@ -2,6 +2,7 @@ package mrkj.healthylife.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -42,6 +43,17 @@ public class DatasDao {
          * table 删除数据表的表名 whereClause 删除条件的where子句 whereArgs 删除条件占位符的值
          */
         return db.delete(table, whereClause, whereArgs);
+    }
+
+    // 查询
+    public Cursor selectValue(String sql, String[] selectionArgs) {
+        /**
+         * sql sql语句，sql语句不要添加分好，应为系统会给我们自动填上 selectionArgs
+         * sql语句的where部分可能包含占位符，所以需要用selectionArgs来取代 那个问号
+         */
+        // select name from person where name =? and sex = ?
+        return db.rawQuery(sql, selectionArgs);
+
     }
 
 }
