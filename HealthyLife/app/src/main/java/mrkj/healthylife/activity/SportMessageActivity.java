@@ -51,7 +51,7 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_sport_message);
     }
 
     @Override
