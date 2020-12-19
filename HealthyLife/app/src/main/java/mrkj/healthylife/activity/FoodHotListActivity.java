@@ -30,8 +30,12 @@ public class FoodHotListActivity extends BaseActivity {
         setTitleLeftImage(R.mipmap.mrkj_back_blue);
     }
 
+    /**
+     * 设置界面布局
+     */
     @Override
     protected void getLayoutToView() {
+        setContentView(R.layout.activity_food_hot_list);
 
     }
 
