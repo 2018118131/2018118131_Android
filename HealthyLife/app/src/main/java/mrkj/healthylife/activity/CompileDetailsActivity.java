@@ -7,8 +7,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.Map;
 
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.DateUtils;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circleimageview.CircleImageView;
 
@@ -89,6 +91,16 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         height = SaveKeyValues.getIntValues("height",0);
         weight = SaveKeyValues.getIntValues("weight",0);
         length = SaveKeyValues.getIntValues("length",0);
+    }
+
+    /**
+     * 获取当日日期
+     */
+    private void getTodayDate() {
+        Map<String,Object> map = DateUtils.getDate();
+        now_year = (int) map.get("year");
+        now_month = (int) map.get("month");
+        now_day = (int) map.get("day");
     }
 
     @Override
