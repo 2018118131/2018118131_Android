@@ -1,6 +1,9 @@
 package mrkj.healthylife.activity;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -72,9 +76,78 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
     //确定修改
     private Button change_OK_With_Save;//确定保存
 
+    /**
+     * 点击事件
+     * @param v
+     */
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
+        hideKeyBoard();
+        switch (v.getId()){
+            case R.id.change_image://更换头像
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("选择图片");
+                builder.setMessage("可以通过相册和照相来修改默认图片！");
+                builder.setPositiveButton("图库", new DialogInterface.OnClickListener() {
 
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
+                        gallery();
+                    }
+                });
+                builder.setNegativeButton("拍照", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
+                        camera();
+                    }
+                });
+                builder.create();//创建
+                builder.show();//显示
+                break;
+            case R.id.change_date://更爱日期-->更改年龄
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        birth_day = year;
+                        birth_month = monthOfYear + 1;
+                        birth_day = dayOfMonth;
+                        date = birth_year+"-"+birth_month+"-"+birth_day;
+                        change_birthDay.setText(date);
+                    }
+                },birth_year,birth_month - 1,birth_day);
+                datePickerDialog.setTitle("请设置生日日期");
+                datePickerDialog.show();
+                break;
+            case R.id.change_ok://保存退出
+                if (tempFile != null){
+                    SaveKeyValues.putStringValues("path",tempFile.getPath());//保存图片的路径
+                }
+                if(!"".equals(change_nick.getText().toString())) {
+                    SaveKeyValues.putStringValues("nick", change_nick.getText().toString());//保存昵称
+                }
+                SaveKeyValues.putStringValues("gender", sex_str);//保存性别
+                SaveKeyValues.putStringValues("birthday", birth_year + "年" + birth_month + "月" + birth_day + "日");//保存生日日期
+                SaveKeyValues.putIntValues("birth_year", birth_year);
+                SaveKeyValues.putIntValues("birth_month", birth_month);
+                SaveKeyValues.putIntValues("birth_day", birth_day);
+                SaveKeyValues.putIntValues("age", now_year - birth_year);//保存年龄年龄
+                if (!"".equals(change_height.getText().toString())){
+                    SaveKeyValues.putIntValues("height", Integer.parseInt(change_height.getText().toString().trim()));//保存身高
+                }
+                if (!"".equals(change_length.getText().toString())){
+                    SaveKeyValues.putIntValues("length", Integer.parseInt(change_length.getText().toString().trim()));//保存步长
+                }
+                if (!"".equals(change_weight.getText().toString())){
+                    SaveKeyValues.putIntValues("weight", Integer.parseInt(change_weight.getText().toString().trim()));//保存体重
+                }
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
