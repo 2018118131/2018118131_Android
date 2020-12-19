@@ -106,7 +106,42 @@
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/width_size_20"
+                    android:layout_marginRight="@dimen/width_size_20"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="@dimen/width_size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/steps"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18" />
+
+                    <TextView
+                        android:id="@+id/show_steps"
+                        android:layout_width="@dimen/width_size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/steps"
+                        android:textColor="@color/theme_blue_two"
+                        android:textSize="@dimen/font_size_18" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/width_size_2"
+                    android:layout_marginBottom="@dimen/width_size_3"
+                    android:layout_marginLeft="@dimen/width_size_20"
+                    android:layout_marginRight="@dimen/width_size_20"
+                    android:layout_marginTop="@dimen/width_size_3"
+                    android:background="@color/black" />
+
+        </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
