@@ -126,7 +126,11 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void setViewsListener() {
-
+        play_back.setOnClickListener(this);
+        play_more.setOnClickListener(this);
+        play_switch.setOnClickListener(this);
+        play_next.setOnClickListener(this);
+        back_sport.setOnClickListener(this);
     }
 
     @Override
