@@ -1,12 +1,17 @@
 package mrkj.healthylife.service;
 
+import android.app.ActivityManager;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Map;
 
 import mrkj.healthylife.db.DatasDao;
@@ -85,6 +90,28 @@ public class RecordedSaveService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.e("测试服务", "结束了！");
+    }
+
+    /**
+     * 用判断activity是否在运行
+     * @param mContext
+     * @return
+     */
+    public static boolean isActivityRunning(Context mContext){
+        ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> info = activityManager.getRunningTasks(1);
+        if(info != null && info.size() > 0){
+            ComponentName component = info.get(0).topActivity;
+            if(component.getPackageName().equals(mContext.getPackageName())){
+                return true;
+            }
+        }
+        return false;
+    }
+    private String formatDouble(Double doubles) {
+        DecimalFormat format = new DecimalFormat("####.##");
+        String distanceStr = format.format(doubles);
+        return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
 
 }
