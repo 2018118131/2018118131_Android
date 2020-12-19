@@ -161,4 +161,18 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 取出boolean类型的值
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static boolean getFloatValues(String key,boolean defValue){
+        if (isUnCreate()){
+            return false;
+        }
+        boolean boolean_value = sharedPreferences.getBoolean(key, defValue);
+        return boolean_value;
+    }
+
 }
