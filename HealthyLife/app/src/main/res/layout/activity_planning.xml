@@ -102,4 +102,22 @@
                 android:text="@string/set_stop_time"/>
         </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/width_size_5"
+        android:textSize="@dimen/font_size_20"
+        android:text="@string/finish"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue_selector"/>
+    <LinearLayout
+        android:id="@+id/choose_plan_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:orientation="vertical" >
+    </LinearLayout>
 </RelativeLayout>
