@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.UpdateActivity">
-
+    <TextView
+        android:id="@+id/to_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/width_size_5"
+        android:background="@drawable/shape_btn_back_background"
+        android:drawableLeft="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+        android:gravity="center"
+        android:text="@string/back"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_20"
+        android:textStyle="bold" />
 
 </LinearLayout>
