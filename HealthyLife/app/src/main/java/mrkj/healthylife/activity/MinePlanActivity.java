@@ -1,6 +1,8 @@
 package mrkj.healthylife.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -109,5 +111,47 @@ public class MinePlanActivity extends BaseActivity {
         textView.setTextSize(50);
         addContentView(textView,params);
         listView.setEmptyView(textView);
+    }
+
+    /**
+     * 返回界面
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //返回后刷新数据列表
+        if (requestCode == 3000 && resultCode ==RESULT_OK){
+            Log.e("提示", "设置成功");
+            plan_List.clear();//清空数据集合
+            List<Map<String,Object>> update = new ArrayList<>();
+            cursor = datasDao.selectAll("plans");
+            while (cursor.moveToNext()){
+                Map<String,Object> map = new HashMap<>();
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                int type = cursor.getInt(cursor.getColumnIndex("sport_type"));
+                int s_year = cursor.getInt(cursor.getColumnIndex("start_year"));
+                int s_month = cursor.getInt(cursor.getColumnIndex("start_month"));
+                int s_day = cursor.getInt(cursor.getColumnIndex("start_day"));
+                int t_year = cursor.getInt(cursor.getColumnIndex("stop_year"));
+                int t_month = cursor.getInt(cursor.getColumnIndex("stop_month"));
+                int t_day = cursor.getInt(cursor.getColumnIndex("stop_day"));
+                String h_time = cursor.getString(cursor.getColumnIndex("hint_str"));
+                if (s_year == t_year && s_month == t_month & s_day == t_day){
+                    map.put("date",s_year+"-"+s_month+"-"+s_day);
+                }else {
+                    map.put("date",s_year+"-"+s_month+"-"+s_day+"~"+t_year+"-"+t_month+"-"+t_day);
+                }
+                map.put("id",id);
+                map.put("type",type);
+                map.put("time",h_time);
+                update.add(map);
+            }
+            plan_List.addAll(update);
+            myAdapter.noti();//通知适配器更新
+            cursor.close();//关闭游标
+        }
     }
 }
