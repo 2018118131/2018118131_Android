@@ -76,4 +76,10 @@ public class DatasDao {
         db.execSQL("delete from " + name);
     }
 
+    //返回一个全查询的游标
+    public Cursor selectAll(String table){
+
+        return selectValue2(table,null,null,null,null,null,null);
+    }
+
 }
