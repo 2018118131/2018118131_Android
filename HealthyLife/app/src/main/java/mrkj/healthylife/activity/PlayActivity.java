@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.SaveKeyValues;
 
 public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
@@ -98,7 +99,13 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void initValues() {
-
+        isNext = false;
+        index = getIntent().getIntExtra("play_type",0);
+        what = getIntent().getIntExtra("what",0);
+        doplan = getIntent().getIntExtra("do_hint",0);
+        if (doplan == 1){
+            SaveKeyValues.putIntValues("do_hint",0);
+        }
     }
 
     @Override
