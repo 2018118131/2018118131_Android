@@ -70,4 +70,13 @@ public class DateUtils {
         return getMillisecondValues((int)getDate().get("hour"),(int)getDate().get("minute"));
     }
 
+    /**
+     * 返回当前日期的毫秒值
+     * @return
+     */
+    public static long getNowDateMillisecondValues(){
+//        Log.e("当前日期", getDate().get("year") + "-" +getDate().get("month")+ "-" + getDate().get("day"));
+        return getMillisecondValues((int) getDate().get("year"), (int) getDate().get("month"),(int) getDate().get("day"));
+    }
+
 }
