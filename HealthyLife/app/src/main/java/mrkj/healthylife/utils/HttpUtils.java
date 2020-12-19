@@ -13,7 +13,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import mrkj.healthylife.entity.TodayInfo;
@@ -129,6 +131,54 @@ public class HttpUtils {
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    /**
+     * 天气建议
+     * @param str
+     * @return
+     */
+    public static List<Map<String, Object>> parseLifeJson(String str) {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            String reason = jsonObject.getString("reason");
+            if (TextUtils.equals("successed!", reason)) {
+                JSONObject result = jsonObject.getJSONObject("result");
+                JSONObject data = result.getJSONObject("data");
+                JSONObject life = data.getJSONObject("life");
+                String date = life.getString("date");// 日期
+                // Map<String, Object> map1 = new HashMap<String, Object>();
+                // map1.put("date", date);
+                // list.add(map1);
+                JSONObject info = life.getJSONObject("info");
+                // 空调建议
+                JSONArray kongtiao = info.getJSONArray("kongtiao");
+                list.add(getLifeMaps(kongtiao));
+                // 运动建议
+                JSONArray yundong = info.getJSONArray("yundong");
+                list.add(getLifeMaps(yundong));
+                // 紫外线建议
+                JSONArray ziwaixian = info.getJSONArray("ziwaixian");
+                list.add(getLifeMaps(ziwaixian));
+                // 感冒建议
+                JSONArray ganmao = info.getJSONArray("ganmao");
+                list.add(getLifeMaps(ganmao));
+                // 洗车建议
+                JSONArray xiche = info.getJSONArray("xiche");
+                list.add(getLifeMaps(xiche));
+                // 污染建议
+                JSONArray wuran = info.getJSONArray("wuran");
+                list.add(getLifeMaps(wuran));
+                // 穿衣建议
+                JSONArray chuanyi = info.getJSONArray("chuanyi");
+                list.add(getLifeMaps(chuanyi));
+                return list;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
