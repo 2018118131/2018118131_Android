@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import mrkj.healthylife.R;
+import mrkj.healthylife.activity.PlayActivity;
 import mrkj.healthylife.base.BaseFragment;
 import mrkj.healthylife.entity.PMInfo;
 import mrkj.healthylife.entity.TodayInfo;
@@ -244,6 +245,34 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         show_mileage = (TextView) view.findViewById(R.id.mileage_txt);
         show_heat = (TextView) view.findViewById(R.id.heat_txt);
         want_steps = (TextView) view.findViewById(R.id.want_steps);
+    }
+
+    /**
+     * 设置相关属性
+     */
+    private void setNature() {
+        //设置初始的进度
+        circleBar.setcolor(R.color.theme_blue_two);//设置进度条的颜色
+        circleBar.setMaxstepnumber(custom_steps);//设置进度条的最大值
+        getServiceValue();
+        //跳转界面的按钮
+        warm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "跳转热身界面！", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(), PlayActivity.class)
+                        .putExtra("play_type", 0).putExtra("what", 0));
+//                Random random = new Random();
+//                for (int i = 0; i < 5; i++){
+//                    int a = random.nextInt(5);
+//                    Log.e("随机数","【"+a+"】");
+//                }
+//                startActivity(new Intent(getContext(), WarmUpActivity.class)
+//                         .putExtra("random",new Random().nextInt(5)));
+            }
+        });
+        want_steps.setText("今日目标：" + custom_steps + "步");
+
     }
 
 }
