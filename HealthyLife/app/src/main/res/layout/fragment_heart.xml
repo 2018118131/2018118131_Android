@@ -30,4 +30,13 @@
             fa:progress_unreached_bar_height="@dimen/width_size_5"/>
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_size_10"
+        android:text="※心率测试时，请将手指放置摄像头上！"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_16"
+        android:textColor="@color/red"/>
+
 </LinearLayout>
