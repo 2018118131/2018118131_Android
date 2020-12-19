@@ -54,5 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 设置初始化的值和变量
      */
     protected abstract void initValues();
+    /**
+     * 初始化控件
+     */
+    protected abstract void initViews();
 
 }
