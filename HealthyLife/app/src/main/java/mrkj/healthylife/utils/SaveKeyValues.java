@@ -119,4 +119,18 @@ public class SaveKeyValues {
         return long_value;
     }
 
+    /**
+     * 存入float类型的值
+     * @param key
+     * @param values
+     * @return
+     */
+    public static boolean putFloatValues(String key,float values){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.putFloat(key, values);
+        return editor.commit();
+    }
+
 }
