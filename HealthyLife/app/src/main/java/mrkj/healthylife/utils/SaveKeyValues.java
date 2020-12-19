@@ -49,4 +49,18 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 取出String类型的值
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static String getStringValues(String key,String defValue){
+        if (isUnCreate()){
+            return null;
+        }
+        String string_value = sharedPreferences.getString(key,defValue);
+        return string_value;
+    }
+
 }
