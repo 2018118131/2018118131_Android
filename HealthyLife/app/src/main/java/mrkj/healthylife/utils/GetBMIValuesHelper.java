@@ -1,5 +1,7 @@
 package mrkj.healthylife.utils;
 
+import java.text.DecimalFormat;
+
 /**
  * 获取BMI
  */
@@ -11,4 +13,29 @@ public class GetBMIValuesHelper {
     public static final int SEVERLY_OBESE_ONE = 4;
     public static final int SEVERLY_OBESE_TWO = 5;
     public static final int SEVERLY_OBESE_THREE = 6;
+
+    /**
+     * 获取BMI值 进行 判断 这个人的身体肥胖程度
+     *
+     * @param height
+     *            身高
+     * @param weight
+     *            体重
+     * @return
+     */
+    // 身体质量指数(BMI)
+    // BMI（Body Mass Index）
+    // 指数也叫做身体质量指数，是目前国际上常用的衡量人体胖瘦程度以及是否健康的标准，比单纯的以体重认定更具准确性。
+    // BMI适用于18岁至65岁的人士，不适用儿童、青少年、孕妇、乳母、老人及运动员等。
+    private double getBMI_Value(int height, int weight) {
+        // BMI的计算公式：体重除以身高的二次幂（xxkg/xxm6^）
+        double height2 = height * 0.01;
+        double value = weight / (Math.pow(height2, 2));
+        DecimalFormat format = new DecimalFormat("#.0");
+        // Log.i(TAG, "格式化之前的值:" + value);
+        String str = format.format(value);
+        double bmi = Double.parseDouble(str);
+        return bmi;
+    }
+
 }
