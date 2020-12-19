@@ -56,4 +56,14 @@ public class DatasDao {
 
     }
 
+    // 查询的第二种方式
+    public Cursor selectValue2(String table, String[] columns, String selection, String[] selectionArgs, String groupBy,
+                               String having, String orderBy) {
+        /**
+         * table 表名 columns 要查询的列 selection where后面的查询条件 selectionArgs
+         * 取代查询条件中？的占位符 groupBy 根据摸个字段来分组 having having短语，进一步过滤筛选的 orderBy 排序
+         */
+        return db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
+    }
+
 }
