@@ -2,9 +2,11 @@ package mrkj.healthylife.service;
 
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -15,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import mrkj.healthylife.utils.StepDetector;
@@ -125,6 +128,18 @@ public class StepCounterService extends Service {
             //释放唤醒资源
             mWakeLock.release();
         }
+    }
+
+    public static boolean isActivityRunning(Context mContext) {
+        ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> info = activityManager.getRunningTasks(1);
+        if (info != null && info.size() > 0) {
+            ComponentName component = info.get(0).topActivity;
+            if (component.getPackageName().equals(mContext.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
