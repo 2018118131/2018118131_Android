@@ -58,5 +58,9 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 初始化控件
      */
     protected abstract void initViews();
+    /**
+     * 初始化控件的监听
+     */
+    protected abstract void setViewsListener();
 
 }
