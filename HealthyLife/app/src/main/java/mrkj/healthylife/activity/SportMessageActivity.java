@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +110,18 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
         day_lin = (RelativeLayout) findViewById(R.id.day_data);
         day_btn = (Button) findViewById(R.id.data_day);
         dataList = (ListView) findViewById(R.id.data_list);
+    }
+
+    /**
+     * 计算并格式化doubles数值，保留两位有效数字
+     *
+     * @param doubles
+     * @return 返回当前路程
+     */
+    private String formatDouble(Double doubles) {
+        DecimalFormat format = new DecimalFormat("####.##");
+        String distanceStr = format.format(doubles);
+        return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
 
     @Override
