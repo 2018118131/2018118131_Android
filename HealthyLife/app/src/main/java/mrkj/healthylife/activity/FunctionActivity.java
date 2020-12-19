@@ -1,7 +1,9 @@
 package mrkj.healthylife.activity;
 
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.fragment.FindFragment;
@@ -60,5 +62,24 @@ public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheck
     @Override
     protected void setViewsFunction() {
 
+    }
+
+    /**
+     * 按两次退出按钮退出程序
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            // System.currentTimeMillis()无论何时调用，肯定大于2000
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
