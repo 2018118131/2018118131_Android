@@ -110,7 +110,18 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void initViews() {
-
+        imageView = (ImageView) findViewById(R.id.play_image);
+        play_name = (TextView) findViewById(R.id.play_name);
+        play_more = (TextView) findViewById(R.id.play_more);
+        play_message = (TextView) findViewById(R.id.play_message);
+        play_back = (TextView) findViewById(R.id.play_back);
+        play_switch = (ImageView) findViewById(R.id.play_on_or_off);
+        progressBar = (ProgressBar) findViewById(R.id.play_progress);
+        play_time = (TextView) findViewById(R.id.play_time);
+        one = (LinearLayout) findViewById(R.id.down_one);
+        two = (LinearLayout) findViewById(R.id.down_two);
+        play_next = (ImageView) findViewById(R.id.play_next);
+        back_sport = (Button) findViewById(R.id.back_sport);
     }
 
     @Override
