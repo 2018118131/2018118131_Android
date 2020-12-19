@@ -12,5 +12,12 @@
         android:textSize="@dimen/font_size_18"
         android:textColor="@color/black"
         android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_size_5"
+        android:orientation="horizontal">
+
+    </LinearLayout>
 
 </LinearLayout>
