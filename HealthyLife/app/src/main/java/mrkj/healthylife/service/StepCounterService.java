@@ -105,4 +105,9 @@ public class StepCounterService extends Service {
     // START_REDELIVER_INTENT：与START_STICKY唯一不同的是，回调onStartCommand(...)方法时，
     // 其中的Intent将是非空，将是最后一次调用startService(...)中的intent。
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
 }
