@@ -98,7 +98,17 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initViews() {
+        finish_plans = (TextView) findViewById(R.id.left_txt);
+        keepfit_scores = (TextView) findViewById(R.id.sport_scores);
+        sport_days = (TextView) findViewById(R.id.center_txt);
+        sport_hot = (TextView) findViewById(R.id.right_txt);
 
+
+        all_lin = (LinearLayout) findViewById(R.id.all_data);
+        all_btn = (Button) findViewById(R.id.data_all);
+        day_lin = (RelativeLayout) findViewById(R.id.day_data);
+        day_btn = (Button) findViewById(R.id.data_day);
+        dataList = (ListView) findViewById(R.id.data_list);
     }
 
     @Override
