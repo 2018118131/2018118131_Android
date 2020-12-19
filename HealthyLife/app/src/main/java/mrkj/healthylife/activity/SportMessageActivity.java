@@ -1,6 +1,7 @@
 package mrkj.healthylife.activity;
 
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -8,12 +9,15 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.db.DatasDao;
+import mrkj.healthylife.utils.SaveKeyValues;
 
 public class SportMessageActivity extends BaseActivity implements View.OnClickListener{
 
@@ -56,7 +60,40 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initValues() {
+        plans = SaveKeyValues.getIntValues("finish_plan" , 0);
+        Log.e("plans",plans+"");
+        datasDao = new DatasDao(this);
+        cursor = datasDao.selectAll("step");
+        day_values = 1 + cursor.getCount();
+        double hot_values = 0;
+        int step = 0;
+        counts = cursor.getCount();
+        list =new ArrayList<>();
+        if ( counts> 0){
+            while (cursor.moveToNext()){
+                String hot = cursor.getString(cursor.getColumnIndex("hot"));
+                int steps = cursor.getInt(cursor.getColumnIndex("steps"));
+                double hots = Double.parseDouble(hot);
+                hot_values += hots;
+                step += steps;
+                Map<String , Object> map = new HashMap<>();
+                String date_data = cursor.getString(cursor.getColumnIndex("date"));
+                int step_data = cursor.getInt(cursor.getColumnIndex("steps"));
+                String length_data = cursor.getString(cursor.getColumnIndex("length"));
+                String hot_data = cursor.getString(cursor.getColumnIndex("hot"));
 
+                map.put("date" , date_data);
+                map.put("step" , step_data);
+                map.put("length" , length_data);
+                map.put("hot" , hot_data);
+                Log.e("ss", date_data + "==" + step_data + "=="+length_data+"=="+hot_data+ "==");
+                list.add(map);
+            }
+        }
+        hot_values = hot_values + Double.parseDouble(SaveKeyValues.getStringValues("sport_heat","0.00"));
+        hot_str = formatDouble(hot_values);
+        step = step + SaveKeyValues.getIntValues("sport_steps",0);
+        scores = (int) (step * 0.5);
     }
 
     @Override
