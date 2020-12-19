@@ -1,9 +1,15 @@
 package mrkj.healthylife.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
+
+import mrkj.healthylife.R;
+import mrkj.healthylife.utils.Constant;
+import mrkj.healthylife.utils.SaveKeyValues;
 
 /**
  * 启动页
@@ -24,4 +30,21 @@ public class LaunchActivity extends AppCompatActivity {
             return false;
         }
     });
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //不显示状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launch);
+
+        //设置默认加载运动首页
+        SaveKeyValues.putIntValues("launch_which_fragment", Constant.TURN_MAIN);
+        //判断是否是第一次启动
+        int count = SaveKeyValues.getIntValues("count" , 0);
+        isFirst = (count == 0)? true : false;
+        handler.sendEmptyMessageDelayed(1, 3000);
+    }
+
+
 }
