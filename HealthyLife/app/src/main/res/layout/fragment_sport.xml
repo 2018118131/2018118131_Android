@@ -47,4 +47,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/width_size_0"
         android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/want_steps"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/width_size_3"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/theme_blue_two"
+        android:textSize="@dimen/font_size_18"
+        android:text="目标步数"/>
 </LinearLayout>
