@@ -213,4 +213,23 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         }).start();
     }
 
+    /**
+     * 把下载的数值解析后赋值给相关的控件
+     *
+     * @param resultStr
+     */
+    private void setDownLoadMessageToView(String resultStr) {
+        todayInfo = HttpUtils.parseNowJson(resultStr);// 获取当日的天气信息
+        pmInfo = HttpUtils.parsePMInfoJson(resultStr);// 获取PM2.5的数据
+        if (isAdded()) {
+            if (todayInfo != null) {
+                city_name.setText(context.getString(R.string.city) + query_city_name);
+                city_temperature.setText(context.getString(R.string.temperature_hint) + todayInfo.getTemperature() + getString(R.string.temperature_unit));
+            }
+            if (pmInfo != null) {
+                city_air_quality.setText(context.getString(R.string.quality) + pmInfo.getQuality());
+            }
+        }
+    }
+
 }
