@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
@@ -110,9 +111,37 @@ public class FoodHotListActivity extends BaseActivity {
         data_list = (ExpandableListView) findViewById(R.id.food_list);
     }
 
+    /**
+     * 设置点击展开一个其余的都收起
+     */
     @Override
     protected void setViewsListener() {
+        data_list.setOnGroupClickListener( new  ExpandableListView.OnGroupClickListener() {
 
+            @Override
+            public   boolean  onGroupClick(ExpandableListView parent, View v,
+                                           int  groupPosition,  long  id) {
+                // TODO Auto-generated method stub
+                if  (sign== - 1 ) {
+                    // 展开被选的group
+                    data_list.expandGroup(groupPosition);
+                    // 设置被选中的group置于顶端
+                    data_list.setSelectedGroup(groupPosition);
+                    sign= groupPosition;
+                }  else   if  (sign== groupPosition) {
+                    data_list.collapseGroup(sign);
+                    sign= - 1 ;
+                }  else  {
+                    data_list.collapseGroup(sign);
+                    // 展开被选的group
+                    data_list.expandGroup(groupPosition);
+                    // 设置被选中的group置于顶端
+                    data_list.setSelectedGroup(groupPosition);
+                    sign= groupPosition;
+                }
+                return   true ;
+            }
+        });
     }
 
     @Override
