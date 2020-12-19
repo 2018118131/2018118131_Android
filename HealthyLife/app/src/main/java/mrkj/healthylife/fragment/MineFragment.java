@@ -1,6 +1,7 @@
 package mrkj.healthylife.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,10 +10,16 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.view.LineChartView;
 import mrkj.healthylife.R;
+import mrkj.healthylife.activity.AboutActivity;
+import mrkj.healthylife.activity.CompileDetailsActivity;
+import mrkj.healthylife.activity.FoodHotListActivity;
+import mrkj.healthylife.activity.MinePlanActivity;
+import mrkj.healthylife.activity.SportMessageActivity;
 import mrkj.healthylife.base.BaseFragment;
 import mrkj.healthylife.db.DatasDao;
 import mrkj.healthylife.utils.SaveKeyValues;
@@ -94,8 +101,31 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         }
     }
 
+    /**
+     * 点击事件
+     * @param v
+     */
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.change_person_values:
+                startActivityForResult(new Intent(context, CompileDetailsActivity.class), CHANGE);
+                Toast.makeText(context, "跳转到编辑个人信息界面！", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.about_btn:
+                startActivity(new Intent(context, AboutActivity.class));
+                break;
+            case R.id.sport_btn:
+                startActivity(new Intent(context, SportMessageActivity.class));
+                break;
+            case R.id.plan_btn:
+                startActivity(new Intent(context, MinePlanActivity.class));
+                break;
+            case R.id.food_hot:
+                startActivity(new Intent(context, FoodHotListActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 }
