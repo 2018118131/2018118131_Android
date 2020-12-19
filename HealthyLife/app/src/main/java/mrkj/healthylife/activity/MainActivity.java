@@ -165,6 +165,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         go_make = (Button) findViewById(R.id.make);
     }
 
+    /**
+     * 获取体重信息
+     */
+    private ScaleRulerView.OnValueChangeListener input_weight_listener = new ScaleRulerView.OnValueChangeListener() {
+        @Override
+        public void onValueChange(float value) {
+            show_weight.setText((int)value+getString(R.string.kg));
+            weight = (int) value;
+            weight_str = (int)value+getString(R.string.kg);
+        }
+    };
+    /**
+     * 获取步长信息
+     */
+    private ScaleRulerView.OnValueChangeListener input_length_listener = new ScaleRulerView.OnValueChangeListener() {
+        @Override
+        public void onValueChange(float value) {
+            show_length.setText((int)value+getString(R.string.cm));
+            length = (int) value;
+            length_str = (int)value+getString(R.string.cm);
+        }
+    };
+
     @Override
     protected void setViewsListener() {
 
