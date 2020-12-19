@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.Map;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.DateUtils;
 import mrkj.healthylife.utils.SaveKeyValues;
@@ -105,7 +106,22 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void initViews() {
+        //1、更换头像
+        head_image = (CircleImageView) findViewById(R.id.head_pic);
+        change_image = (TextView) findViewById(R.id.change_image);
+        //2、更换名称
+        change_nick = (EditText) findViewById(R.id.change_nick);
+        //3、更改性别
+        change_gender = (RadioGroup) findViewById(R.id.change_gender);
+        //4、更改生日
+        change_birthDay = (TextView) findViewById(R.id.change_date);
+        //确定并退出界面
+        change_OK_With_Save = (Button) findViewById(R.id.change_ok);
 
+        //修改参数
+        change_height = (EditText) findViewById(R.id.change_height);
+        change_weight = (EditText) findViewById(R.id.change_weight);
+        change_length = (EditText) findViewById(R.id.change_length);
     }
 
     @Override
