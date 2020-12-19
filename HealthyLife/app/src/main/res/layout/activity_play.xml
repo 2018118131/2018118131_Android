@@ -120,6 +120,33 @@
 
         </LinearLayout>
 
+        <!-- 2 -->
+        <LinearLayout
+            android:id="@+id/down_two"
+            android:visibility="gone"
+            android:background="@color/watm_background_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/play_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:drawableLeft="@mipmap/mrkj_turn_left"
+                android:gravity="right"
+                android:text="返回"
+                android:textColor="@color/theme_blue_two"
+                android:textSize="@dimen/font_size_16" />
+            <TextView
+                android:id="@+id/play_message"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/width_size_10"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_16"/>
+        </LinearLayout>
+
     </RelativeLayout>
 
 
