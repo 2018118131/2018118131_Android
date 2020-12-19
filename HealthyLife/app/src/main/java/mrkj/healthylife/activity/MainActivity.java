@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -90,8 +91,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
 
     }
 
+    /**
+     * 初始化标题
+     */
     @Override
-    protected void setActivityTitle() {
+    protected  void setActivityTitle(){
+        initTitle();
+        setTitle(getString(R.string.personal_information_one));
+        setTitleTextColor(getResources().getColor(R.color.black));
+
 
     }
 
@@ -102,9 +110,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     protected void getLayoutToView() {
         setContentView(R.layout.activity_main);}
 
+    /**
+     * 设置初始化的值和变量
+     */
     @Override
     protected void initValues() {
+        gender_str = getResources().getString(R.string.boy);
+        initHeightData();
+        nextShow = true;
+    }
 
+    /**
+     * 初始化身高的集合
+     */
+    private void initHeightData(){
+        //设置130cm至210cm
+        height_list = new ArrayList<>();
+        for (int i = 130;i <= 210;i++){
+            height_list.add(i+"");
+        }
     }
 
     @Override
