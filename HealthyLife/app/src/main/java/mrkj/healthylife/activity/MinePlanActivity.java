@@ -73,9 +73,12 @@ public class MinePlanActivity extends BaseActivity {
         cursor.close();
     }
 
+    /**
+     * 初始化控件
+     */
     @Override
     protected void initViews() {
-
+        listView = (ListView) findViewById(R.id.plan_list);
     }
 
     @Override
