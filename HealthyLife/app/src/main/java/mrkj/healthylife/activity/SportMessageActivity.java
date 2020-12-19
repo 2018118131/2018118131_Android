@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.db.DatasDao;
 
@@ -41,7 +42,11 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void setActivityTitle() {
-
+        initTitle();
+        setTitle("运动记录", this);
+        setMyBackGround(R.color.watm_background_gray);
+        setTitleTextColor(R.color.theme_blue_two);
+        setTitleLeftImage(R.mipmap.mrkj_back_blue);
     }
 
     @Override
