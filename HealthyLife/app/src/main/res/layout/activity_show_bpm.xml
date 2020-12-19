@@ -30,4 +30,38 @@
             app:total_engle="270" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_0"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="心率过慢:小于60BPM"
+            android:layout_marginLeft="@dimen/width_size_30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_18"/>
+        <TextView
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="心率正常:大于60BPM小于100BPM"
+            android:layout_marginTop="@dimen/width_size_10"
+            android:layout_marginLeft="@dimen/width_size_30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_18"/>
+        <TextView
+            android:id="@+id/three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="心率过快:大于100BPM"
+            android:layout_marginTop="@dimen/width_size_10"
+            android:layout_marginLeft="@dimen/width_size_30"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_18"/>
+
+    </LinearLayout>
+
 </LinearLayout>
