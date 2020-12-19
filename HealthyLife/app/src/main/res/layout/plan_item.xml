@@ -4,5 +4,14 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
-
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_size_5"
+        android:text="开始日期-结束日期"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_18"
+        android:textColor="@color/theme_blue_two"
+        />
 </LinearLayout>
