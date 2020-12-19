@@ -35,7 +35,6 @@
             android:layout_width="150dp"
             android:layout_height="120dp"
             android:src="@mipmap/mrkj_fuwocheng1"/>
-    </LinearLayout>
     <LinearLayout
         android:layout_width="@dimen/width_size_0"
         android:layout_height="match_parent"
@@ -84,5 +83,6 @@
             android:textColor="@color/theme_blue_one"
             android:textSize="@dimen/font_size_18"
             android:gravity="center"/>
+    </LinearLayout>
     </LinearLayout>
 </LinearLayout>
