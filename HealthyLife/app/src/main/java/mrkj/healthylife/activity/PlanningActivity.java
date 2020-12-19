@@ -206,4 +206,20 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         }
     }
 
+    /**
+     * 显示选择日期时间弹窗
+     * @param type
+     */
+    private void showDateDialog(int type){
+
+        if (type == SET_START_DATE){
+            datePickerDialog.setTitle(getString(R.string.set_start_time));
+            datePickerDialog.show();
+        }else {
+            datePickerDialog.setTitle(getString(R.string.set_stop_time));
+            datePickerDialog.show();
+        }
+    }
+
+
 }
