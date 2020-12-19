@@ -1,14 +1,18 @@
 package mrkj.healthylife.activity;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +71,97 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     private int month;
     private  int day;
 
+    /**
+     * 点击事件
+     * @param v
+     */
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        //======================================= 完善资料1/2 =======================================
+        switch (v.getId()){
+            case R.id.input_birthday://获取生日信息
+                openPickerOrClose(!closeDataPicker);
+                if (!nextShow){
+                    showNextBtn();
+                }
+                break;
+            case R.id.input_height://获取身高信息
+                openHeightPickerOrClose(!closeHeightPicker);
+                if (!nextShow){
+                    showNextBtn();
+                }
+                break;
+            case R.id.next://获取更多信息
+                nick_str = input_nick.getText().toString();
+                birthday_str = input_birthday.getText().toString();
+                height_str = input_height.getText().toString();
+                Log.e("获取的相关信息","性别："+gender_str+"\t\t"+"昵称："+nick_str+"\t\t"+"生日："+birthday_str+"\t\t身高："+height_str+"\t\t年龄："+custom_age+"岁");
+                if (!"".equals(nick_str) && !getString(R.string.please_write_birthday).equals(birthday_str) && !getString(R.string.please_write_height).equals(height_str)){
+                    //保存资料
+                    saveMessageOne();
+                    //将“完善资料2/2”的布局显示出来并隐藏“完善资料1/2”的布局
+                    //1、显示布局2
+                    showAnimation(personal_information_page_one, R.anim.alpha_out);
+                    personal_information_page_two.setVisibility(View.VISIBLE);
+                    showAnimation(personal_information_page_two, R.anim.push_left_in).setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            //2、隐藏布局1
+                            personal_information_page_one.setVisibility(View.GONE);
+                            back = setTitleLeft(getString(R.string.personal_information_two));
+                            //设置显示的图片
+                            back.setImageResource(R.mipmap.mrkj_mrkjback_black);
+                            //设置返回上一步的点击事件
+                            back.setOnClickListener(MainActivity.this);
+                            Toast.makeText(MainActivity.this, "请设置身高与体重信息！", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
+                    });
+                }else {
+                    Toast.makeText(this,"请将相关信息填写完整！",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            //======================================= 完善资料2/2 =======================================
+            case R.id.left_btn://返回上一步
+                personal_information_page_two.setVisibility(View.GONE);
+                showAnimation(personal_information_page_two, R.anim.push_left_out);
+                personal_information_page_one.setVisibility(View.VISIBLE);
+                showAnimation(personal_information_page_one, R.anim.wave_scale).setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        setTitle(getString(R.string.personal_information_one));
+                    }
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                Toast.makeText(this,"返回上一步！",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.walk://先去逛逛
+                saveMessageTwo();
+                Toast.makeText(this,"先去逛逛！",Toast.LENGTH_SHORT).show();
+                Intent functionIntent = new Intent(this,FunctionActivity.class);
+                startActivity(functionIntent);
+                finish();
+                break;
+            case R.id.make://制定计划
+                saveMessageTwo();
+                Toast.makeText(this,"制定计划！",Toast.LENGTH_SHORT).show();
+                Intent PlanningIntent = new Intent(this,PlanningActivity.class);
+                startActivity(PlanningIntent);
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -77,10 +169,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
 
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
 
-    }
 
     @Override
     public void onSelect(String s) {
