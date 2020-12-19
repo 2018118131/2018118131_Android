@@ -257,4 +257,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         //默认70厘米，最小40厘米，最大100厘米-->单位厘米
         input_length.initViewParam(70, 100, 40);
     }
+
+    /**
+     * 单选
+     * @param group
+     * @param checkedId
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        hideOthers();
+        //选择性别
+        switch (checkedId){
+            case R.id.boy://男
+                gender_str = getResources().getString(R.string.boy);
+                break;
+            case R.id.girl://女
+                gender_str = getResources().getString(R.string.girl);
+                break;
+            default:
+                break;
+        }
+    }
+
 }
