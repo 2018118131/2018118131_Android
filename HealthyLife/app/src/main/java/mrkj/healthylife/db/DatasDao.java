@@ -66,4 +66,9 @@ public class DatasDao {
         return db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
 
+    // 关闭
+    public void close() {
+        db.close();
+    }
+
 }
