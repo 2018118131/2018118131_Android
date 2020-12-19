@@ -281,4 +281,22 @@ public class ExecuteHealthyPlanService extends Service {
         datasDao.updateValue("plans", values, "_id=?", new String[]{String.valueOf(id)});
     }
 
+    //================================ 设置单个任务 ================================
+    /**
+     * 在数据表中只有一条数据时以这个方法设置定时服务
+     */
+    private void setTaskAtOnlyOneDataInDataList() {
+        Cursor cursor = datasDao.selectAll("plans");
+        while (cursor.moveToNext()){
+            //查询出相关的数值
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));//id
+            long hintTime = cursor.getLong(cursor.getColumnIndex("hint_time"));//提示时间
+            int number = cursor.getInt(cursor.getColumnIndex("number_values"));//排列顺序
+            int hint_type = cursor.getInt(cursor.getColumnIndex("sport_type"));//提示类型
+            setAlarmService(1, id, number, hint_type,hintTime);
+            break;
+        }
+        cursor.close();
+    }
+
 }
