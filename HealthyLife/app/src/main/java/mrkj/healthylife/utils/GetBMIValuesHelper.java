@@ -1,6 +1,8 @@
 package mrkj.healthylife.utils;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 获取BMI
@@ -85,6 +87,30 @@ public class GetBMIValuesHelper {
             type = SEVERLY_OBESE_THREE;
         }
         return type;
+    }
+
+    /**
+     * 获取正常体重的范围
+     * @param height
+     * @return
+     */
+    //体指的标准范围18.5~24
+    public Map<String,Double> getNormalWeightRange(int height){
+        Map<String,Double> map = new HashMap<>();
+        //获取正常范围的最大体重
+        Double maxNormalWeight = Math.sqrt(24 * height);
+        DecimalFormat maxFormat = new DecimalFormat("#.0");
+        String maxStr = maxFormat.format(maxNormalWeight);
+        Double maxNormalWeightValues = Double.parseDouble(maxStr);
+        //获取正常范围的最小体重
+        Double minNormalWeight = Math.sqrt(18.5 * height);
+        DecimalFormat minFormat = new DecimalFormat("#.0");
+        String minStr = minFormat.format(minNormalWeight);
+        Double minNormalWeightValues = Double.parseDouble(minStr);
+        //添加所需参数
+        map.put("max",maxNormalWeightValues);
+        map.put("min",minNormalWeightValues);
+        return map;
     }
 
 }
