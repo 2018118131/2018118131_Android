@@ -165,10 +165,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 焦点监听
+     * @param v
+     * @param hasFocus
+     */
     @Override
-    public void onFocusChange(View view, boolean b) {
-
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()){
+            case R.id.input_nick:
+                if (!nextShow){
+                    showNextBtn();
+                }
+                break;
+            case R.id.input_birthday:
+                openPickerOrClose(hasFocus);
+                break;
+            case R.id.input_height:
+                openHeightPickerOrClose(hasFocus);
+                break;
+            default:
+                break;
+        }
     }
+
 
 
 
