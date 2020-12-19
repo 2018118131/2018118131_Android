@@ -122,4 +122,12 @@ public abstract class BaseActivity extends AppCompatActivity{
         return title_right;
     }
 
+    /**
+     * 设置标题的文字颜色
+     * @param colorID
+     */
+    public void setTitleTextColor(int colorID){
+        title_center.setTextColor(colorID);
+    }
+
 }
