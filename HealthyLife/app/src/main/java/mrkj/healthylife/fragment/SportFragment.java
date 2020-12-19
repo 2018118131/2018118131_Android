@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.activity.PlayActivity;
@@ -304,6 +305,18 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
             get_step_thread.start();
         }
 
+    }
+
+    /**
+     * 计算并格式化doubles数值，保留两位有效数字
+     *
+     * @param doubles
+     * @return 返回当前路程
+     */
+    private String formatDouble(Double doubles) {
+        DecimalFormat format = new DecimalFormat("####.##");
+        String distanceStr = format.format(doubles);
+        return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
 
 }
