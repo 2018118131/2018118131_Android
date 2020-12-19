@@ -40,4 +40,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     public void getMessage(Map<String, Object> map) {
 
     }
+
+    @Override
+    protected void setActivityTitle() {
+
+    }
+
+    @Override
+    protected void getLayoutToView() {
+
+    }
+
+    @Override
+    protected void initValues() {
+
+    }
+
+    @Override
+    protected void initViews() {
+
+    }
+
+    @Override
+    protected void setViewsListener() {
+
+    }
+
+    @Override
+    protected void setViewsFunction() {
+
+    }
 }
