@@ -1,4 +1,4 @@
-package mrkj.healthylife.service;
+package mrkj.healthylife.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,12 +9,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import mrkj.healthylife.R;
+import mrkj.healthylife.service.StepCounterService;
 
 /**
  * 用于开机自启动
  *
 // */
-public class BootBroadcastReceiver extends BroadcastReceiver {
+public class RecordedSaveServiceBootBroadcastReceiver extends BroadcastReceiver {
 
     //重写onReceive方法
     @Override

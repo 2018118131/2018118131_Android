@@ -73,8 +73,6 @@
 
     <service android:name=".service.StepCounterService" />
 
-    <service android:name=".service.ExecuteHealthyPlanService" />
-
     <activity
         android:name=".activity.AboutActivity"
         android:screenOrientation="portrait" />
