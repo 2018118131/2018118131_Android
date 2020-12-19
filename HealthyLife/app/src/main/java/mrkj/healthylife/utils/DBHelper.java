@@ -41,4 +41,24 @@ public class DBHelper {
         }
     }
 
+    /**
+     * 按需求查询
+     * @param testType
+     * @param handType
+     * @return
+     */
+    public String getTextResult(int testType,int handType){
+        Cursor cursor = this.select("test",null,null,null,null,null,null);
+        while (cursor.moveToNext()){
+            int test_Type = cursor.getInt(cursor.getColumnIndex("test_type"));
+            int hand_Type = cursor.getInt(cursor.getColumnIndex("line_type"));
+            if (testType == test_Type & handType == hand_Type){
+                String text = cursor.getString(cursor.getColumnIndex("text"));
+                cursor.close();
+                return text;
+            }
+        }
+        return null;
+    }
+
 }
