@@ -39,7 +39,6 @@ import mrkj.library.wheelview.circlebar.CircleBar;
  * 跳转界面的功能按钮
  */
 public class SportFragment extends BaseFragment {//此处直接继承Fragment即可
-
     private static final int WEATHER_MESSAGE = 1;//显示天气信息
     private static final int STEP_PROGRESS = 2;//显示步数信息
     private View view;//界面的布局
@@ -331,5 +330,4 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         steps_values = 0;
         duration = 800;
     }
-
 }

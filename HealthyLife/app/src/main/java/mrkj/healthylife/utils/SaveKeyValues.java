@@ -11,7 +11,6 @@ public class SaveKeyValues {
 
     public  static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
-
     /**
      * 初始化SharedPreferences
      * @param context
@@ -34,7 +33,6 @@ public class SaveKeyValues {
         }
         return result;
     }
-
     /**
      * 存入String类型的值
      * @param key
@@ -118,7 +116,6 @@ public class SaveKeyValues {
         long long_value = sharedPreferences.getLong(key, defValue);
         return long_value;
     }
-
     /**
      * 存入float类型的值
      * @param key
@@ -198,5 +195,4 @@ public class SaveKeyValues {
         editor.remove(key);
         return editor.commit();
     }
-
 }

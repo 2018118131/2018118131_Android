@@ -5,6 +5,7 @@ package mrkj.healthylife.entity;
  * Created by Administrator on 2016/6/8.
  */
 public class HealthyPlan {
+
     private int id_Num;
     private long plan_Time;
 
@@ -23,5 +24,4 @@ public class HealthyPlan {
     public void setPlan_Time(long plan_Time) {
         this.plan_Time = plan_Time;
     }
-
 }

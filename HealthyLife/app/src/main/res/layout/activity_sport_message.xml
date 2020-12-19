@@ -12,8 +12,8 @@
         android:layout_height="@dimen/width_size_0"
         android:layout_weight="1"
         android:layout_margin="@dimen/width_size_10"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -217,5 +217,4 @@
         </RelativeLayout>
 
     </LinearLayout>
-
 </LinearLayout>

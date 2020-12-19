@@ -82,73 +82,6 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
             R.drawable.donghua3,
             R.drawable.donghua4,
             R.drawable.donghua5};
-
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()){
-            case R.id.play_on_or_off://开关
-                isNext = false;
-                if (!isOff){
-                    animationDrawable.start();
-                    values = 0;
-                    play_switch.setImageResource(R.mipmap.mrkj_play_stop);
-                    isOff = true;
-                    isClose = false;
-                    runThread();
-
-                }else {
-                    animationDrawable.stop();
-                    values = 0;
-                    isOff = false;
-                    play_switch.setImageResource(R.mipmap.mrkj_play_start);
-                    isClose = true;
-                    handler.removeMessages(1);
-                }
-                break;
-            case R.id.play_more://详请
-                if(isChange == false){
-                    setShow2();
-                    isChange = true;
-                }
-                break;
-            case R.id.play_back:
-                if (isChange == true){
-                    setShow();
-                    isChange = false;
-                }
-                break;
-            case R.id.play_next://播放下一个
-                isNext = true;
-                index++;
-                if (index > 4){
-                    Toast.makeText(this,"热身完毕请点击返回运动！",Toast.LENGTH_SHORT).show();
-                }else {
-                    animationDrawable.stop();
-                    isOff = false;
-                    isClose = true;
-                    handler.removeMessages(1);
-                    play_name.setText(DemoApplication.shuoming[index]);
-                    imageView.setImageResource(frameRes[index]);
-                    animationDrawable = (AnimationDrawable) imageView.getDrawable();
-                    if (animationDrawable.isRunning()){
-                        animationDrawable.stop();
-                    }
-                    play_switch.setImageResource(R.mipmap.mrkj_play_start);
-                    progressBar.setProgress(0);
-                    play_time.setText("00:00");
-
-                }
-                break;
-            case R.id.back_sport:
-                finish();
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     protected void setActivityTitle() {
         initTitle();
@@ -229,6 +162,70 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
         one.setVisibility(View.GONE);
         two.setVisibility(View.VISIBLE);
     }
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.play_on_or_off://开关
+                isNext = false;
+                if (!isOff){
+                    animationDrawable.start();
+                    values = 0;
+                    play_switch.setImageResource(R.mipmap.mrkj_play_stop);
+                    isOff = true;
+                    isClose = false;
+                    runThread();
+
+                }else {
+                    animationDrawable.stop();
+                    values = 0;
+                    isOff = false;
+                    play_switch.setImageResource(R.mipmap.mrkj_play_start);
+                    isClose = true;
+                    handler.removeMessages(1);
+                }
+                break;
+            case R.id.play_more://详请
+                if(isChange == false){
+                    setShow2();
+                    isChange = true;
+                }
+                break;
+            case R.id.play_back:
+                if (isChange == true){
+                    setShow();
+                    isChange = false;
+                }
+                break;
+            case R.id.play_next://播放下一个
+                isNext = true;
+                index++;
+                if (index > 4){
+                    Toast.makeText(this,"热身完毕请点击返回运动！",Toast.LENGTH_SHORT).show();
+                }else {
+                    animationDrawable.stop();
+                    isOff = false;
+                    isClose = true;
+                    handler.removeMessages(1);
+                    play_name.setText(DemoApplication.shuoming[index]);
+                    imageView.setImageResource(frameRes[index]);
+                    animationDrawable = (AnimationDrawable) imageView.getDrawable();
+                    if (animationDrawable.isRunning()){
+                        animationDrawable.stop();
+                    }
+                    play_switch.setImageResource(R.mipmap.mrkj_play_start);
+                    progressBar.setProgress(0);
+                    play_time.setText("00:00");
+
+                }
+                break;
+            case R.id.back_sport:
+                finish();
+                break;
+            default:
+                break;
+        }
+    }
 
     private void runThread(){
         thread = new Thread(new Runnable() {
@@ -273,7 +270,6 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
             isClose = true;
         }
     }
-
     /**
      * 读取文件返回String字符串
      */
@@ -306,5 +302,4 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
         }
         return null;
     }
-
 }

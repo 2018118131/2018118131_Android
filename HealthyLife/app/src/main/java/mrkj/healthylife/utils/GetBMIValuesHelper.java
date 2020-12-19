@@ -15,7 +15,6 @@ public class GetBMIValuesHelper {
     public static final int SEVERLY_OBESE_ONE = 4;
     public static final int SEVERLY_OBESE_TWO = 5;
     public static final int SEVERLY_OBESE_THREE = 6;
-
     /**
      * 获取BMI值 进行 判断 这个人的身体肥胖程度
      *
@@ -112,5 +111,4 @@ public class GetBMIValuesHelper {
         map.put("min",minNormalWeightValues);
         return map;
     }
-
 }

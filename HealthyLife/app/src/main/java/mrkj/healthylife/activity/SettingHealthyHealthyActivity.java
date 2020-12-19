@@ -71,7 +71,7 @@ public class SettingHealthyHealthyActivity extends AppCompatActivity implements 
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
+                
                 switch (index){
                     case 0://start
                         start_year = year;
@@ -255,6 +255,19 @@ public class SettingHealthyHealthyActivity extends AppCompatActivity implements 
         }
     }
 
+    private void insertData(ContentValues values){
+        if (isToSave){
+            //向数据库中插入数据
+            long result = datasDao.insertValue("plans",values);
+            if (result > 0){
+                Toast.makeText(this,"设置计划成功！",Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
+                finish();
+            }else {
+                Toast.makeText(this,"设置计划失败！请重新设置计划！",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     /**
      * 时间改变回调
      *
@@ -268,19 +281,5 @@ public class SettingHealthyHealthyActivity extends AppCompatActivity implements 
 //        Log.e("minute", minute + " 分");
         alarmhour = hourOfDay;
         alarmminute = minute;
-    }
-
-    private void insertData(ContentValues values){
-        if (isToSave){
-            //向数据库中插入数据
-            long result = datasDao.insertValue("plans",values);
-            if (result > 0){
-                Toast.makeText(this,"设置计划成功！",Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK);
-                finish();
-            }else {
-                Toast.makeText(this,"设置计划失败！请重新设置计划！",Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 }

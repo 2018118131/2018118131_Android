@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:fa="http://schemas.android.com/apk/res-auto"
     >
-
     <RelativeLayout
         android:id="@+id/show_progress"
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
             android:id="@+id/preview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+             />
         <mrkj.library.wheelview.progressbar.RoundProgressBarHeartBMP
             android:id="@+id/bpm_progress"
             android:layout_width="match_parent"
@@ -29,7 +28,16 @@
             fa:progress_unreached_color="@color/yellow"
             fa:progress_unreached_bar_height="@dimen/width_size_5"/>
     </RelativeLayout>
-
+   <!-- <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_0"
+        android:layout_weight="4"
+        android:layout_marginTop="@dimen/width_size_30"
+        android:layout_marginLeft="@dimen/width_size_10"
+        android:layout_marginRight="@dimen/width_size_10"
+        android:layout_marginBottom="@dimen/width_size_30">
+    </lecho.lib.hellocharts.view.LineChartView>-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +46,6 @@
         android:gravity="center"
         android:textSize="@dimen/font_size_16"
         android:textColor="@color/red"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/width_size_0"
@@ -66,5 +73,4 @@
             android:src="@drawable/heart_test_selector"
             />
     </RelativeLayout>
-
 </LinearLayout>

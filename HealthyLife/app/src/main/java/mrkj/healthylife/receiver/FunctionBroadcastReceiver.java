@@ -29,12 +29,12 @@ public class FunctionBroadcastReceiver extends BroadcastReceiver{
         if (RecordedSaveService.cancelSaveService.equals(action)){
 
             //关闭记录计步服务
-            Intent cancel= new Intent(context, RecordedSaveService.class);
+            Intent cancel= new Intent(context,RecordedSaveService.class);
             context.stopService(cancel);
         }else if (StepCounterService.alarmSaveService.equals(action)){
 
             //开启记录计步服务
-            Intent start= new Intent(context, RecordedSaveService.class);
+            Intent start= new Intent(context,RecordedSaveService.class);
             context.startService(start);
         }else if (ExecuteHealthyPlanService.planSaveService.equals(action)){
             int taskID;
@@ -48,7 +48,7 @@ public class FunctionBroadcastReceiver extends BroadcastReceiver{
                     Log.e("通知","通知用户进行运动");
                     Log.e("通知","提示类型" + taskType);
                     Log.e("通知","提示计划" + DemoApplication.shuoming[taskType]);
-                    sendNotification(context , taskType , DemoApplication.shuoming[taskType]);
+                    sendNotification(context , taskType ,DemoApplication.shuoming[taskType]);
                     context.startService(new Intent(context, ExecuteHealthyPlanService.class).putExtra("code", Constant.ONE_PLAN));
                     break;
                 case 2://执行的是多个的定时任务
@@ -62,7 +62,7 @@ public class FunctionBroadcastReceiver extends BroadcastReceiver{
                     Log.e("通知","提示计划" + DemoApplication.shuoming[taskType]);
                     Log.e("数据","数据_ID" + taskID);
                     Log.e("数据","数据序号" + taskNum);
-                    sendNotification(context , taskType , DemoApplication.shuoming[taskType]);
+                    sendNotification(context , taskType ,DemoApplication.shuoming[taskType]);
                     //此时任务数量大于1
                     context.startService(new Intent(context, ExecuteHealthyPlanService.class).putExtra("code", Constant.NEXT_PLAN).putExtra("started_num",taskNum).putExtra("started_id",taskID));
                     break;

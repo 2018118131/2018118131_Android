@@ -40,24 +40,6 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
     private ListView dataList;
     private int counts;
     private List<Map<String , Object>> list;
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.data_all:
-                all_lin.setVisibility(View.VISIBLE);
-                day_lin.setVisibility(View.GONE);
-                break;
-            case R.id.data_day:
-                all_lin.setVisibility(View.GONE);
-                day_lin.setVisibility(View.VISIBLE);
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     protected void setActivityTitle() {
         initTitle();
@@ -124,7 +106,6 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
         day_btn = (Button) findViewById(R.id.data_day);
         dataList = (ListView) findViewById(R.id.data_list);
     }
-
     /**
      * 计算并格式化doubles数值，保留两位有效数字
      *
@@ -136,7 +117,6 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
         String distanceStr = format.format(doubles);
         return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
-
     @Override
     protected void setViewsListener() {
         all_btn.setOnClickListener(this);
@@ -164,5 +144,21 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
             Toast.makeText(this,"当前没有数据！",Toast.LENGTH_SHORT).show();
         }
         cursor.close();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.data_all:
+                all_lin.setVisibility(View.VISIBLE);
+                day_lin.setVisibility(View.GONE);
+                break;
+            case R.id.data_day:
+                all_lin.setVisibility(View.GONE);
+                day_lin.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
     }
 }

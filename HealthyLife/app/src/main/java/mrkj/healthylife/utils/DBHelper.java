@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
  * 数据库
  */
 public class DBHelper {
-
     private SQLiteDatabase db;
     public DBHelper(){
         db = SQLiteDatabase.openOrCreateDatabase(BringData.DATA_PATH+BringData.DATA_NAME,null);
@@ -25,21 +24,20 @@ public class DBHelper {
      * @return
      */
     public Cursor select (String table, String[] columns,
-                          String selection, String[] selectionArgs, String groupBy,
-                          String having, String orderBy){
+                        String selection, String[] selectionArgs, String groupBy,
+                        String having, String orderBy){
         return  db.query(table,columns,selection,selectionArgs,groupBy,having,orderBy);
 
 
     }
-
     /**
      * 关闭数据库操作
      */
-    public void dbHelpclose(){
-        if (db.isOpen()){
-            db.close();
-        }
-    }
+   public void dbHelpclose(){
+       if (db.isOpen()){
+       db.close();
+       }
+   }
 
     /**
      * 按需求查询
@@ -70,5 +68,4 @@ public class DBHelper {
 
         return this.select(name,null,null,null,null,null,null);
     }
-
 }

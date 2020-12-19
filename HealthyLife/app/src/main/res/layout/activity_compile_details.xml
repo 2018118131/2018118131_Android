@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.CompileDetailsActivity">
     <include layout="@layout/title_layout"/>
-
     <!-- 修改头像 -->
     <LinearLayout
         android:layout_marginTop="@dimen/width_size_10"
@@ -34,7 +33,6 @@
             android:textColor="@color/theme_blue_one"
             android:layout_marginRight="@dimen/width_size_5"/>
     </LinearLayout>
-
     <!-- 修改昵称 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,7 +62,6 @@
             android:maxLength="6"
             />
     </LinearLayout>
-
     <!-- 修改性别 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,7 +104,6 @@
                 android:text="@string/girl"/>
         </RadioGroup>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/width_size_10"
@@ -133,7 +129,6 @@
             android:text="@string/default_date"
             android:gravity="right"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,7 +165,6 @@
             android:textSize="@dimen/font_size_20"
             android:text="@string/cm"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -260,5 +254,4 @@
             android:textColor="@color/white"
             android:background="@drawable/btn_blue_selector"/>
     </RelativeLayout>
-
 </LinearLayout>

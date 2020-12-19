@@ -33,7 +33,6 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     private int index;
     private int id;
     private DatasDao datasDao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,6 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
         dimind_change_date.setText("确定更改第【"+(++index)+"】条计划吗？");
     }
-
 
     @Override
     public void onClick(View v) {

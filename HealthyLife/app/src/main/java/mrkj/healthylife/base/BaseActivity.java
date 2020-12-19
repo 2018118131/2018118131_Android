@@ -2,6 +2,7 @@ package mrkj.healthylife.base;
 
 import android.app.Activity;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,9 +13,21 @@ import mrkj.healthylife.R;
 
 
 public abstract class BaseActivity extends AppCompatActivity{
+
     private TextView title_center;//标题的中间部分
     private ImageView title_left,title_right;//标题的左边和右边
     private RelativeLayout title_relRelativeLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getLayoutToView();
+        initValues();
+        setActivityTitle();
+        initViews();
+        setViewsListener();
+        setViewsFunction();
+    }
 
     /**
      * 初始化标题
@@ -27,11 +40,9 @@ public abstract class BaseActivity extends AppCompatActivity{
         title_right.setVisibility(View.INVISIBLE);
         title_relRelativeLayout = (RelativeLayout) findViewById(R.id.title_back);
     }
-
     public void setMyBackGround(int color){
         title_relRelativeLayout.setBackgroundResource(color);
     }
-
     /**
      * 设置TextView的下滑线
      * @param view
@@ -67,6 +78,7 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 设置相关管功能
      */
     protected abstract void setViewsFunction();
+
     /**
      * 设置标题的名称
      * @param name
@@ -90,6 +102,7 @@ public abstract class BaseActivity extends AppCompatActivity{
             }
         });
     }
+
     /**
      * 获取标题左边的按钮
      * @param name
@@ -144,5 +157,4 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void setTitleRightImage(int picID){
         title_right.setImageResource(picID);
     }
-
 }

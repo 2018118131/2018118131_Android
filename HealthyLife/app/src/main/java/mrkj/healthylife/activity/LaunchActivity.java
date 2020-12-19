@@ -31,7 +31,6 @@ public class LaunchActivity extends AppCompatActivity {
             return false;
         }
     });
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //不显示状态栏
@@ -46,7 +45,6 @@ public class LaunchActivity extends AppCompatActivity {
         isFirst = (count == 0)? true : false;
         handler.sendEmptyMessageDelayed(1, 3000);
     }
-
     /**
      * 屏蔽返回键
      * @param keyCode
@@ -60,6 +58,4 @@ public class LaunchActivity extends AppCompatActivity {
         }
         return false;
     }
-
-
 }

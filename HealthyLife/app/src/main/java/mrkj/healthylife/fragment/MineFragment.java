@@ -42,10 +42,9 @@ import mrkj.library.wheelview.circleimageview.CircleImageView;
 
 /**
  * 我的界面
- *
+ * Created by Administrator on 2016/5/27.
  */
 public class MineFragment extends BaseFragment implements View.OnClickListener {
-
     private static final int CHANGE = 200;
     private View view;//界面的布局
     private Context context;
@@ -145,7 +144,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     /**
-     * 显示上部分和显示下部分
+     * 显示上部分和显示上部分
      */
     public void showMessage() {
         //上
@@ -374,6 +373,4 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             Log.e("返回", "success");
         }
     }
-
-
 }

@@ -46,6 +46,7 @@ public class DatasDao {
     }
 
     // 查询
+
     public Cursor selectValue(String sql, String[] selectionArgs) {
         /**
          * sql sql语句，sql语句不要添加分好，应为系统会给我们自动填上 selectionArgs
@@ -81,11 +82,9 @@ public class DatasDao {
 
         return selectValue2(table,null,null,null,null,null,null);
     }
-
     //返回查询指定列
     public Cursor selectColumn(String table ,String[] column){
 
         return selectValue2(table,column,null,null,null,null,null);
     }
-
 }

@@ -16,8 +16,6 @@ public class ShowBPMActivity extends BaseActivity {
     private ImageView share;//分享
     private ColorArcProgressBar bpm_show;//显示心率
     private int bpm_values;//心率值
-
-
     @Override
     protected void setActivityTitle() {
         initTitle();

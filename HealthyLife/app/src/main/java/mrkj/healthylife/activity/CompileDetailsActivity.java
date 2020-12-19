@@ -33,19 +33,16 @@ import mrkj.library.wheelview.circleimageview.CircleImageView;
  * 更改用户信息
  */
 public class CompileDetailsActivity extends BaseActivity implements View.OnClickListener{
-
     private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_GALLERY2 = 4;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     private static final String PHOTO_FILE_NAME = "temp_photo.jpg";// 图片名称
-
     //1、更换头像
     private CircleImageView head_image;//显示头像
     private TextView change_image;//更换头像
     private String path;//头像的路径
     private File tempFile;//图片路径
-
     //2、修改昵称
     private String nick_str;//用户昵称
     private EditText change_nick;//修改昵称
@@ -75,81 +72,6 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
     //用户年龄
     //确定修改
     private Button change_OK_With_Save;//确定保存
-
-    /**
-     * 点击事件
-     * @param v
-     */
-    @Override
-    public void onClick(View v) {
-        hideKeyBoard();
-        switch (v.getId()){
-            case R.id.change_image://更换头像
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("选择图片");
-                builder.setMessage("可以通过相册和照相来修改默认图片！");
-                builder.setPositiveButton("图库", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
-                        gallery();
-                    }
-                });
-                builder.setNegativeButton("拍照", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
-                        camera();
-                    }
-                });
-                builder.create();//创建
-                builder.show();//显示
-                break;
-            case R.id.change_date://更爱日期-->更改年龄
-                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        birth_day = year;
-                        birth_month = monthOfYear + 1;
-                        birth_day = dayOfMonth;
-                        date = birth_year+"-"+birth_month+"-"+birth_day;
-                        change_birthDay.setText(date);
-                    }
-                },birth_year,birth_month - 1,birth_day);
-                datePickerDialog.setTitle("请设置生日日期");
-                datePickerDialog.show();
-                break;
-            case R.id.change_ok://保存退出
-                if (tempFile != null){
-                    SaveKeyValues.putStringValues("path",tempFile.getPath());//保存图片的路径
-                }
-                if(!"".equals(change_nick.getText().toString())) {
-                    SaveKeyValues.putStringValues("nick", change_nick.getText().toString());//保存昵称
-                }
-                SaveKeyValues.putStringValues("gender", sex_str);//保存性别
-                SaveKeyValues.putStringValues("birthday", birth_year + "年" + birth_month + "月" + birth_day + "日");//保存生日日期
-                SaveKeyValues.putIntValues("birth_year", birth_year);
-                SaveKeyValues.putIntValues("birth_month", birth_month);
-                SaveKeyValues.putIntValues("birth_day", birth_day);
-                SaveKeyValues.putIntValues("age", now_year - birth_year);//保存年龄年龄
-                if (!"".equals(change_height.getText().toString())){
-                    SaveKeyValues.putIntValues("height", Integer.parseInt(change_height.getText().toString().trim()));//保存身高
-                }
-                if (!"".equals(change_length.getText().toString())){
-                    SaveKeyValues.putIntValues("length", Integer.parseInt(change_length.getText().toString().trim()));//保存步长
-                }
-                if (!"".equals(change_weight.getText().toString())){
-                    SaveKeyValues.putIntValues("weight", Integer.parseInt(change_weight.getText().toString().trim()));//保存体重
-                }
-                finish();
-                break;
-            default:
-                break;
-        }
-    }
-
     @Override
     protected void setActivityTitle() {
         initTitle();
@@ -235,13 +157,96 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         change_birthDay.setOnClickListener(this);
     }
 
-    /**
-     * 隐藏输入键盘
-     */
-    private void  hideKeyBoard(){
-        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(CompileDetailsActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    @Override
+    protected void setViewsFunction() {
+        //1、设置更换头像
+        if (!"path".equals(path)) {
+            Log.e("图片路径", path);
+            head_image.setImageBitmap(BitmapFactory.decodeFile(path));
+        }
+        change_nick.setHint(nick_str);
+        change_nick.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_height.setHint(String.valueOf(height));
+        change_height.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_length.setHint(String.valueOf(length));
+        change_length.setHintTextColor(getResources().getColor(R.color.btn_gray));
+        change_weight.setHint(String.valueOf(weight));
+        change_weight.setHintTextColor(getResources().getColor(R.color.btn_gray));
     }
 
+    /**
+     * 点击事件
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+        hideKeyBoard();
+        switch (v.getId()){
+            case R.id.change_image://更换头像
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("选择图片");
+                builder.setMessage("可以通过相册和照相来修改默认图片！");
+                builder.setPositiveButton("图库", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
+                        gallery();
+                    }
+                });
+                builder.setNegativeButton("拍照", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_FILE_NAME);
+                        camera();
+                    }
+                });
+                builder.create();//创建
+                builder.show();//显示
+                break;
+            case R.id.change_date://更爱日期-->更改年龄
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        birth_day = year;
+                        birth_month = monthOfYear + 1;
+                        birth_day = dayOfMonth;
+                        date = birth_year+"-"+birth_month+"-"+birth_day;
+                        change_birthDay.setText(date);
+                    }
+                },birth_year,birth_month - 1,birth_day);
+                datePickerDialog.setTitle("请设置生日日期");
+                datePickerDialog.show();
+                break;
+            case R.id.change_ok://保存退出
+                if (tempFile != null){
+                    SaveKeyValues.putStringValues("path",tempFile.getPath());//保存图片的路径
+                }
+                if(!"".equals(change_nick.getText().toString())) {
+                    SaveKeyValues.putStringValues("nick", change_nick.getText().toString());//保存昵称
+                }
+                SaveKeyValues.putStringValues("gender", sex_str);//保存性别
+                SaveKeyValues.putStringValues("birthday", birth_year + "年" + birth_month + "月" + birth_day + "日");//保存生日日期
+                SaveKeyValues.putIntValues("birth_year", birth_year);
+                SaveKeyValues.putIntValues("birth_month", birth_month);
+                SaveKeyValues.putIntValues("birth_day", birth_day);
+                SaveKeyValues.putIntValues("age", now_year - birth_year);//保存年龄年龄
+                if (!"".equals(change_height.getText().toString())){
+                    SaveKeyValues.putIntValues("height", Integer.parseInt(change_height.getText().toString().trim()));//保存身高
+                }
+                if (!"".equals(change_length.getText().toString())){
+                    SaveKeyValues.putIntValues("length", Integer.parseInt(change_length.getText().toString().trim()));//保存步长
+                }
+                if (!"".equals(change_weight.getText().toString())){
+                    SaveKeyValues.putIntValues("weight", Integer.parseInt(change_weight.getText().toString().trim()));//保存体重
+                }
+                finish();
+                break;
+            default:
+                break;
+        }
+    }
     /**
      * 从相册获取
      */
@@ -281,7 +286,6 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
             return false;
         }
     }
-
     /**
      * 通过返回的值来设置图片
      */
@@ -318,6 +322,13 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
     }
 
     /**
+     * 隐藏输入键盘
+     */
+    private void  hideKeyBoard(){
+        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(CompileDetailsActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
      * 剪切图片
      *
      * @function:
@@ -331,36 +342,20 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         // 裁剪图片意图
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
+		intent.putExtra("crop", "true");
+		// 裁剪框的比例，1：1
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		// 裁剪后输出图片的尺寸大小
+		intent.putExtra("outputX", 150);
+		intent.putExtra("outputY", 150);
         intent.putExtra("scale", true);//黑边
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
-        // 图片格式
+		// 图片格式
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         intent.putExtra("noFaceDetection", true);// 取消人脸识别
         intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
 
-    @Override
-    protected void setViewsFunction() {
-        //1、设置更换头像
-        if (!"path".equals(path)) {
-            Log.e("图片路径", path);
-            head_image.setImageBitmap(BitmapFactory.decodeFile(path));
-        }
-        change_nick.setHint(nick_str);
-        change_nick.setHintTextColor(getResources().getColor(R.color.btn_gray));
-        change_height.setHint(String.valueOf(height));
-        change_height.setHintTextColor(getResources().getColor(R.color.btn_gray));
-        change_length.setHint(String.valueOf(length));
-        change_length.setHintTextColor(getResources().getColor(R.color.btn_gray));
-        change_weight.setHint(String.valueOf(weight));
-        change_weight.setHintTextColor(getResources().getColor(R.color.btn_gray));
-    }
 }

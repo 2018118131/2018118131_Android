@@ -5,10 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- *
+ * Created by Administrator on 2016/5/21.
  */
 public class DatasDB extends SQLiteOpenHelper {
-
     private static String DB_NAME = "healthy_db";// 数据库名称
     private static int DB_VERSION = 1;// 数据库版本号
     public DatasDB(Context context) {

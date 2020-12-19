@@ -35,7 +35,6 @@ public class MinePlanActivity extends BaseActivity {
     private DatasDao datasDao;//数据库操作诶
     private Cursor cursor;//游标
     private MyAdapter myAdapter;//适配器
-
     @Override
     protected void setActivityTitle() {
         initTitle();//初始化标题栏
@@ -96,6 +95,9 @@ public class MinePlanActivity extends BaseActivity {
         listView = (ListView) findViewById(R.id.plan_list);
     }
 
+    /**
+     * 设置控件的监听
+     */
     @Override
     protected void setViewsListener() {
 
@@ -168,7 +170,7 @@ public class MinePlanActivity extends BaseActivity {
     /**
      * 自定义适配器
      */
-    class MyAdapter extends BaseAdapter {
+    class MyAdapter extends BaseAdapter{
 
 
         private void noti(){
@@ -264,5 +266,4 @@ public class MinePlanActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-
 }

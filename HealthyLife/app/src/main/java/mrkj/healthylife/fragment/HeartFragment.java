@@ -47,7 +47,8 @@ import mrkj.library.wheelview.progressbar.RoundProgressBarHeartBMP;
 
 /**
  * 心率测试
- *根据相关资料-->GitHub上的开源项目
+ * 建议上网查询相关资料
+ * 此处就是根据相关资料-->GitHub上的开源项目
  * (地址：https://github.com/phishman3579/android-heart-rate-monitor)
  * 进行修改而来的
  * 思路就是打开摄像头并打开闪关灯
@@ -59,10 +60,9 @@ import mrkj.library.wheelview.progressbar.RoundProgressBarHeartBMP;
  * 如果没有先关基础的参考下功能就好
  * 不必深究
  * 这里用到的图标引擎libs包中都已提供
-
+ * Created by Administrator on 2016/5/27.
  */
 public class HeartFragment extends BaseFragment implements View.OnClickListener {
-
     private static final String TAG = HeartFragment.class.getSimpleName();
     private View view;//界面的布局
     //摄像头预览
@@ -597,5 +597,4 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         //如果在非UI主线程中，需要调用postInvalidate()，具体参考api
         chart.invalidate();
     }
-
 }

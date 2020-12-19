@@ -33,7 +33,7 @@ public class MyAdapter extends BaseAdapter {
      * @param list
      * @param findFragment
      */
-    public MyAdapter(Context context, List<Map<String,Object>> list, FindFragment findFragment){
+    public MyAdapter(Context context,List<Map<String,Object>> list,FindFragment findFragment){
         this.list = list;
         inflater = LayoutInflater.from(context);
         this.findFragment = findFragment;

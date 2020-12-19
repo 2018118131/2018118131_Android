@@ -10,6 +10,7 @@ import mrkj.healthylife.fragment.SportFragment;
  * 测试界面
  */
 public class TestActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,5 +25,4 @@ public class TestActivity extends AppCompatActivity {
                 add(R.id.frag,sportFragment).
                 commit();
     }
-
 }

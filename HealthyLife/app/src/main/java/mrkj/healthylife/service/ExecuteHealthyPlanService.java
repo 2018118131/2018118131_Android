@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import mrkj.healthylife.utils.SaveKeyValues;
  * 执行运动计划的服务
  */
 public class ExecuteHealthyPlanService extends Service {
-
     public static final String planSaveService = "mrkj.healthylife.PLAN";
     //用于操作数据库
     private DatasDao datasDao;
@@ -44,13 +42,12 @@ public class ExecuteHealthyPlanService extends Service {
 
 
     private int finish_plans;//完成计划
-
     public ExecuteHealthyPlanService() {
     }
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -64,6 +61,52 @@ public class ExecuteHealthyPlanService extends Service {
 //        senser = PendingIntent.getBroadcast(this, 0, toBroadReciver, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null){
+            int code = intent.getIntExtra("code", 0);
+            switch (code){
+                case Constant.START_PLAN://开启任务
+                    //先设置首个定时任务-->适用于数据库中只有唯一的一条数据
+                    Log.e("开启服务后","设置第一个定时服务!");
+                    setTaskAtOnlyOneDataInDataList();
+                    break;
+                case Constant.CHANGE_PLAN://更新执行顺序
+                    //当数据大于1后执行这个方法对数据进行排列，然后从新设置定时服务
+                    Log.e("更新数据并排列据","设置执行的顺序");
+                    Cursor cursor = datasDao.selectAll("plans");
+                    int count = cursor.getCount();
+                    cursor.close();
+                    if (count == 0){
+                        sendBroadcast(new Intent(this, FunctionBroadcastReceiver.class).setAction("mrkj.healthylife.PLAN").putExtra("mode", 3));
+                    }else {
+//                        compareAllData();
+                        if (count > 1){
+                            getHealthyDataAndSortDataToSetAlarm();//排序任务再设置
+                        }else {
+                            setTaskAtOnlyOneDataInDataList();//设置单个任务
+                        }
+                    }
+                    cursor.close();
+                    break;
+                case Constant.NEXT_PLAN://执行下一个任务
+                    Log.e("此时完成了设置多个定时服务的第一个任务","设置下一个定时的操作");
+                    int started_id = intent.getIntExtra("started_id",0);//执行过的ID
+                    int started_num = intent.getIntExtra("started_num",0);//执行过的序号
+                    //设置下一个定时任务-->判断是否可以开启下一个定时任务
+                    setToExecuteNextAlarmTask(started_id , started_num);
+                    break;
+                case Constant.ONE_PLAN://执行一个任务
+                    setCirculationTaskAtOnlyOneDataInDataList();
+                    break;
+                case Constant.STOP_PLAN://关闭服务
+                    break;
+                default:
+                    break;
+            }
+        }
+        return super.onStartCommand(intent, flags, startId);
+    }
     //================================ 设置下一个定时任务 ================================
     /**
      * 设置下一个定时任务
@@ -126,7 +169,6 @@ public class ExecuteHealthyPlanService extends Service {
         }
         cursor.close();
     }
-
     /**
      * 校验全部数据
      */
@@ -157,7 +199,6 @@ public class ExecuteHealthyPlanService extends Service {
         }
         cursor.close();
     }
-
     //================================ 排序并设置第一个执行任务 ================================
     /**
      * 对数据进行排列-->此时数据至少有两个
@@ -281,7 +322,6 @@ public class ExecuteHealthyPlanService extends Service {
         values.put("number_values" , index);
         datasDao.updateValue("plans", values, "_id=?", new String[]{String.valueOf(id)});
     }
-
     //================================ 设置单个任务 ================================
     /**
      * 在数据表中只有一条数据时以这个方法设置定时服务
@@ -299,7 +339,6 @@ public class ExecuteHealthyPlanService extends Service {
         }
         cursor.close();
     }
-
     /**
      * 循环一个任务
      */
@@ -345,7 +384,6 @@ public class ExecuteHealthyPlanService extends Service {
         }
         cursor.close();
     }
-
     //================================ 功能 ================================
     /**
      * 功能眼增
@@ -362,6 +400,7 @@ public class ExecuteHealthyPlanService extends Service {
         }
         cursor.close();
     }
+
     /**
      * 设置定时任务
      * @id号 id
@@ -384,5 +423,4 @@ public class ExecuteHealthyPlanService extends Service {
         super.onDestroy();
         Log.e("运动计划全部执行完","服务结束了");
     }
-
 }

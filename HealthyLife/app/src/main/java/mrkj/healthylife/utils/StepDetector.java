@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
  * 实现计步的算法
  * 网上有相关的算法
  * 首先计步的算法就是根据手机的X,Y,Z加速度算出来的
+ * 我本身并不了解先关的科学数据所以此处
  * 欧了一段开源代码来完成计步的算法
  */
 public class StepDetector implements SensorEventListener {
@@ -35,7 +36,7 @@ public class StepDetector implements SensorEventListener {
 
 	/**
 	 * 传入上下文的构造函数
-	 *
+	 * 
 	 * @param context
 	 */
 	public StepDetector(Context context) {
@@ -105,7 +106,7 @@ public class StepDetector implements SensorEventListener {
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int i) {
-
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 	}
+
 }

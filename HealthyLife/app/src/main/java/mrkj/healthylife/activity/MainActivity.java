@@ -75,7 +75,204 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     private int year;
     private int month;
     private  int day;
+    /**
+     * 初始化窗口
+     */
+    @Override
+    protected void getLayoutToView() {
+        setContentView(R.layout.activity_main);
+    }
+    /**
+     * 初始化标题
+     */
+    @Override
+    protected  void setActivityTitle(){
+        initTitle();
+        setTitle(getString(R.string.personal_information_one));
+        setTitleTextColor(getResources().getColor(R.color.black));
 
+
+    }
+    /**
+     * 设置初始化的值和变量
+     */
+    @Override
+    protected void initValues() {
+        gender_str = getResources().getString(R.string.boy);
+        initHeightData();
+        nextShow = true;
+    }
+
+    /**
+     * 初始化身高的集合
+     */
+    private void initHeightData(){
+        //设置130cm至210cm
+        height_list = new ArrayList<>();
+        for (int i = 130;i <= 210;i++){
+            height_list.add(i+"");
+        }
+    }
+
+    /**
+     * 初始化控件
+     */
+    @Override
+    protected void initViews() {
+
+        //======================================= 完善资料1/2 =======================================
+
+        personal_information_page_one = (LinearLayout) findViewById(R.id.personal_information_page_one);
+        group = (RadioGroup) findViewById(R.id.gender);
+        input_nick = (EditText) findViewById(R.id.input_nick);
+        input_birthday = (TextView) findViewById(R.id.input_birthday);
+        input_height = (TextView) findViewById(R.id.input_height);
+        next_action = (Button) findViewById(R.id.next);
+        //设置日期选择器
+        inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        choose_date=(LinearLayout) findViewById(R.id.choose_date);
+        dateViewHelper = new DateViewHelper(this);
+        //设置身高选择器
+        choose_height = (LinearLayout) findViewById(R.id.choose_height);
+        height_picker = (PickerView) findViewById(R.id.height_picker);
+
+
+        //======================================= 完善资料2/2 =======================================
+
+        personal_information_page_two = (LinearLayout) findViewById(R.id.personal_information_page_two);
+        input_weight = (ScaleRulerView) findViewById(R.id.input_weight);
+        show_weight = (TextView) findViewById(R.id.show_weight);
+        input_length = (ScaleRulerView) findViewById(R.id.input_length);
+        show_length = (TextView) findViewById(R.id.show_length);
+        go_walk = (Button) findViewById(R.id.walk);
+        go_make = (Button) findViewById(R.id.make);
+    }
+
+    /**
+     * 获取体重信息
+     */
+    private ScaleRulerView.OnValueChangeListener input_weight_listener = new ScaleRulerView.OnValueChangeListener() {
+        @Override
+        public void onValueChange(float value) {
+            show_weight.setText((int)value+getString(R.string.kg));
+            weight = (int) value;
+            weight_str = (int)value+getString(R.string.kg);
+        }
+    };
+    /**
+     * 获取步长信息
+     */
+    private ScaleRulerView.OnValueChangeListener input_length_listener = new ScaleRulerView.OnValueChangeListener() {
+        @Override
+        public void onValueChange(float value) {
+            show_length.setText((int)value+getString(R.string.cm));
+            length = (int) value;
+            length_str = (int)value+getString(R.string.cm);
+        }
+    };
+    /**
+     * 用于隐藏设置器和键盘
+     */
+    private View.OnTouchListener messageListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP){
+                hideOthers();
+            }
+            return true;
+        }
+    };
+    /**
+     * 初始化控件的监听
+     */
+    @Override
+    protected void setViewsListener() {
+
+        //======================================= 完善资料1/2 =======================================
+
+        group.setOnCheckedChangeListener(this);
+        input_birthday.setOnClickListener(this);
+        input_height.setOnClickListener(this);
+        next_action.setOnClickListener(this);
+        dateViewHelper.setOnResultMessageListener(this);
+        input_nick.setOnFocusChangeListener(this);
+        input_birthday.setOnFocusChangeListener(this);
+        input_height.setOnFocusChangeListener(this);
+        height_picker.setOnSelectListener(this);
+        personal_information_page_one.setOnTouchListener(messageListener);
+
+        //======================================= 完善资料2/2 =======================================
+
+        input_weight.setValueChangeListener(input_weight_listener);
+        input_length.setValueChangeListener(input_length_listener);
+        go_walk.setOnClickListener(this);
+        go_make.setOnClickListener(this);
+    }
+    /**
+     * 设置相关管功能
+     */
+    @Override
+    protected void setViewsFunction() {
+
+        //======================================= 完善资料1/2 =======================================
+
+        personal_information_page_one.setVisibility(View.VISIBLE);
+        input_nick.setClickable(true);
+        input_birthday.setClickable(true);
+        input_height.setClickable(true);
+        input_nick.setFocusableInTouchMode(true);
+        input_birthday.setFocusableInTouchMode(true);
+        input_height.setFocusableInTouchMode(true);
+        //设置日期选择器
+        choose_date.addView(dateViewHelper.getDataPick(inflater));
+        //设置身高选择器
+        height_picker.setData(height_list);
+
+        //======================================= 完善资料2/2 =======================================
+
+        personal_information_page_two.setVisibility(View.GONE);
+        //默认50千克，最小30千克，最大130千克-->单位千克
+        input_weight.initViewParam(50, 130, 30);
+        //默认70厘米，最小40厘米，最大100厘米-->单位厘米
+        input_length.initViewParam(70, 100, 40);
+    }
+
+    /**
+     * 单选
+     * @param group
+     * @param checkedId
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        hideOthers();
+        //选择性别
+        switch (checkedId){
+            case R.id.boy://男
+                gender_str = getResources().getString(R.string.boy);
+                break;
+            case R.id.girl://女
+                gender_str = getResources().getString(R.string.girl);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 隐藏
+     */
+    private void hideOthers(){
+        if (closeDataPicker == true){
+            openPickerOrClose(false);
+        }
+        if (closeHeightPicker == true){
+            openHeightPickerOrClose(false);
+        }
+        if (!nextShow){
+            showNextBtn();
+        }
+        hideKeyBoard();
+    }
     /**
      * 点击事件
      * @param v
@@ -170,6 +367,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     }
 
     /**
+     * 存入第一部分资料
+     */
+    private void saveMessageOne(){
+        SaveKeyValues.putStringValues("gender", gender_str);//性别
+        SaveKeyValues.putStringValues("nick",nick_str);//昵称
+        SaveKeyValues.putStringValues("birthday",birthday_str);//生日日期
+        SaveKeyValues.putIntValues("birth_year",year);
+        SaveKeyValues.putIntValues("birth_month",month);
+        SaveKeyValues.putIntValues("birth_day",day);
+        SaveKeyValues.putStringValues("height_str",height_str);//身高带单位的文字
+        SaveKeyValues.putIntValues("height", Integer.parseInt(height_str.substring(0,height_str.length()-2)));//身高数值
+        SaveKeyValues.putIntValues("age",custom_age);//年龄
+    }
+    /**
+     * 存入第二部分资料
+     */
+    private void saveMessageTwo(){
+        SaveKeyValues.putIntValues("weight",weight);//体重值
+        SaveKeyValues.putStringValues("weight_str", weight_str);//体重信息
+        SaveKeyValues.putIntValues("length", length);//步长值
+        SaveKeyValues.putStringValues("length_str", length_str);//步长信息
+        SaveKeyValues.putIntValues("count",1);//用于判断不是第一次启动
+    }
+    /**
+     * 获取日历信息
+     * @param map
+     */
+    @Override
+    public void getMessage(Map<String, Object> map) {
+        year = (int) map.get("year");
+        month = (int) map.get("month");
+        day = (int) map.get("day");
+        custom_age = Integer.parseInt(map.get("age").toString());
+        input_birthday.setText(year + getString(R.string.year) + month + getString(R.string.month) + day + getString(R.string.day));
+    }
+
+    /**
      * 焦点监听
      * @param v
      * @param hasFocus
@@ -214,7 +448,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
             }
         }
     }
-
     /**
      * 显示或隐藏身高选择器
      * @param flag
@@ -236,7 +469,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
             }
         }
     }
-
     /**
      * 显示下一步按钮
      */
@@ -269,9 +501,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         return animation;
     }
 
-
-
-
     /**
      * 获取身高信息
      * @param text
@@ -282,10 +511,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     }
 
     /**
-            * 隐藏输入键盘
+     * 隐藏输入键盘
      */
     private void  hideKeyBoard(){
-        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+       ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     /**
@@ -301,246 +530,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
         return false;
     }
-
-    /**
-     * 获取日历信息
-     * @param map
-     */
-    @Override
-    public void getMessage(Map<String, Object> map) {
-        year = (int) map.get("year");
-        month = (int) map.get("month");
-        day = (int) map.get("day");
-        custom_age = Integer.parseInt(map.get("age").toString());
-        input_birthday.setText(year + getString(R.string.year) + month + getString(R.string.month) + day + getString(R.string.day));
-    }
-    /**
-     * 存入第一部分资料
-     */
-    private void saveMessageOne(){
-        SaveKeyValues.putStringValues("gender", gender_str);//性别
-        SaveKeyValues.putStringValues("nick",nick_str);//昵称
-        SaveKeyValues.putStringValues("birthday",birthday_str);//生日日期
-        SaveKeyValues.putIntValues("birth_year",year);
-        SaveKeyValues.putIntValues("birth_month",month);
-        SaveKeyValues.putIntValues("birth_day",day);
-        SaveKeyValues.putStringValues("height_str",height_str);//身高带单位的文字
-        SaveKeyValues.putIntValues("height", Integer.parseInt(height_str.substring(0,height_str.length()-2)));//身高数值
-        SaveKeyValues.putIntValues("age",custom_age);//年龄
-    }
-
-    /**
-     * 存入第二部分资料
-     */
-    private void saveMessageTwo(){
-        SaveKeyValues.putIntValues("weight",weight);//体重值
-        SaveKeyValues.putStringValues("weight_str", weight_str);//体重信息
-        SaveKeyValues.putIntValues("length", length);//步长值
-        SaveKeyValues.putStringValues("length_str", length_str);//步长信息
-        SaveKeyValues.putIntValues("count",1);//用于判断不是第一次启动
-    }
-
-    /**
-     * 初始化标题
-     */
-    @Override
-    protected  void setActivityTitle(){
-        initTitle();
-        setTitle(getString(R.string.personal_information_one));
-        setTitleTextColor(getResources().getColor(R.color.black));
-
-
-    }
-
-    /**
-     * 初始化窗口
-     */
-    @Override
-    protected void getLayoutToView() {
-        setContentView(R.layout.activity_main);}
-
-    /**
-     * 设置初始化的值和变量
-     */
-    @Override
-    protected void initValues() {
-        gender_str = getResources().getString(R.string.boy);
-        initHeightData();
-        nextShow = true;
-    }
-
-    /**
-     * 初始化身高的集合
-     */
-    private void initHeightData(){
-        //设置130cm至210cm
-        height_list = new ArrayList<>();
-        for (int i = 130;i <= 210;i++){
-            height_list.add(i+"");
-        }
-    }
-
-    /**
-     * 初始化控件
-     */
-    @Override
-    protected void initViews() {
-
-        //======================================= 完善资料1/2 =======================================
-
-        personal_information_page_one = (LinearLayout) findViewById(R.id.personal_information_page_one);
-        group = (RadioGroup) findViewById(R.id.gender);
-        input_nick = (EditText) findViewById(R.id.input_nick);
-        input_birthday = (TextView) findViewById(R.id.input_birthday);
-        input_height = (TextView) findViewById(R.id.input_height);
-        next_action = (Button) findViewById(R.id.next);
-        //设置日期选择器
-        inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        choose_date=(LinearLayout) findViewById(R.id.choose_date);
-        dateViewHelper = new DateViewHelper(this);
-        //设置身高选择器
-        choose_height = (LinearLayout) findViewById(R.id.choose_height);
-        height_picker = (PickerView) findViewById(R.id.height_picker);
-
-
-        //======================================= 完善资料2/2 =======================================
-
-        personal_information_page_two = (LinearLayout) findViewById(R.id.personal_information_page_two);
-        input_weight = (ScaleRulerView) findViewById(R.id.input_weight);
-        show_weight = (TextView) findViewById(R.id.show_weight);
-        input_length = (ScaleRulerView) findViewById(R.id.input_length);
-        show_length = (TextView) findViewById(R.id.show_length);
-        go_walk = (Button) findViewById(R.id.walk);
-        go_make = (Button) findViewById(R.id.make);
-    }
-
-    /**
-     * 获取体重信息
-     */
-    private ScaleRulerView.OnValueChangeListener input_weight_listener = new ScaleRulerView.OnValueChangeListener() {
-        @Override
-        public void onValueChange(float value) {
-            show_weight.setText((int)value+getString(R.string.kg));
-            weight = (int) value;
-            weight_str = (int)value+getString(R.string.kg);
-        }
-    };
-    /**
-     * 获取步长信息
-     */
-    private ScaleRulerView.OnValueChangeListener input_length_listener = new ScaleRulerView.OnValueChangeListener() {
-        @Override
-        public void onValueChange(float value) {
-            show_length.setText((int)value+getString(R.string.cm));
-            length = (int) value;
-            length_str = (int)value+getString(R.string.cm);
-        }
-    };
-
-    /**
-     * 用于隐藏设置器和键盘
-     */
-    private View.OnTouchListener messageListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_UP){
-                hideOthers();
-            }
-            return true;
-        }
-    };
-
-    /**
-     * 初始化控件的监听
-     */
-    @Override
-    protected void setViewsListener() {
-
-        //======================================= 完善资料1/2 =======================================
-
-        group.setOnCheckedChangeListener(this);
-        input_birthday.setOnClickListener(this);
-        input_height.setOnClickListener(this);
-        next_action.setOnClickListener(this);
-        dateViewHelper.setOnResultMessageListener(this);
-        input_nick.setOnFocusChangeListener(this);
-        input_birthday.setOnFocusChangeListener(this);
-        input_height.setOnFocusChangeListener(this);
-        height_picker.setOnSelectListener(this);
-        personal_information_page_one.setOnTouchListener(messageListener);
-
-        //======================================= 完善资料2/2 =======================================
-
-        input_weight.setValueChangeListener(input_weight_listener);
-        input_length.setValueChangeListener(input_length_listener);
-        go_walk.setOnClickListener(this);
-        go_make.setOnClickListener(this);
-    }
-
-    /**
-     * 设置相关管功能
-     */
-    @Override
-    protected void setViewsFunction() {
-
-        //======================================= 完善资料1/2 =======================================
-
-        personal_information_page_one.setVisibility(View.VISIBLE);
-        input_nick.setClickable(true);
-        input_birthday.setClickable(true);
-        input_height.setClickable(true);
-        input_nick.setFocusableInTouchMode(true);
-        input_birthday.setFocusableInTouchMode(true);
-        input_height.setFocusableInTouchMode(true);
-        //设置日期选择器
-        choose_date.addView(dateViewHelper.getDataPick(inflater));
-        //设置身高选择器
-        height_picker.setData(height_list);
-
-        //======================================= 完善资料2/2 =======================================
-
-        personal_information_page_two.setVisibility(View.GONE);
-        //默认50千克，最小30千克，最大130千克-->单位千克
-        input_weight.initViewParam(50, 130, 30);
-        //默认70厘米，最小40厘米，最大100厘米-->单位厘米
-        input_length.initViewParam(70, 100, 40);
-    }
-
-    /**
-     * 单选
-     * @param group
-     * @param checkedId
-     */
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        hideOthers();
-        //选择性别
-        switch (checkedId){
-            case R.id.boy://男
-                gender_str = getResources().getString(R.string.boy);
-                break;
-            case R.id.girl://女
-                gender_str = getResources().getString(R.string.girl);
-                break;
-            default:
-                break;
-        }
-    }
-
-    /**
-     * 隐藏
-     */
-    private void hideOthers(){
-        if (closeDataPicker == true){
-            openPickerOrClose(false);
-        }
-        if (closeHeightPicker == true){
-            openHeightPickerOrClose(false);
-        }
-        if (!nextShow){
-            showNextBtn();
-        }
-        hideKeyBoard();
-    }
-
 }

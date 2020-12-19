@@ -21,7 +21,6 @@ import mrkj.healthylife.entity.FoodType;
 import mrkj.healthylife.utils.DBHelper;
 
 public class FoodHotListActivity extends BaseActivity {
-
     private int sign= - 1 ; //控制列表的展开
     private String[] food_type_array;//食物类型数组
     private List<FoodType> food_list;//数据集合
@@ -56,9 +55,9 @@ public class FoodHotListActivity extends BaseActivity {
     @Override
     protected void initValues() {
         ids = new int[]{R.mipmap.mrkj_gu, R.mipmap.mrkj_cai,
-                R.mipmap.mrkj_guo, R.mipmap.mrkj_rou, R.mipmap.mrkj_dan,
-                R.mipmap.mrkj_yv, R.mipmap.mrkj_nai, R.mipmap.mrkj_he,
-                R.mipmap.mrkj_jun, R.mipmap.you};
+        R.mipmap.mrkj_guo, R.mipmap.mrkj_rou, R.mipmap.mrkj_dan,
+        R.mipmap.mrkj_yv, R.mipmap.mrkj_nai, R.mipmap.mrkj_he,
+        R.mipmap.mrkj_jun, R.mipmap.you};
         bitmaps = new Bitmap[ids.length];
         for (int i = 0;i < ids.length ; i++){
             bitmaps[i] = BitmapFactory.decodeResource(getResources(),ids[i]);
@@ -114,7 +113,14 @@ public class FoodHotListActivity extends BaseActivity {
     protected void initViews() {
         data_list = (ExpandableListView) findViewById(R.id.food_list);
     }
-
+    /**
+     * 绑定适配器
+     */
+    @Override
+    protected void setViewsFunction() {
+        MyFoodAdapter adapter = new MyFoodAdapter();
+        data_list.setAdapter(adapter);
+    }
     /**
      * 设置点击展开一个其余的都收起
      */
@@ -148,15 +154,6 @@ public class FoodHotListActivity extends BaseActivity {
         });
     }
 
-    /**
-     * 绑定适配器
-     */
-    @Override
-    protected void setViewsFunction() {
-        MyFoodAdapter adapter = new MyFoodAdapter();
-        data_list.setAdapter(adapter);
-    }
-
 
 
 
@@ -164,7 +161,7 @@ public class FoodHotListActivity extends BaseActivity {
      * 适配器
      */
 
-    class MyFoodAdapter extends BaseExpandableListAdapter {
+    class MyFoodAdapter extends BaseExpandableListAdapter{
 
         //Group的数量
         @Override
@@ -250,5 +247,4 @@ public class FoodHotListActivity extends BaseActivity {
     class ChildViewHolder{
         TextView name,hot;
     }
-
 }

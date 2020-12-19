@@ -22,7 +22,6 @@ import mrkj.healthylife.utils.SaveKeyValues;
  */
 public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
 
-
     //变量
     private long exitTime;//第一次单机退出键的时间
     private int load_values;//判断加载fragment的变量
@@ -34,46 +33,6 @@ public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheck
     private FindFragment findFragment;//发现
     private HeartFragment heartFragment;//心率
     private MineFragment mineFragment;//我的
-
-    /**
-     * 切换界面
-     * @param group
-     * @param checkedId
-     */
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        switch (checkedId){
-            case R.id.sport_btn://运动
-                if (!sportFragment.isAdded()){
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("is_launch", false);
-                    sportFragment.setArguments(bundle);
-                    transaction.replace(R.id.frag_home,sportFragment,Constant.SPORT_TAG);
-                }
-                break;
-            case R.id.find_btn://发现
-                if (!findFragment.isAdded()){
-                    transaction.replace(R.id.frag_home, findFragment,Constant.FIND_TAG);
-                }
-                break;
-            case R.id.heart_btn://心率
-                if (!heartFragment.isAdded()){
-                    transaction.replace(R.id.frag_home,heartFragment, Constant.HEART_TAG);
-                }
-                break;
-            case R.id.mine_btn://我的
-                if (!mineFragment.isAdded()){
-                    transaction.replace(R.id.frag_home,mineFragment,Constant.MINE_TAG);
-                }
-                break;
-            default:
-                break;
-        }
-        transaction.commit();
-    }
-
     /**
      * 设置标题
      */
@@ -145,6 +104,45 @@ public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheck
         }else {
             find_btn.setChecked(true);
         }
+    }
+
+    /**
+     * 切换界面
+     * @param group
+     * @param checkedId
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (checkedId){
+            case R.id.sport_btn://运动
+                if (!sportFragment.isAdded()){
+                    Bundle bundle = new Bundle();
+                    bundle.putBoolean("is_launch", false);
+                    sportFragment.setArguments(bundle);
+                    transaction.replace(R.id.frag_home,sportFragment,Constant.SPORT_TAG);
+                }
+                break;
+            case R.id.find_btn://发现
+                if (!findFragment.isAdded()){
+                    transaction.replace(R.id.frag_home, findFragment,Constant.FIND_TAG);
+                }
+                break;
+            case R.id.heart_btn://心率
+                if (!heartFragment.isAdded()){
+                    transaction.replace(R.id.frag_home,heartFragment,Constant.HEART_TAG);
+                }
+                break;
+            case R.id.mine_btn://我的
+                if (!mineFragment.isAdded()){
+                    transaction.replace(R.id.frag_home,mineFragment,Constant.MINE_TAG);
+                }
+                break;
+            default:
+                break;
+        }
+        transaction.commit();
     }
 
     /**

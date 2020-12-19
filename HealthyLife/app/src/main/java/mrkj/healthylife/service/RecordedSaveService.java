@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.text.DecimalFormat;
@@ -24,13 +23,11 @@ import mrkj.healthylife.utils.StepDetector;
  * 记录保存服务(此处用于记录值)
  */
 public class RecordedSaveService extends Service {
-
     public static final String cancelSaveService = "mrkj.healthylife.RECORDED";
     private DatasDao datasDao;
     public RecordedSaveService() {
     }
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -114,5 +111,4 @@ public class RecordedSaveService extends Service {
         String distanceStr = format.format(doubles);
         return distanceStr.equals("0") ? "0.00" : distanceStr;
     }
-
 }

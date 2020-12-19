@@ -12,11 +12,9 @@ import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 
 public class AboutActivity extends BaseActivity {
-
     // 声明标题栏控件
     private TextView showTxt;
     private String aboutTxt;
-
     @Override
     protected void setActivityTitle() {
         initTitle();
@@ -28,7 +26,7 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_about);
     }
 
     @Override

@@ -13,7 +13,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.support.annotation.Nullable;
+import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -29,7 +29,6 @@ import mrkj.healthylife.utils.StepDetector;
  * @author Administrator
  */
 public class StepCounterService extends Service {
-
     public static final String alarmSaveService = "mrkj.healthylife.SETALARM";
     private static final String TAG = "StepCounterService";
     public static Boolean FLAG = false;// 服务运行标志
@@ -38,14 +37,12 @@ public class StepCounterService extends Service {
     public StepDetector detector;// 传感器监听对象
 
     private PowerManager mPowerManager;// 电源管理服务
-    private PowerManager.WakeLock mWakeLock;// 屏幕灯
+    private WakeLock mWakeLock;// 屏幕灯
     private AlarmManager alarmManager;//闹钟管理器
     private PendingIntent pendingIntent;//延迟意图
     private Calendar calendar;//日期
     private Intent intent;//意图
 
-
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -108,7 +105,6 @@ public class StepCounterService extends Service {
     //	3.
     // START_REDELIVER_INTENT：与START_STICKY唯一不同的是，回调onStartCommand(...)方法时，
     // 其中的Intent将是非空，将是最后一次调用startService(...)中的intent。
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;

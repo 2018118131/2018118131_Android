@@ -30,6 +30,7 @@ public class DateUtils {
         return map;
     }
 
+
     /**
      * 获取时间的毫秒值
      * @param hour
@@ -69,7 +70,6 @@ public class DateUtils {
     public static long getNowMillisecondValues(){
         return getMillisecondValues((int)getDate().get("hour"),(int)getDate().get("minute"));
     }
-
     /**
      * 返回当前日期的毫秒值
      * @return

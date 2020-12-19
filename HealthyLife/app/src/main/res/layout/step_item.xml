@@ -107,7 +107,5 @@
                 android:layout_below="@+id/right_hot"
                 android:text="大卡"/>
         </RelativeLayout>
-
     </LinearLayout>
-
 </LinearLayout>
