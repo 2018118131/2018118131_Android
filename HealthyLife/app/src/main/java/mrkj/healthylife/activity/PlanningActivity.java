@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -148,8 +149,35 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         setPlanWeight.setValueChangeListener(set_plan_weight_listener);
     }
 
+    /**
+     * 设置功能
+     */
     @Override
     protected void setViewsFunction() {
+        setStartTime.setClickable(true);
+        setStartTime.setFocusableInTouchMode(true);
+        setStopTime.setClickable(true);
+        setStopTime.setFocusableInTouchMode(true);
+        capion.setText(getString(R.string.normal_weight_range) + min_normal_weight + "~" + max_normal_weight + getString(R.string.kg));
+        //目标体重选择
+        setPlanWeight.initViewParam(now_weight, 130, 30);
+        //创建时间选择器
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
+                if (isSetStart){//设置开始时间
+                    start_year = year;
+                    start_month = monthOfYear + 1;
+                    start_date = dayOfMonth;
+                    setStartTime.setText(year+getString(R.string.year)+(monthOfYear+1)+getString(R.string.month)+dayOfMonth+getString(R.string.day));
+                }else {//设置结束时加
+                    stop_year = year;
+                    stop_month = monthOfYear + 1;
+                    stop_date = dayOfMonth;
+                    setStopTime.setText(year+getString(R.string.year)+(monthOfYear+1)+getString(R.string.month)+dayOfMonth+getString(R.string.day));
+                }
+            }
+        },nowYear,nowMonth,nowDate);
     }
 }
