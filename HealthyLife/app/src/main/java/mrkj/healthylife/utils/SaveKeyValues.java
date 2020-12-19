@@ -133,4 +133,18 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 取出float类型的值
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static float getFloatValues(String key,float defValue){
+        if (isUnCreate()){
+            return 0;
+        }
+        float float_value = sharedPreferences.getFloat(key, defValue);
+        return float_value;
+    }
+
 }
