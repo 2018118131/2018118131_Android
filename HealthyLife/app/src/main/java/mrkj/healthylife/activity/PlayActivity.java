@@ -93,7 +93,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_play);
     }
 
     @Override
