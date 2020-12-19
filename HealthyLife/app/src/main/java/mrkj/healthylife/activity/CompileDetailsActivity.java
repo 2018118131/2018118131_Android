@@ -1,6 +1,9 @@
 package mrkj.healthylife.activity;
 
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.File;
@@ -24,6 +27,36 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
     private TextView change_image;//更换头像
     private String path;//头像的路径
     private File tempFile;//图片路径
+
+    //2、修改昵称
+    private String nick_str;//用户昵称
+    private EditText change_nick;//修改昵称
+    //3、修改性别
+    private RadioGroup change_gender;//更改性别
+    private String sex_str;//性别
+    //4、修改生日
+    private TextView change_birthDay;//更改
+    private String date;
+    //生日日期
+    private int birth_year;
+    private int birth_month;
+    private int birth_day;
+    //当日日期
+    private int now_year;
+    private int now_month;
+    private int now_day;
+    //5、修改身高
+    private EditText change_height;
+    private int height;
+    //6、修改体重
+    private EditText change_weight;
+    private int weight;
+    //7、修改步长
+    private EditText change_length;
+    private int length;
+    //用户年龄
+    //确定修改
+    private Button change_OK_With_Save;//确定保存
 
     @Override
     public void onClick(View view) {
