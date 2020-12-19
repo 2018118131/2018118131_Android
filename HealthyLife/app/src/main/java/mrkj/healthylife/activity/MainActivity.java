@@ -1,6 +1,7 @@
 package mrkj.healthylife.activity;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -185,6 +186,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
             show_length.setText((int)value+getString(R.string.cm));
             length = (int) value;
             length_str = (int)value+getString(R.string.cm);
+        }
+    };
+
+    /**
+     * 用于隐藏设置器和键盘
+     */
+    private View.OnTouchListener messageListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP){
+                hideOthers();
+            }
+            return true;
         }
     };
 
