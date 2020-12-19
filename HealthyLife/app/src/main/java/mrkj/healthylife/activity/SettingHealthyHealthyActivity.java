@@ -35,8 +35,18 @@ public class SettingHealthyHealthyActivity extends AppCompatActivity implements 
 
     }
 
+    /**
+     * 时间改变回调
+     *
+     * @param view
+     * @param hourOfDay
+     * @param minute
+     */
     @Override
-    public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+//        Log.e("hourOfDay",hourOfDay + "时");
+//        Log.e("minute", minute + " 分");
+        alarmhour = hourOfDay;
+        alarmminute = minute;
     }
 }
