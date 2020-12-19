@@ -3,6 +3,7 @@ package mrkj.healthylife.service;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import mrkj.healthylife.db.DatasDao;
 import mrkj.healthylife.entity.HealthyPlan;
+import mrkj.healthylife.utils.SaveKeyValues;
 
 /**
  * 执行运动计划的服务
@@ -41,5 +43,15 @@ public class ExecuteHealthyPlanService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        datasDao = new DatasDao(this);
+        manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        finish_plans = SaveKeyValues.getIntValues("finish_plan" , 0);
+//        toBroadReciver = new Intent(this, FunctionBroadcastReceiver.class);
+//        senser = PendingIntent.getBroadcast(this, 0, toBroadReciver, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
