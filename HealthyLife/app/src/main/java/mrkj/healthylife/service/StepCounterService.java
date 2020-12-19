@@ -110,4 +110,21 @@ public class StepCounterService extends Service {
         return START_STICKY;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FLAG = false;// 服务停止
+        Log.e(TAG, "后台服务停止");
+
+        if (detector != null) {
+            //取消对所有传感器的监听
+            mSensorManager.unregisterListener(detector);
+        }
+
+        if (mWakeLock != null) {
+            //释放唤醒资源
+            mWakeLock.release();
+        }
+    }
+
 }
