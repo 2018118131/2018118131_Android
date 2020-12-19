@@ -1,17 +1,25 @@
 package mrkj.healthylife.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseFragment;
 import mrkj.healthylife.entity.PMInfo;
 import mrkj.healthylife.entity.TodayInfo;
+import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.healthylife.utils.StepDetector;
 import mrkj.library.wheelview.circlebar.CircleBar;
@@ -98,6 +106,48 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    /**
+     * 创建视图
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_sport, null);
+        initView();//初始化控件
+        initValues();//初始化数据
+        setNature();//设置功能
+        //提示
+        if (StepDetector.CURRENT_SETP > custom_steps) {
+            Toast.makeText(getContext(), "您已达到目标步数,请适量运动！"
+                    , Toast.LENGTH_LONG).show();
+        }
+        //提示弹窗
+        if (SaveKeyValues.getIntValues("do_hint", 0) == 1
+                && (System.currentTimeMillis() > (SaveKeyValues.
+                getLongValues("show_hint", 0) + Constant.DAY_FOR_24_HOURS))) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+            alertDialog.setTitle("提示");
+            alertDialog.setMessage("你有计划没有完成!");
+            alertDialog.setPositiveButton("点击确定不再提示！",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SaveKeyValues.putIntValues("do_hint", 0);
+                        }
+                    });
+            alertDialog.create();//创建弹窗
+            alertDialog.show();//显示弹窗
+        }
+        return view;
     }
 
 }
