@@ -135,9 +135,17 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         }
     };
 
+    /**
+     * 设置监听
+     */
     @Override
     protected void setViewsListener() {
-
+        setStartTime.setOnFocusChangeListener(this);
+        setStopTime.setOnFocusChangeListener(this);
+        setStartTime.setOnClickListener(this);
+        setStopTime.setOnClickListener(this);
+        finish.setOnClickListener(this);
+        setPlanWeight.setValueChangeListener(set_plan_weight_listener);
     }
 
     @Override
