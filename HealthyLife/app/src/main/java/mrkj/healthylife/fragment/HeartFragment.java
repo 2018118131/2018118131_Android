@@ -273,6 +273,30 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         }
     }
 
+    /**
+     * 打开摄像头
+     *
+     * @return
+     */
+    private Camera openCameraGingerbread(int backOrFont) {
+        int cameraCount;
+        Camera mCamera = null;
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        cameraCount = Camera.getNumberOfCameras();
+        for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+            Camera.getCameraInfo(camIdx, cameraInfo);
+            if (cameraInfo.facing == backOrFont) {
+                try {
+                    mCamera = Camera.open(camIdx);
+                    mCurrentCamIndex = camIdx;
+                } catch (RuntimeException e) {
+                    Log.e(TAG, "相机打开失败:" + e.getLocalizedMessage());
+                }
+            }
+        }
+        return mCamera;
+    }
+
     @Override
     public void onClick(View view) {
 
