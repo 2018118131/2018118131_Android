@@ -244,6 +244,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 隐藏下一步按钮
+     */
+    private void hideNextBtn(){
+        showAnimation(next_action, R.anim.fade_out);
+        next_action.setVisibility(View.INVISIBLE);
+        nextShow = false;
+    }
+
 
 
 
