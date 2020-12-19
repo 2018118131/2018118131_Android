@@ -36,4 +36,12 @@ public class DatasDao {
         return result;
     }
 
+    // 删除
+    public int deleteValue(String table, String whereClause, String[] whereArgs) {
+        /**
+         * table 删除数据表的表名 whereClause 删除条件的where子句 whereArgs 删除条件占位符的值
+         */
+        return db.delete(table, whereClause, whereArgs);
+    }
+
 }
