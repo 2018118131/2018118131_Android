@@ -246,4 +246,27 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
         thread.start();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setShow();
+        values = 0;
+        progressBar.setProgress(0);
+        play_time.setText(zeroStr);
+        if (animationDrawable.isRunning()){
+            animationDrawable.stop();
+            isOff = false;
+            play_switch.setImageResource(R.mipmap.mrkj_play_start);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (thread != null){
+            isClose = true;
+        }
+    }
+
 }
