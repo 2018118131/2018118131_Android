@@ -1,6 +1,7 @@
 package mrkj.healthylife.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -154,6 +155,20 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
      */
     private void  hideKeyBoard(){
         ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(CompileDetailsActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 从相册获取
+     */
+    public void gallery() {
+        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/jpeg");
+        if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.KITKAT){
+            startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
+        }else{
+            startActivityForResult(intent, PHOTO_REQUEST_GALLERY2);
+        }
     }
 
     @Override
