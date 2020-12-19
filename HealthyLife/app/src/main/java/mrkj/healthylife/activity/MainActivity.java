@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Map;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.library.wheelview.pickerView.PickerView;
 import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
@@ -94,10 +95,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
 
     }
 
+    /**
+     * 初始化窗口
+     */
     @Override
     protected void getLayoutToView() {
-
-    }
+        setContentView(R.layout.activity_main);}
 
     @Override
     protected void initValues() {
