@@ -147,4 +147,18 @@ public class SaveKeyValues {
         return float_value;
     }
 
+    /**
+     * 存入boolean类型的值
+     * @param key
+     * @param values
+     * @return
+     */
+    public static boolean putBooleanValues(String key,boolean values){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.putBoolean(key, values);
+        return editor.commit();
+    }
+
 }
