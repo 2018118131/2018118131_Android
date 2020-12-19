@@ -24,6 +24,14 @@ public class StepDetector implements SensorEventListener {
 	private static long mStart = 0;//运动开始时间
 	private Context context;
 
+	/**
+	 * 最后加速度方向
+	 */
+	private float mLastDirections[] = new float[3 * 2];//最后的方向
+	private float mLastExtremes[][] = { new float[3 * 2], new float[3 * 2] };
+	private float mLastDiff[] = new float[3 * 2];
+	private int mLastMatch = -1;
+
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
 
