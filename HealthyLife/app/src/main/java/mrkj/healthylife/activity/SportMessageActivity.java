@@ -126,7 +126,8 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void setViewsListener() {
-
+        all_btn.setOnClickListener(this);
+        day_btn.setOnClickListener(this);
     }
 
     @Override
