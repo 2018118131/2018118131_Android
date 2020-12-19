@@ -232,4 +232,18 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         }
     }
 
+    /**
+     * 初始化控件
+     */
+    private void initView() {
+        circleBar = (CircleBar) view.findViewById(R.id.show_progress);
+        city_name = (TextView) view.findViewById(R.id.city_name);
+        city_temperature = (TextView) view.findViewById(R.id.temperature);
+        city_air_quality = (TextView) view.findViewById(R.id.air_quality);
+        warm_btn = (ImageButton) view.findViewById(R.id.warm_up);
+        show_mileage = (TextView) view.findViewById(R.id.mileage_txt);
+        show_heat = (TextView) view.findViewById(R.id.heat_txt);
+        want_steps = (TextView) view.findViewById(R.id.want_steps);
+    }
+
 }
