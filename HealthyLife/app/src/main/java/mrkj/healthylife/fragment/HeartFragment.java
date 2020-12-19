@@ -30,6 +30,7 @@ import org.achartengine.chart.PointStyle;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -411,5 +412,25 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    /**
+     * 设置图标的样式
+     *
+     * @param color
+     * @param style
+     * @param fill
+     * @return
+     */
+    protected XYMultipleSeriesRenderer buildRenderer(int color, PointStyle style, boolean fill) {
+        XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
+
+        //设置图表中曲线本身的样式，包括颜色、点的大小以及线的粗细等
+        XYSeriesRenderer r = new XYSeriesRenderer();
+        r.setColor(Color.RED);
+        r.setFillPoints(fill);
+        r.setLineWidth(1);
+        renderer.addSeriesRenderer(r);
+        return renderer;
     }
 }
