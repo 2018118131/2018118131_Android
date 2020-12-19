@@ -24,6 +24,7 @@ import mrkj.healthylife.entity.PMInfo;
 import mrkj.healthylife.entity.TodayInfo;
 import mrkj.healthylife.service.StepCounterService;
 import mrkj.healthylife.utils.Constant;
+import mrkj.healthylife.utils.HttpUtils;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.healthylife.utils.StepDetector;
 import mrkj.library.wheelview.circlebar.CircleBar;
@@ -192,6 +193,24 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         //开启计步服务
         step_service = new Intent(getContext(), StepCounterService.class);
         getContext().startService(step_service);
+    }
+
+    /**
+     * 下载数据
+     */
+    private void downLoadDataFromNet() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //下载天气预报
+                String str = HttpUtils.getJsonStr(weather_url);
+                Message message = Message.obtain();
+                message.obj = str;
+                message.what = WEATHER_MESSAGE;
+                //handler传值
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 
 }
