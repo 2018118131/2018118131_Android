@@ -187,6 +187,19 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         startActivityForResult(intent, PHOTO_REQUEST_CAMERA);
     }
 
+    /**
+     * 判断SD卡是否可用
+     *
+     * @return
+     */
+    private boolean hasSdcard() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     protected void setViewsFunction() {
 
