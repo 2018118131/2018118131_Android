@@ -205,5 +205,41 @@ public class HttpUtils {
         return null;
     }
 
+    /**
+     * 返回天气预报信息集合
+     *
+     * @param str
+     * @return List
+     */
+    public static List<Map<String, Object>> parseWeatherJson(String str) {
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            String reason = jsonObject.getString("reason");
+            if (TextUtils.equals("successed!", reason)) {
+                JSONObject result = jsonObject.getJSONObject("result");
+                JSONObject data = result.getJSONObject("data");
+                JSONArray weather = data.getJSONArray("weather");
+                for (int i = 0; i < weather.length() - 1; i++) {
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    // String date =
+                    // weather.getJSONObject(i).get("date").toString();
+                    // Log.e("weather", date);
+                    map.put("date", weather.getJSONObject(i).get("date").toString());// 日期
+                    map.put("week", weather.getJSONObject(i).get("week").toString());// 星期
+                    map.put("nongli", weather.getJSONObject(i).get("nongli").toString());// 农历
+                    // 获取白天和晚上的天气信息
+                    JSONObject info = weather.getJSONObject(i).getJSONObject("info");
+                    setWeatherDataToMap(info, map);
+                    list.add(map);
+                }
+                return list;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
