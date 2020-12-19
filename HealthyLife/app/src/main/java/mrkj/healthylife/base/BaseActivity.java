@@ -90,5 +90,15 @@ public abstract class BaseActivity extends AppCompatActivity{
             }
         });
     }
+    /**
+     * 获取标题左边的按钮
+     * @param name
+     * @return
+     */
+    public ImageView setTitleLeft(String name){
+        title_center.setText(name);
+        title_left.setVisibility(View.VISIBLE);
+        return title_left;
+    }
 
 }
