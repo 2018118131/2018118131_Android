@@ -61,4 +61,14 @@ public class DBHelper {
         return null;
     }
 
+    /**
+     * 返回一个用于查询所有数据的游标
+     * @param name
+     * @return
+     */
+    public Cursor selectAllDataOfTable(String name){
+
+        return this.select(name,null,null,null,null,null,null);
+    }
+
 }
