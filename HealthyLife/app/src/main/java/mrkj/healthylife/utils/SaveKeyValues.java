@@ -23,4 +23,16 @@ public class SaveKeyValues {
         editor = sharedPreferences.edit();
     }
 
+    /**
+     * 判断SharedPreferences是否被创建
+     * @return
+     */
+    public static boolean isUnCreate(){
+        boolean result = (sharedPreferences == null) ? true : false;
+        if (result){
+            Log.e("提醒","sharedPreferences未被创建！");
+        }
+        return result;
+    }
+
 }
