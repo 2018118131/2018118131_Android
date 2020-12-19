@@ -69,6 +69,43 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_size_0"
+                android:layout_marginBottom="@dimen/width_size_5"
+                android:layout_marginTop="@dimen/width_size_5"
+                android:layout_weight="1"
+                android:background="@color/watm_background_gray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/width_size_20"
+                        android:layout_marginRight="@dimen/width_size_20"
+                        android:text="目标"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18" />
+
+                    <TextView
+                        android:id="@+id/want"
+                        android:layout_width="@dimen/width_size_0"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/width_size_20"
+                        android:layout_marginRight="@dimen/width_size_20"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="体重"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
