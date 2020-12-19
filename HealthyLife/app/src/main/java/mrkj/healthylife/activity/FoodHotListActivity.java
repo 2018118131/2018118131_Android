@@ -107,7 +107,7 @@ public class FoodHotListActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        data_list = (ExpandableListView) findViewById(R.id.food_list);
     }
 
     @Override
