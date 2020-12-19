@@ -3,6 +3,7 @@ package mrkj.healthylife.utils;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * 获取日期
@@ -27,6 +28,23 @@ public class DateUtils {
         map.put("minute",minute);
         map.put("date",year+"-"+month+"-"+day);
         return map;
+    }
+
+    /**
+     * 获取时间的毫秒值
+     * @param hour
+     * @param minute
+     * @return
+     */
+    public static long getMillisecondValues(int hour,int minute){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTimeInMillis();
     }
 
 }
