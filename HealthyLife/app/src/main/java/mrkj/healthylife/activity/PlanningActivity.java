@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Map;
 
 import mrkj.healthylife.R;
@@ -93,6 +94,16 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         min_normal_weight = map.get("min");
         max_normal_weight = map.get("max");
         now_weight = weight;
+    }
+
+    /**
+     * 获取当前日期
+     */
+    private void getNowDate(){
+        Calendar calendar = Calendar.getInstance();
+        nowYear = calendar.get(Calendar.YEAR);
+        nowMonth = calendar.get(Calendar.MONTH);
+        nowDate = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
