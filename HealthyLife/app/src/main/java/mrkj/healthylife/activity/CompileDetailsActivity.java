@@ -1,6 +1,8 @@
 package mrkj.healthylife.activity;
 
+import android.content.Context;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -145,6 +147,13 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
             }
         });
         change_birthDay.setOnClickListener(this);
+    }
+
+    /**
+     * 隐藏输入键盘
+     */
+    private void  hideKeyBoard(){
+        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(CompileDetailsActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
