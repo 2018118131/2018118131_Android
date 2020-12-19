@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mrkj.healthylife.entity.PMInfo;
 import mrkj.healthylife.entity.TodayInfo;
 
 /**
@@ -267,6 +268,41 @@ public class HttpUtils {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 解析PM2.5的数据信息
+     *
+     * @param str
+     * @return PMInfo
+     */
+    public static PMInfo parsePMInfoJson(String str) {
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            String reason = jsonObject.getString("reason");
+            if (TextUtils.equals("successed!", reason)) {
+                JSONObject result = jsonObject.getJSONObject("result");
+                JSONObject data = result.getJSONObject("data");
+                JSONObject pm25 = data.getJSONObject("pm25");
+                // 构建对象
+                PMInfo pmInfo = new PMInfo();
+                pmInfo.setDateTime(pm25.getString("dateTime"));
+                pmInfo.setCityName(pm25.getString("cityName"));
+
+                JSONObject pm25s = pm25.getJSONObject("pm25");
+                pmInfo.setCurPm(pm25s.getString("curPm"));
+                pmInfo.setPm25(pm25s.getString("pm25"));
+                pmInfo.setPm10(pm25s.getString("pm10"));
+                pmInfo.setLevel(pm25s.getString("level"));
+                pmInfo.setQuality(pm25s.getString("quality"));
+                pmInfo.setDes(pm25s.getString("des"));
+
+                return pmInfo;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
