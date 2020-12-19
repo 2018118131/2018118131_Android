@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -295,6 +296,75 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
             }
         }
         return mCamera;
+    }
+
+    /**
+     * 生名周期管理
+     */
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart");
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        layout.setVisibility(View.GONE);
+        start_heart_test_btn.setVisibility(View.VISIBLE);
+        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            preview = (SurfaceView) view.findViewById(R.id.preview);
+            previewHolder = preview.getHolder();
+            relativeLayout.setVisibility(View.INVISIBLE);
+            //显示图像
+            previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+            previewHolder.addCallback(holderCallBack);
+//            Toast.makeText(context,"执行了！",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "您的手机没有摄像头！", Toast.LENGTH_SHORT).show();
+        }
+        startTime = System.currentTimeMillis();
+        wakeLock.acquire();
+        Log.e(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        handler.removeMessages(1);
+        wakeLock.release();
+        if (timer != null) {
+            timer.cancel();
+            task.cancel();
+        }
+        //关闭闪光灯
+        if (camera != null) {
+            Camera.Parameters parameters = camera.getParameters();
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            camera.setParameters(parameters);
+            toRelease();
+        }
+        Log.e(TAG, "onPause");
+        flag = 1;
+        addX = -1;
+        averageIndex = 0;
+        beatsIndex = 0;
+        beats = 0;
+        startTime = 0;
+        bpm = null;
+        progess = 0;
+    }
+
+    /**
+     * 释放资源
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        toRelease();
+        Log.e(TAG, "onDestroy");
     }
 
     @Override
