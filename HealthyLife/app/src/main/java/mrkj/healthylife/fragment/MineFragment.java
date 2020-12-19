@@ -85,6 +85,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!"".equals(steps.getText().toString())){
+            SaveKeyValues.putIntValues("step_plan",Integer.parseInt(steps.getText().toString()));
+        }else {
+            SaveKeyValues.putIntValues("step_plan",6000);
+        }
+    }
+
+    @Override
     public void onClick(View view) {
 
     }
