@@ -100,5 +100,26 @@ public abstract class BaseActivity extends AppCompatActivity{
         title_left.setVisibility(View.VISIBLE);
         return title_left;
     }
+    /**
+     * 设置标题左 中 右 全部显示
+     * @param name
+     * @param activity
+     * @param picID
+     */
+    public ImageView setTitle(String name,final Activity activity ,int picID){
+        title_center.setText(name);
+        title_left.setVisibility(View.VISIBLE);
+        title_right.setVisibility(View.VISIBLE);
+        if (picID != 0){
+            title_right.setImageResource(picID);
+        }
+        title_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
+        return title_right;
+    }
 
 }
