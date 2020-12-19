@@ -1,11 +1,13 @@
 package mrkj.healthylife.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Map;
@@ -51,15 +53,46 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
     private int plan_want_weight;//目标体重
 
 
+    /**
+     * 点击事件
+     * @param v
+     */
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.plan_start_time:
+                showDateDialog(SET_START_DATE);
+                break;
+            case R.id.plan_stop_time:
+                showDateDialog(SET_STOP_DATE);
+                break;
+            case R.id.finish://完成
+                String start_dates = setStartTime.getText().toString();
+                String stop_dates = setStopTime.getText().toString();
+                if (plan_want_weight < min_normal_weight){
+                    Toast.makeText(this,"请在建议范围内设置目标体重！",Toast.LENGTH_SHORT).show();
+                }else if(plan_want_weight <= max_normal_weight){
+                    if ((!getString(R.string.set_start_time).equals(start_dates))&&(!getString(R.string.set_stop_time).equals(stop_dates))){
+                        if ((start_date <= stop_date) && (start_year <= stop_year) && (start_month <= stop_month)){
+                            saveCustomSettingValues(start_dates,stop_dates);
+                            Intent intent = new Intent(this,FunctionActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Toast.makeText(this,"请设置合理时间结束时间不得小于开始时间！",Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(this,"请设置健康目标的的开始和结束时间！",Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(this,"请在建议范围内设置目标体重！",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
-    @Override
-    public void onFocusChange(View view, boolean b) {
-
-    }
 
     /**
      * 设置标题
