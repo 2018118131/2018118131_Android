@@ -94,4 +94,10 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
         }
     });
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
 }
