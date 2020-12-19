@@ -70,17 +70,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </receiver>
-    <receiver android:name=".receiver.FunctionBroadcastReceiver">
-        <intent-filter>
-            <action android:name="mrkj.healthylife.RECORDED" />
-            <action android:name="mrkj.healthylife.SETALARM" />
-            <action android:name="mrkj.healthylife.PLAN" />
-        </intent-filter>
-    </receiver>
 
     <service android:name=".service.StepCounterService" />
-
-    <service android:name=".service.RecordedSaveService" />
 
     <service android:name=".service.ExecuteHealthyPlanService" />
 
