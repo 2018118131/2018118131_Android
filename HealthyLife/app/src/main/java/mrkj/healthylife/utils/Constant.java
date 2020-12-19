@@ -22,4 +22,14 @@ public class Constant {
     public static final String GET_DATA = "http://op.juhe.cn/onebox/weather/query?cityname=%s&key="+APP_KEY;
 //    http://op.juhe.cn/onebox/weather/query?cityname=长春&key=06ba330de85cf5484fedbcd1c2247e28
 
+    //文件夹名
+    public static final String file_name = "keep_fit";
+    public static final String head_image = "head.jpg";
+
+
+    //时间常量
+    public static final long DAY_FOR_24_HOURS = 60 * 60 * 24 * 1000;
+    public static final long DAY_FOR_23_HOUR = 23;
+    public static final long DAY_FOR_59_MINURE = 59;
+
 }
