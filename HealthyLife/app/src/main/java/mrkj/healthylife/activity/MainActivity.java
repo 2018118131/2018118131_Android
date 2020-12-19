@@ -1,12 +1,15 @@
 package mrkj.healthylife.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -276,6 +279,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     @Override
     public void onSelect(String text) {
         input_height.setText(text + getString(R.string.cm));
+    }
+
+    /**
+            * 隐藏输入键盘
+     */
+    private void  hideKeyBoard(){
+        ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 屏蔽返回键
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            return false;
+        }
+        return false;
     }
 
     /**
