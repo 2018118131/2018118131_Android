@@ -225,4 +225,25 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener{
         two.setVisibility(View.VISIBLE);
     }
 
+    private void runThread(){
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!isClose){
+                    try {
+                        Thread.sleep(1000);
+                        Message message = Message.obtain();
+                        message.obj = ++values;
+                        message.what = 1;
+                        handler.sendMessage(message);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+        thread.start();
+    }
+
 }
