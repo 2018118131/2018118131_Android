@@ -137,5 +137,12 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void setTitleLeftImage(int picID){
         title_left.setImageResource(picID);
     }
+    /**
+     * 设置标题右侧图片按钮的图片
+     * @param picID
+     */
+    public void setTitleRightImage(int picID){
+        title_right.setImageResource(picID);
+    }
 
 }
