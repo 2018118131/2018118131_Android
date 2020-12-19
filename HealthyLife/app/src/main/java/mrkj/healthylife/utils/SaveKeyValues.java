@@ -186,4 +186,17 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 删除指定数据
+     * @param key
+     * @return
+     */
+    public static boolean removeKeyForValues(String key){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.remove(key);
+        return editor.commit();
+    }
+
 }
