@@ -99,4 +99,26 @@ public class ExecuteHealthyPlanService extends Service {
         }
     }
 
+    /**
+     * 校验数据
+     * @param nowDate
+     */
+    private void compareVerificationData(long nowDate ,int oldID){
+        Cursor cursor = datasDao.selectValue2("plans",null,"_id=?",new String[]{String.valueOf(oldID)},null,null,null);
+        while (cursor.moveToNext()){
+            int stop_year = cursor.getInt(cursor.getColumnIndex("stop_year"));//结束日期--->年
+            int stop_month = cursor.getInt(cursor.getColumnIndex("stop_month"));//结束日期--->月
+            int stop_day = cursor.getInt(cursor.getColumnIndex("stop_day"));//结束日期--->日
+            long stopDate = DateUtils.getMillisecondValues(stop_year, stop_month, stop_day);
+            if (stop_year == (int)(DateUtils.getDate().get("year"))
+                    && stop_month == (int)(DateUtils.getDate().get("month"))
+                    && stop_day == (int)(DateUtils.getDate().get("day"))){//此时意味着当前数据将不再保存在数据中-->删除该条数据
+                finish_plans = SaveKeyValues.getIntValues("finish_plan" , 0);
+                SaveKeyValues.putIntValues("finish_plan",++finish_plans);
+                datasDao.deleteValue("plans", "_id=?", new String[]{String.valueOf(oldID)});
+            }
+        }
+        cursor.close();
+    }
+
 }
