@@ -1,5 +1,10 @@
 package mrkj.healthylife.utils;
 
+import android.text.TextUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +12,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import mrkj.healthylife.entity.TodayInfo;
 
 /**
  * 下载数据的工具类
@@ -69,5 +76,56 @@ public class HttpUtils {
 
         return null;
 
+    }
+
+    /**
+     * 当日的天气
+     *
+     * @param str
+     * @return TodayInfo
+     */
+    public static TodayInfo parseNowJson(String str) {
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            String reason = jsonObject.getString("reason");
+            if (TextUtils.equals("successed!", reason)) {
+                JSONObject result = jsonObject.getJSONObject("result");
+                JSONObject data = result.getJSONObject("data");
+                JSONObject realtime = data.getJSONObject("realtime");
+                JSONObject wind = realtime.getJSONObject("wind");
+                // 解析出风的相关信息
+                String windspeed = wind.getString("windspeed");// 风速
+                String direct = wind.getString("direct");
+                String power = wind.getString("power");
+                // 解析出天气的相关信息
+                JSONObject weather = realtime.getJSONObject("weather");
+                String humidity = weather.getString("humidity");
+                String info = weather.getString("info");
+                String temperature = weather.getString("temperature");
+                // 日期、城市、农历等信息
+                String date = realtime.getString("date");
+                String city_name = realtime.getString("city_name");
+                String week = realtime.getString("week");
+                String moon = realtime.getString("moon");
+                // 构件对象
+                TodayInfo todayInfo = new TodayInfo();
+                todayInfo.setWindspeed(windspeed);
+                todayInfo.setCity_name(city_name);
+                todayInfo.setDate(date);
+                todayInfo.setDirect(direct);
+                todayInfo.setHumidity(humidity);
+                todayInfo.setInfo(info);
+                todayInfo.setMoon(moon);
+                todayInfo.setPower(power);
+                todayInfo.setTemperature(temperature);
+                todayInfo.setWeek(week);
+
+                return todayInfo;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
