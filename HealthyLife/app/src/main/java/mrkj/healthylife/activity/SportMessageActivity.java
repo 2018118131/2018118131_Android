@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -132,6 +134,24 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void setViewsFunction() {
+        all_lin.setVisibility(View.VISIBLE);
+        day_lin.setVisibility(View.GONE);
+        finish_plans.setText(String.valueOf(plans));
+        sport_days.setText(String.valueOf(day_values));
+        sport_hot.setText(hot_str);
+        keepfit_scores.setText(String.valueOf(scores) +"分");
+        //数据列表
+        if (counts > 0){
+            SimpleAdapter adapter = new SimpleAdapter(this , list,R.layout.step_item,
+                    new String[]{"date","step","length","hot"},
+                    new int[]{R.id.date , R.id.left_step,R.id.center_length,R.id.right_hot});
+            dataList.setAdapter(adapter);
 
+        }else {
+            TextView empty = (TextView) findViewById(R.id.null_view);
+            dataList.setEmptyView(empty);
+            Toast.makeText(this,"当前没有数据！",Toast.LENGTH_SHORT).show();
+        }
+        cursor.close();
     }
 }
