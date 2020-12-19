@@ -35,4 +35,34 @@
             android:layout_marginRight="@dimen/width_size_5"/>
     </LinearLayout>
 
+    <!-- 修改昵称 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/width_size_10"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/gray_background">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/theme_blue_one"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginLeft="@dimen/width_size_5"
+            android:text="@string/change_nick"/>
+        <EditText
+            android:id="@+id/change_nick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="right"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginRight="@dimen/width_size_5"
+            android:textColor="@color/theme_blue_one"
+            android:maxLength="6"
+            />
+    </LinearLayout>
+
 </LinearLayout>
