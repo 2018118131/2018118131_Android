@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.view.LineChartView;
 import mrkj.healthylife.R;
 import mrkj.healthylife.activity.AboutActivity;
@@ -154,5 +165,185 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         int counts = cursor.getCount();
         getDataValues(counts);
     }
+
+    private void getDateTest() {
+
+        List<AxisValue> axisValues = new ArrayList<>();
+        for (int i = 0; i < points.length; i++) {
+            AxisValue axisValue = new AxisValue(i);
+            axisValue.setLabel((i + 8) + "");
+            axisValues.add(axisValue);
+        }
+        Axis axisx = new Axis();
+        Axis axisy = new Axis();
+        axisx.setTextColor(Color.BLACK)
+                .setName("日期")
+                .setValues(axisValues);
+        axisy.setTextColor(Color.BLACK)
+                .setName("步数")
+                .setHasLines(true)
+                .setMaxLabelChars(5);
+        List<PointValue> values = new ArrayList<>();
+        for (int i = 0; i < points.length; i++) {
+            points[i] = (int) (Math.random() * 1000 + 5000);
+            values.add(new PointValue(i, points[i]));
+            Log.e("运行" + "【" + i + "】", points[i] + "");
+        }
+        List<Line> lines = new ArrayList<>();
+        Line line = new Line(values)
+                .setColor(Color.parseColor("#4592F3"))
+                .setCubic(false)
+                .setHasPoints(false);
+        line.setHasLines(true);
+        line.setHasLabels(true);
+        line.setHasPoints(true);
+        lines.add(line);
+        data = new LineChartData();
+        data.setLines(lines);
+        data.setAxisYLeft(axisy);
+        data.setAxisXBottom(axisx);
+        lineChartView.setLineChartData(data);
+
+    }
+
+    /**
+     * 绘制折线图
+     * @param count
+     */
+    private void getDataValues(int count) {
+
+        //用来做X轴的标签
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);//获取日期
+        //点的集合
+        List<PointValue> list;
+        int[] dateArray = new int[7];
+        dateArray[6] = day;
+        if (count == 0){
+            Log.e("没有数据","1");
+            getNestDayDate(dateArray, dateArray.length - 2);
+            Log.e("集合元素", Arrays.toString(dateArray));
+            //设置X轴的坐标说明
+            List<AxisValue> axisValues = new ArrayList<>();
+            for (int i = 0; i < points.length; i++) {
+                AxisValue axisValue = new AxisValue(i);
+                axisValue.setLabel(dateArray[i] + "");
+                axisValues.add(axisValue);
+            }
+            Axis axisx = new Axis();//X轴
+            Axis axisy = new Axis();//Y轴
+            axisx.setTextColor(Color.BLACK)
+                    .setName("日期")
+                    .setValues(axisValues);
+            axisy.setTextColor(Color.BLACK)
+                    .setName("步数")
+                    .setHasLines(true)
+                    .setMaxLabelChars(5);
+            //添加点
+            list = new ArrayList<>();
+            for (int i = 0; i < 6; i++) {
+                list.add(new PointValue(i, 0));
+            }
+            list.add(new PointValue(6, SaveKeyValues.getIntValues("sport_steps", 0)));
+            //设置折线图的集合
+            List<Line> lines = new ArrayList<>();
+            //添加折线并设置折线
+            Line line = new Line(list)
+                    .setColor(Color.parseColor("#4592F3"))
+                    .setCubic(false)
+                    .setHasPoints(false);
+            line.setHasLines(true);
+            line.setHasLabels(true);
+            line.setHasPoints(true);
+            lines.add(line);
+            //显示折线图
+            data = new LineChartData();
+            data.setLines(lines);
+            data.setAxisYLeft(axisy);
+            data.setAxisXBottom(axisx);
+        }else if(count > 0 && count < 7){//数据库中数据大于0小于6
+            Log.e("有数据","7个以下");
+            getNestDayDate(dateArray, dateArray.length - 2);
+            Log.e("集合元素", Arrays.toString(dateArray));
+            List<AxisValue> axisValues = new ArrayList<>();
+            for (int i = 0; i < points.length; i++) {
+                AxisValue axisValue = new AxisValue(i);
+                axisValue.setLabel(dateArray[i] + "");
+                axisValues.add(axisValue);
+            }
+            Axis axisx = new Axis();
+            Axis axisy = new Axis();
+            axisx.setTextColor(Color.BLACK)
+                    .setName("日期")
+                    .setValues(axisValues);
+            axisy.setTextColor(Color.BLACK)
+                    .setName("步数")
+                    .setHasLines(true)
+                    .setMaxLabelChars(5);
+            //设置数据点
+            list = new ArrayList<>();
+            if (count != 6){
+                for (int i = 0; i < 6 - count; i++) {
+                    list.add(new PointValue(i, 0));
+                }
+            }
+            //获取游标用来检索数据
+            Cursor cursor = datasDao.selectAll("step");
+            int i = count;
+            while (cursor.moveToNext()){
+                int a = cursor.getInt(cursor.getColumnIndex("steps"));
+                list.add(new PointValue(6 - (i--), a));
+            }
+            cursor.close();
+            //加入当天数据
+            list.add(new PointValue(6, SaveKeyValues.getIntValues("sport_steps", 0)));
+            List<Line> lines = new ArrayList<>();
+            Line line = new Line(list)
+                    .setColor(Color.parseColor("#4592F3"))
+                    .setCubic(false)
+                    .setHasPoints(false);
+            line.setHasLines(true);
+            line.setHasLabels(true);
+            line.setHasPoints(true);
+            lines.add(line);
+            data = new LineChartData();
+            data.setLines(lines);
+            data.setAxisYLeft(axisy);
+            data.setAxisXBottom(axisx);
+        }else{
+            Log.e("有数据","7个以上");
+            getNestDayDate(dateArray, dateArray.length - 2);
+            Log.e("集合元素", Arrays.toString(dateArray));
+            List<AxisValue> axisValues = new ArrayList<>();
+            for (int i = 0; i < points.length; i++) {
+                AxisValue axisValue = new AxisValue(i);
+                axisValue.setLabel(dateArray[i] + "");
+                axisValues.add(axisValue);
+            }
+            Axis axisx = new Axis();
+            Axis axisy = new Axis();
+            axisx.setTextColor(Color.BLACK)
+                    .setName("日期")
+                    .setValues(axisValues);
+            axisy.setTextColor(Color.BLACK)
+                    .setName("步数")
+                    .setHasLines(true)
+                    .setMaxLabelChars(5);
+            list = new ArrayList<>();
+            int length = count - 6 + 1;//开始去元素的ID
+            for (int i = length; i <= count ; i ++){
+                int b = 0;
+                Cursor cursor = datasDao.selectValue2("step",null,"_id=?",new String[]{String.valueOf(i)},null,null,null);
+                while (cursor.moveToNext()){
+                    int a = cursor.getInt(cursor.getColumnIndex("steps"));
+                    list.add(new PointValue(b, a));
+                }
+                cursor.close();
+                b++;
+            }
+        }
+        lineChartView.setLineChartData(data);
+    }
+
 
 }
