@@ -3,6 +3,7 @@ package mrkj.healthylife.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
@@ -164,6 +167,45 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
             Log.e("surfaceDestroyed", "绘制结束");
         }
     };
+
+    /**
+     * 初始化控件
+     */
+    private void initView() {
+        //设置开关
+        start_heart_test_btn = (ImageButton) view.findViewById(R.id.start_heart_test);
+        start_heart_test_btn.setOnClickListener(this);
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.show_progress);
+        roundProgressBarHeartBMP = (RoundProgressBarHeartBMP) view.findViewById(R.id.bpm_progress);
+
+        //划线
+        //这里获得main界面上的布局，下面会把图表画在这个布局里面
+        layout = (LinearLayout) view.findViewById(R.id.chart);
+        //这个类用来放置曲线上的所有点，是一个点的集合，根据这些点画出曲线
+        series = new XYSeries(title);
+
+        //创建一个数据集的实例，这个数据集将被用来创建图表
+        mDataset = new XYMultipleSeriesDataset();
+
+        //将点集添加到这个数据集中
+        mDataset.addSeries(series);
+
+        //以下都是曲线的样式和属性等等的设置，renderer相当于一个用来给图表做渲染的句柄
+        int color = Color.BLUE;
+        PointStyle style = PointStyle.CIRCLE;
+        renderer = buildRenderer(color, style, true);
+
+        //设置好图表的样式
+        setChartSettings(renderer);
+
+        //生成图表
+        chart = ChartFactory.getLineChartView(context, mDataset, renderer);
+
+        //将图表添加到布局中去
+        layout.addView(chart, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+
+    }
+    //设置图像的显示
 
     @Override
     public void onClick(View view) {
