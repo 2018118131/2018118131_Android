@@ -345,5 +345,18 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         lineChartView.setLineChartData(data);
     }
 
+    /**
+     * 获取今天之后六天的日期
+     *
+     * @param dateList
+     */
+    private void getNestDayDate(int[] dateList, int k) {
+        Calendar calendar = Calendar.getInstance();
+        for (int i = k; i >= 0; i--) {
+            calendar.add(Calendar.DATE, -1);
+            dateList[i] = calendar.get(Calendar.DAY_OF_MONTH);
+        }
+    }
+
 
 }
