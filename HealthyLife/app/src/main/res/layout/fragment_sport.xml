@@ -41,5 +41,10 @@
             android:textSize="@dimen/font_size_16"
             android:background="@drawable/text_gray_background"/>
     </LinearLayout>
-
+    <!-- 进度条 -->
+    <mrkj.library.wheelview.circlebar.CircleBar
+        android:id="@+id/show_progress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_0"
+        android:layout_weight="1"/>
 </LinearLayout>
