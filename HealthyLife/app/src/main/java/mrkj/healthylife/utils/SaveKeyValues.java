@@ -175,4 +175,15 @@ public class SaveKeyValues {
         return boolean_value;
     }
 
+    /**
+     * 清空数据
+     */
+    public static boolean deleteAllValues(){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.clear();
+        return editor.commit();
+    }
+
 }
