@@ -46,7 +46,36 @@
                 android:textSize="@dimen/font_size_20"
                 android:layout_below="@+id/left_step"
                 android:text="步"/>
-
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/width_size_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/center_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_size_20"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:text="路程"/>
+            <TextView
+                android:id="@+id/center_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/font_size_20"
+                android:layout_below="@+id/center_hint"
+                android:text="0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/font_size_20"
+                android:layout_below="@+id/center_length"
+                android:text="米"/>
         </RelativeLayout>
 
     </LinearLayout>
