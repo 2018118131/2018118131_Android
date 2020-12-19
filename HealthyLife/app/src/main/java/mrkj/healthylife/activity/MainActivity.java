@@ -279,4 +279,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 隐藏
+     */
+    private void hideOthers(){
+        if (closeDataPicker == true){
+            openPickerOrClose(false);
+        }
+        if (closeHeightPicker == true){
+            openHeightPickerOrClose(false);
+        }
+        if (!nextShow){
+            showNextBtn();
+        }
+        hideKeyBoard();
+    }
+
 }
