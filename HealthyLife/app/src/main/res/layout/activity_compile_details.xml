@@ -108,4 +108,30 @@
         </RadioGroup>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/width_size_10"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/gray_background"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/theme_blue_one"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginLeft="@dimen/width_size_5"
+            android:text="@string/change_date"/>
+        <TextView
+            android:id="@+id/change_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/theme_blue_one"
+            android:textSize="@dimen/font_size_20"
+            android:layout_marginRight="@dimen/width_size_5"
+            android:text="@string/default_date"
+            android:gravity="right"/>
+    </LinearLayout>
+
 </LinearLayout>
