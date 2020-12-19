@@ -52,6 +52,18 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_20"
                 android:textStyle="bold" />
+
+            <TimePicker
+                android:id="@+id/timePicker1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_size_2"
+                android:layout_marginBottom="@dimen/width_size_3"
+                android:layout_marginTop="@dimen/width_size_3"
+                android:background="@color/white" />
         </LinearLayout>
 
     </RelativeLayout>
