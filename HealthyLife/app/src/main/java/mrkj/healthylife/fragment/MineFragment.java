@@ -1,5 +1,6 @@
 package mrkj.healthylife.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -355,6 +356,22 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         for (int i = k; i >= 0; i--) {
             calendar.add(Calendar.DATE, -1);
             dateList[i] = calendar.get(Calendar.DAY_OF_MONTH);
+        }
+    }
+
+    /**
+     * 返回
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CHANGE && resultCode == Activity.RESULT_OK) {
+            showMessage();
+            Log.e("返回", "success");
         }
     }
 
