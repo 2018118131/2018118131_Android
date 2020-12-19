@@ -189,6 +189,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 显示或隐藏日期选择器
+     * @param flag
+     */
+    private void openPickerOrClose(boolean flag){
+        if (flag){
+            Log.e(TAG, "获取生日-->获取焦点了");
+            hideKeyBoard();
+            choose_date.setVisibility(View.VISIBLE);
+            hideNextBtn();
+            showAnimation(choose_date, R.anim.push_up_in);
+            closeDataPicker = true;
+        }else {
+            if (closeDataPicker == true){
+                showAnimation(choose_date, R.anim.push_up_out);
+                choose_date.setVisibility(View.GONE);
+                showNextBtn();
+                closeDataPicker = false;
+            }
+        }
+    }
+
 
 
 
