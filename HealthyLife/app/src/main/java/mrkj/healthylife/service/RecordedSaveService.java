@@ -81,4 +81,10 @@ public class RecordedSaveService extends Service {
         return START_NOT_STICKY;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("测试服务", "结束了！");
+    }
+
 }
