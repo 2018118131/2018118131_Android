@@ -239,6 +239,36 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    /**
+     * 剪切图片
+     *
+     * @function:
+     * @author:Jerry
+     * @date:2013-12-30
+     * @param uri
+     */
+    private void crop(Uri uri) {
+        Log.e("URI", uri.getPath());
+        Log.e("URI", uri.toString());
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("scale", true);//黑边
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
+        // 图片格式
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);// true:不返回uri，false：返回uri
+        startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
+
     @Override
     protected void setViewsFunction() {
 
