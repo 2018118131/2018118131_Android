@@ -26,4 +26,8 @@ public abstract class BaseActivity extends AppCompatActivity{
         title_relRelativeLayout = (RelativeLayout) findViewById(R.id.title_back);
     }
 
+    public void setMyBackGround(int color){
+        title_relRelativeLayout.setBackgroundResource(color);
+    }
+
 }
