@@ -28,7 +28,7 @@ public class ShowBPMActivity extends BaseActivity {
 
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_show_bpm);
     }
 
     @Override
