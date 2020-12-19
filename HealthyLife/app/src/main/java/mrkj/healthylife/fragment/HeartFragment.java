@@ -41,6 +41,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import mrkj.healthylife.R;
 import mrkj.healthylife.activity.ShowBPMActivity;
 import mrkj.healthylife.base.BaseFragment;
+import mrkj.healthylife.utils.ImageProcessing;
+import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.progressbar.RoundProgressBarHeartBMP;
 
 /**
@@ -445,5 +447,99 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         renderer.setPointSize((float) 3);
         renderer.setShowLegend(false);
     }
+
+    /**
+     * 获取图像信息
+     */
+    private static Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
+
+        public void onPreviewFrame(byte[] data, Camera cam) {
+            if (data == null)
+                throw new NullPointerException();
+            Camera.Size size = cam.getParameters().getPreviewSize();
+            if (size == null)
+                throw new NullPointerException();
+            if (!processing.compareAndSet(false, true))
+                return;
+            int width = size.width;
+            int height = size.height;
+            //图像处理
+            int imgAvg = ImageProcessing.decodeYUV420SPtoRedAvg(data.clone(), height, width);
+            imageReslutValues = imgAvg;
+            if (imgAvg == 0 || imgAvg == 255) {
+                processing.set(false);
+                return;
+            }
+
+            int averageArrayAvg = 0;
+            int averageArrayCnt = 0;
+            for (int i = 0; i < averageArray.length; i++) {
+                if (averageArray[i] > 0) {
+                    averageArrayAvg += averageArray[i];
+                    averageArrayCnt++;
+                }
+            }
+
+            int rollingAverage = (averageArrayCnt > 0) ? (averageArrayAvg / averageArrayCnt) : 0;
+            TYPE newType = currentType;
+            if (imgAvg < rollingAverage) {
+                newType = TYPE.RED;
+                if (newType != currentType) {
+                    beats++;
+                    flag = 0;
+                }
+            } else if (imgAvg > rollingAverage) {
+                newType = TYPE.GREEN;
+            }
+
+            if (averageIndex == averageArraySize)
+                averageIndex = 0;
+            averageArray[averageIndex] = imgAvg;
+            averageIndex++;
+
+            // Transitioned from one state to another to the same
+            if (newType != currentType) {
+                currentType = newType;
+            }
+            //获取系统结束时间（ms）
+            long endTime = System.currentTimeMillis();
+            double totalTimeInSecs = (endTime - startTime) / 1000d;
+            if (totalTimeInSecs >= 2) {
+                double bps = (beats / totalTimeInSecs);
+                int dpm = (int) (bps * 60d);
+                if (dpm < 30 || dpm > 180 || imgAvg < 200) {
+                    //获取系统开始时间（ms）
+                    startTime = System.currentTimeMillis();
+                    //beats心跳总数
+                    beats = 0;
+                    processing.set(false);
+                    return;
+                }
+                //				Log.e(TAG, "totalTimeInSecs=" + totalTimeInSecs + " beats="+ beats);
+                if (beatsIndex == beatsArraySize)
+                    beatsIndex = 0;
+                beatsArray[beatsIndex] = dpm;
+                beatsIndex++;
+                int beatsArrayAvg = 0;
+                int beatsArrayCnt = 0;
+                for (int i = 0; i < beatsArray.length; i++) {
+                    if (beatsArray[i] > 0) {
+                        beatsArrayAvg += beatsArray[i];
+                        beatsArrayCnt++;
+                    }
+                }
+                int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
+                //心率是"+String.valueOf(beatsAvg)
+                Log.e(TAG, "心率为：" + String.valueOf(beatsAvg) + "BPM");
+                bpm = String.valueOf(beatsAvg);
+                SaveKeyValues.putStringValues("bpm", String.valueOf(beatsAvg));
+                progess++;
+                //获取系统时间（ms）
+                startTime = System.currentTimeMillis();
+                beats = 0;
+            }
+            processing.set(false);
+        }
+    };
 
 }
