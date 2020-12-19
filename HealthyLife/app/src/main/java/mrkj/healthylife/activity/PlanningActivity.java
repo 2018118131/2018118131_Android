@@ -180,4 +180,30 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
             }
         },nowYear,nowMonth,nowDate);
     }
+
+    /**
+     * 获取焦点
+     * @param v
+     * @param hasFocus
+     */
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()){
+            case R.id.plan_start_time://计划开始时间
+                if (hasFocus){
+                    isSetStart = true;
+                    showDateDialog(SET_START_DATE);
+                }
+                break;
+            case R.id.plan_stop_time://计划结束时间
+                if (hasFocus){
+                    isSetStart = false;
+                    showDateDialog(SET_STOP_DATE);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }
