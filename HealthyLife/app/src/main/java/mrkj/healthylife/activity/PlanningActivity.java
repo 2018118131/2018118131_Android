@@ -64,9 +64,12 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         setTitleTextColor(getResources().getColor(R.color.black));//设置字体颜色
     }
 
+    /**
+     * 初始化布局文件
+     */
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_planning);
     }
 
     @Override
