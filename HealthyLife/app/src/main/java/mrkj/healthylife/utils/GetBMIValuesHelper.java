@@ -63,4 +63,28 @@ public class GetBMIValuesHelper {
         return bodyStr;
     }
 
+    /**
+     * 获取身体的类型
+     *
+     * @param BMI
+     * @return
+     */
+    public int getHealthyType(double BMI) {
+        int type = VALUES_NULL;
+        if (BMI < 18.5) {// 体重过低
+            type = EXTENUATION;
+        } else if (BMI < 24) {// 体重正常
+            type = NORMAL_WEIGHT;
+        } else if (BMI < 27) {// 体重偏胖
+            type = WEIGHT_OVER_WEIGHT;
+        } else if (BMI < 30) {// Ⅰ度肥胖
+            type = SEVERLY_OBESE_ONE;
+        } else if (BMI < 35) {// Ⅱ度肥胖
+            type = SEVERLY_OBESE_TWO;
+        } else {// Ⅲ度肥胖
+            type = SEVERLY_OBESE_THREE;
+        }
+        return type;
+    }
+
 }
