@@ -144,6 +144,27 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         return view;
     }
 
+    /**
+     * 显示图像
+     */
+    private final SurfaceHolder.Callback holderCallBack = new SurfaceHolder.Callback() {
+        @Override
+        public void surfaceCreated(SurfaceHolder holder) {
+            Log.e("surfaceCreated", "绘制开始");
+        }
+
+
+        @Override
+        public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            Log.e("surfaceChanged", "绘制改变");
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            Log.e("surfaceDestroyed", "绘制结束");
+        }
+    };
+
     @Override
     public void onClick(View view) {
 
