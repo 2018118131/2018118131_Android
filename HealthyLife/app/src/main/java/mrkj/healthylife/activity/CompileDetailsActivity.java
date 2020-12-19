@@ -2,9 +2,12 @@ package mrkj.healthylife.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import java.util.Map;
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.DateUtils;
+import mrkj.healthylife.utils.GetPictureFromLocation;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circleimageview.CircleImageView;
 
@@ -197,6 +201,41 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * 通过返回的值来设置图片
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PHOTO_REQUEST_GALLERY2) {
+            if (data != null) {
+                // 得到图片的全路径
+                String path = GetPictureFromLocation.selectImage(getApplicationContext(),data);
+                crop(Uri.parse("file://"+path));
+            }
+
+        }  else if (requestCode == PHOTO_REQUEST_GALLERY) {
+            if (data != null) {
+                // 得到图片的全路径
+                String path = GetPictureFromLocation.getPath(getApplicationContext(), data.getData());
+                crop(Uri.parse("file://"+path));
+            }
+
+        }else if (requestCode == PHOTO_REQUEST_CAMERA) {
+            crop(Uri.fromFile(tempFile));
+        }else if (requestCode == PHOTO_REQUEST_CUT) {
+            try {
+                Bitmap bitmap = BitmapFactory.decodeFile(tempFile.getPath());
+                Log.e("uri", Uri.fromFile(tempFile).toString());
+                head_image.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
