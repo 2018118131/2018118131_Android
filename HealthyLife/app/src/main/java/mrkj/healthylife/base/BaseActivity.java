@@ -1,5 +1,6 @@
 package mrkj.healthylife.base;
 
+import android.app.Activity;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -73,6 +74,21 @@ public abstract class BaseActivity extends AppCompatActivity{
     public void setTitle(String name){
         title_center.setText(name);
         title_left.setVisibility(View.INVISIBLE);
+    }
+    /**
+     * 设置标题有返回键功能-->可以改变返回键的图片
+     * @param name
+     * @param activity
+     */
+    public void setTitle(String name,final Activity activity){
+        title_center.setText(name);
+        title_left.setVisibility(View.VISIBLE);
+        title_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+            }
+        });
     }
 
 }
