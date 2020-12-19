@@ -84,7 +84,7 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_compile_details);
     }
 
     @Override
