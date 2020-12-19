@@ -8,7 +8,27 @@
 
     <include layout="@layout/title_layout" />
 
+    <TextView
+        android:id="@+id/play_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/width_size_3"
+        android:layout_marginLeft="@dimen/width_size_10"
+        android:layout_marginRight="@dimen/width_size_10"
+        android:layout_marginTop="@dimen/width_size_3"
+        android:background="@color/watm_background_gray"
+        android:drawableLeft="@mipmap/mrkj_ran"
+        android:drawableRight="@mipmap/mrkj_ran"
+        android:gravity="center"
+        android:text="运动名称"
+        android:textColor="@color/red"
+        android:textSize="@dimen/font_size_16" />
 
+    <ImageView
+        android:id="@+id/play_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_280"
+        android:scaleType="fitXY" />
 
 
 </LinearLayout>
