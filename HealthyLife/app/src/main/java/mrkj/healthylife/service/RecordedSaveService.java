@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import mrkj.healthylife.db.DatasDao;
+import mrkj.healthylife.receiver.FunctionBroadcastReceiver;
 import mrkj.healthylife.utils.DateUtils;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.healthylife.utils.StepDetector;

@@ -32,4 +32,11 @@ public class Constant {
     public static final long DAY_FOR_23_HOUR = 23;
     public static final long DAY_FOR_59_MINURE = 59;
 
+    //执行运动计划的服务会使用到的集中类型值
+    public static final int START_PLAN = 1;//开始计划
+    public static final int CHANGE_PLAN = 2;//更改计划
+    public static final int NEXT_PLAN = 3;//下一个计划
+    public static final int ONE_PLAN = 4;//循环一个
+    public static final int STOP_PLAN = 5;//结束计划
+
 }

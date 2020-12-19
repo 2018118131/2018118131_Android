@@ -9,14 +9,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import mrkj.healthylife.R;
+import mrkj.healthylife.service.ExecuteHealthyPlanService;
 import mrkj.healthylife.service.StepCounterService;
 
 /**
  * 用于开机自启动
- *
+ * Created by Administrator on 2016/6/2.
 // */
-public class RecordedSaveServiceBootBroadcastReceiver extends BroadcastReceiver {
-
+public class BootBroadcastReceiver extends BroadcastReceiver {
     //重写onReceive方法
     @Override
     public void onReceive(Context context, Intent intent) {
