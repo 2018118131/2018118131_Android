@@ -126,7 +126,25 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void setViewsListener() {
-
+        change_image.setOnClickListener(this);
+        change_OK_With_Save.setOnClickListener(this);
+        change_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                hideKeyBoard();
+                switch (checkedId) {
+                    case R.id.change_girl:
+                        sex_str = "女";
+                        break;
+                    case R.id.change_boy:
+                        sex_str = "男";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        change_birthDay.setOnClickListener(this);
     }
 
     @Override
