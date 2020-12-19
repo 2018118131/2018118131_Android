@@ -28,9 +28,12 @@ public class MinePlanActivity extends BaseActivity {
         setTitleLeftImage(R.mipmap.mrkj_back_blue);//设施返回键的图片
     }
 
+    /**
+     * 初始化界面布局
+     */
     @Override
     protected void getLayoutToView() {
-
+        setContentView(R.layout.activity_mine_plan);
     }
 
     @Override
