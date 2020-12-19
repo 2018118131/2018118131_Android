@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circlebar.ColorArcProgressBar;
 
 public class ShowBPMActivity extends BaseActivity {
@@ -33,7 +34,7 @@ public class ShowBPMActivity extends BaseActivity {
 
     @Override
     protected void initValues() {
-
+        bpm_values = Integer.parseInt(SaveKeyValues.getStringValues("bpm","80"));
     }
 
     @Override
