@@ -345,4 +345,43 @@ public class ExecuteHealthyPlanService extends Service {
         cursor.close();
     }
 
+    //================================ 功能 ================================
+    /**
+     * 功能眼增
+     */
+    private void functionalVerification(){
+        Cursor cursor = datasDao.selectColumn("plans", new String[]{"_id", "hint_hour", "hint_minute", "number_values"});
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));
+            int hour = cursor.getInt(cursor.getColumnIndex("hint_hour"));
+            int minute = cursor.getInt(cursor.getColumnIndex("hint_minute"));
+            int nunber = cursor.getInt(cursor.getColumnIndex("number_values"));
+            Log.e("元素","_id = " + id + "\t\t" + "时间 = " + hour + "点" + minute + "分" +"\t\t" + "序号 = " + nunber);
+
+        }
+        cursor.close();
+    }
+    /**
+     * 设置定时任务
+     * @id号 id
+     * @排列序号 number
+     * @提示类型 hint_type
+     * @提示时间 hintTime
+     */
+    private void setAlarmService(int mode ,int id ,int number ,int hint_type , long hintTime){
+        toBroadReciver = new Intent(this, FunctionBroadcastReceiver.class);
+        toBroadReciver.setAction(planSaveService);
+        toBroadReciver.putExtra("mode",mode);//int
+        toBroadReciver.putExtra("id", id);//int
+        toBroadReciver.putExtra("number", number);//int
+        toBroadReciver.putExtra("hint_type",hint_type);//int
+        senser = PendingIntent.getBroadcast(this, 0, toBroadReciver, PendingIntent.FLAG_UPDATE_CURRENT);
+        manager.set(AlarmManager.RTC_WAKEUP, hintTime, senser);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("运动计划全部执行完","服务结束了");
+    }
+
 }
