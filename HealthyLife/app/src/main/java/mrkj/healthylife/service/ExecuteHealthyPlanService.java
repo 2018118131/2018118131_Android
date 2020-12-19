@@ -17,6 +17,7 @@ import java.util.List;
 
 import mrkj.healthylife.db.DatasDao;
 import mrkj.healthylife.entity.HealthyPlan;
+import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.DateUtils;
 import mrkj.healthylife.utils.SaveKeyValues;
 
@@ -208,6 +209,65 @@ public class ExecuteHealthyPlanService extends Service {
             long result = accordanceNumberSetAlarmTask(1);
             Log.e("定时返回值","【"+result+"】");
         }
+    }
+
+    /**
+     * 根据排列顺序进行设置定时任务
+     * @param index
+     */
+    private long accordanceNumberSetAlarmTask(int index) {
+        long nowTime = DateUtils.getNowMillisecondValues();//当前时间
+        long nowDate = DateUtils.getNowDateMillisecondValues();//当前日期
+        return getvirtualValueIndex(index ,nowTime ,nowDate);
+    }
+    private long getvirtualValueIndex(int index , long time , long date){
+        long hintTime;//提示时间
+        long stopDate;//提示日期
+        Cursor cursor = datasDao.selectAll("plans");
+        while (cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("_id"));//id
+            int hour = cursor.getInt(cursor.getColumnIndex("hint_hour"));//提醒时间-->时
+            int minute = cursor.getInt(cursor.getColumnIndex("hint_minute"));//提醒时间-->分
+            int number = cursor.getInt(cursor.getColumnIndex("number_values"));//顺序
+            int hint_type = cursor.getInt(cursor.getColumnIndex("sport_type"));//类型
+            int stop_year = cursor.getInt(cursor.getColumnIndex("stop_year"));//结束日期--->年
+            int stop_month = cursor.getInt(cursor.getColumnIndex("stop_month"));//结束日期--->月
+            int stop_day = cursor.getInt(cursor.getColumnIndex("stop_day"));//结束日期--->日
+            if (index == number){
+                //判断当前的数据是否有效
+                hintTime = DateUtils.getMillisecondValues(hour,minute);
+                stopDate = DateUtils.getMillisecondValues(stop_year,stop_month,stop_day);
+                //1、根据日期判断计划是否有效如果有效则判断时间是否有效
+                //如有效：则判断时间是否有效-->时间有效则设置定时服务|时间超过当前时间则执行下一个循环
+                //如无效：则删除此条数据执行下一个循环
+                if(date  <= stopDate) {//如果当前日期大于设置的停止日期则判断时间是否有效
+                    if (time >= hintTime) {//如果当前时间大于提示时间则执行下一个循环
+                        //寻找比当前index大一的数据
+                        if (index == 1) {//记录下index为为一的相关数据
+                            first_hint_time = hintTime;
+                            first_hint_id = id;
+                            first_hint_num = number;
+                            first_hint_type = hint_type;
+                            Log.e("序号为1的_ID","【"+first_hint_id+"】");
+                            Log.e("序号为1的序号","【"+first_hint_num+"】");
+                            Log.e("序号为1的时间","【"+first_hint_time+"】");
+                            Log.e("序号为1的类型","【"+first_hint_type+"】");
+                        }
+                        if (index == cursor.getCount()) {//如果到最后的数据的提示时间都小于当前时间，则设置index为1的数据进行设置定时提醒
+                            setAlarmService(2, first_hint_id, first_hint_num, first_hint_type, first_hint_time + Constant.DAY_FOR_24_HOURS);
+                            compareAllData();
+                            return 2000;
+                        }
+                        cursor.close();//关闭游标
+                        index += 1;//查询下一条数据
+                        return accordanceNumberSetAlarmTask(index);
+                    } else {//设置时间大于当前时间则设置定时任务
+                        setAlarmService(2, id, number, hint_type, hintTime);
+                    }
+                }
+            }
+        }
+        return 1000;
     }
 
 }
