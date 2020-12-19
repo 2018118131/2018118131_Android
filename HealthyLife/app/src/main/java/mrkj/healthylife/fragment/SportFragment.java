@@ -275,4 +275,35 @@ public class SportFragment extends BaseFragment {//此处直接继承Fragment即
 
     }
 
+    /**
+     * 获取计步服务的信息
+     */
+    private void getServiceValue() {
+//        Log.e("开启子线程", "进入方法体！");
+        if (get_step_thread == null) {
+
+            get_step_thread = new Thread() {// 子线程用于监听当前步数的变化
+
+                @Override
+                public void run() {
+                    super.run();
+                    while (!isStop) {
+                        try {
+//                            Log.e("进入子线程","进入方法体！");
+                            Thread.sleep(1000);//每个一秒发送一条信息给UI线程
+                            if (StepCounterService.FLAG) {
+                                handler.sendEmptyMessage(STEP_PROGRESS);// 通知主线程
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            };
+            get_step_thread.start();
+        }
+
+    }
+
 }
