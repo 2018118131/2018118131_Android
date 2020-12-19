@@ -62,4 +62,12 @@ public class DateUtils {
         return calendar.getTimeInMillis();
     }
 
+    /**
+     * 返回当前时间的毫秒值
+     * @return
+     */
+    public static long getNowMillisecondValues(){
+        return getMillisecondValues((int)getDate().get("hour"),(int)getDate().get("minute"));
+    }
+
 }
