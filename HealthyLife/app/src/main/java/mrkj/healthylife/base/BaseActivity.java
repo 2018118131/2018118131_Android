@@ -46,5 +46,9 @@ public abstract class BaseActivity extends AppCompatActivity{
      * 初始化标题
      */
     protected abstract void setActivityTitle();
+    /**
+     * 初始化窗口
+     */
+    protected abstract void getLayoutToView();
 
 }
