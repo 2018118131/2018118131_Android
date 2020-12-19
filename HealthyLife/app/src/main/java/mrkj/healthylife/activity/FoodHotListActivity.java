@@ -5,6 +5,7 @@ import android.widget.ExpandableListView;
 
 import java.util.List;
 
+import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.entity.FoodType;
 
@@ -17,9 +18,16 @@ public class FoodHotListActivity extends BaseActivity {
     private Bitmap[] bitmaps;//图片资源
     private int[] ids;//图片资源ID数组
 
+    /**
+     * 设置标题栏
+     */
     @Override
     protected void setActivityTitle() {
-
+        initTitle();
+        setTitle("食物热量对照表", this);
+        setMyBackGround(R.color.watm_background_gray);
+        setTitleTextColor(R.color.theme_blue_two);
+        setTitleLeftImage(R.mipmap.mrkj_back_blue);
     }
 
     @Override
