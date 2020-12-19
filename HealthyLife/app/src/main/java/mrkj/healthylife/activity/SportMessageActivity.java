@@ -43,8 +43,19 @@ public class SportMessageActivity extends BaseActivity implements View.OnClickLi
 
 
     @Override
-    public void onClick(View view) {
-
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.data_all:
+                all_lin.setVisibility(View.VISIBLE);
+                day_lin.setVisibility(View.GONE);
+                break;
+            case R.id.data_day:
+                all_lin.setVisibility(View.GONE);
+                day_lin.setVisibility(View.VISIBLE);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
