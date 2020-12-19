@@ -1,5 +1,6 @@
 package mrkj.healthylife.base;
 
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,18 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     public void setMyBackGround(int color){
         title_relRelativeLayout.setBackgroundResource(color);
+    }
+
+    /**
+     * 设置TextView的下滑线
+     * @param view
+     */
+    public void setTextViewUnderLine(TextView view){
+        Paint paint = view.getPaint();
+        paint.setColor(getResources().getColor(R.color.btn_gray));//设置画笔颜色
+        paint.setAntiAlias(true);//设置抗锯齿
+        paint.setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置下滑线
+        view.invalidate();
     }
 
 }
