@@ -63,4 +63,18 @@ public class SaveKeyValues {
         return string_value;
     }
 
+    /**
+     * 存入int类型的值
+     * @param key
+     * @param values
+     * @return
+     */
+    public static boolean putIntValues(String key,int values){
+        if (isUnCreate()){
+            return false;
+        }
+        editor.putInt(key, values);
+        return editor.commit();
+    }
+
 }
