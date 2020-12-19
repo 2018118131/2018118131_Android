@@ -20,6 +20,7 @@ import java.util.Map;
 
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
+import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.pickerView.PickerView;
 import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
 import mrkj.library.wheelview.utils.DateViewHelper;
@@ -179,6 +180,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
     @Override
     public void getMessage(Map<String, Object> map) {
 
+    }
+
+    /**
+     * 存入第一部分资料
+     */
+    private void saveMessageOne(){
+        SaveKeyValues.putStringValues("gender", gender_str);//性别
+        SaveKeyValues.putStringValues("nick",nick_str);//昵称
+        SaveKeyValues.putStringValues("birthday",birthday_str);//生日日期
+        SaveKeyValues.putIntValues("birth_year",year);
+        SaveKeyValues.putIntValues("birth_month",month);
+        SaveKeyValues.putIntValues("birth_day",day);
+        SaveKeyValues.putStringValues("height_str",height_str);//身高带单位的文字
+        SaveKeyValues.putIntValues("height", Integer.parseInt(height_str.substring(0,height_str.length()-2)));//身高数值
+        SaveKeyValues.putIntValues("age",custom_age);//年龄
     }
 
     /**
