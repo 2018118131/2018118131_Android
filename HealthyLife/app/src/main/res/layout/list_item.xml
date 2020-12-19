@@ -39,5 +39,14 @@
                 android:textSize="@dimen/font_size_18"
                 android:gravity="center"/>
         </LinearLayout>
+        <TextView
+            android:id="@+id/add_plan"
+            android:layout_width="@dimen/width_size_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="添加计划"
+            android:textColor="@color/theme_blue_one"
+            android:textSize="@dimen/font_size_18"
+            android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>
