@@ -14,6 +14,26 @@
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@mipmap/mrkj_back"/>
+        <TextView
+            android:id="@+id/titles"
+            android:layout_margin="@dimen/width_size_5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="title"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/font_size_20"
+            android:textColor="@color/white"/>
+        <ImageView
+            android:id="@+id/right_btn"
+            android:layout_marginRight="@dimen/width_size_10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:scaleType="center"
+            android:src="@mipmap/other"/>
     </RelativeLayout>
 
 </LinearLayout>
