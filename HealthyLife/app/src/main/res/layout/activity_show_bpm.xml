@@ -8,4 +8,26 @@
     tools:context="mrkj.healthylife.activity.ShowBPMActivity">
     <include layout="@layout/title_layout"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_size_0"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <mrkj.library.wheelview.circlebar.ColorArcProgressBar
+            android:id="@+id/heat_bpm_values"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:back_color="@color/btn_gray"
+            app:back_width="10dp"
+            app:front_color1="@color/theme_blue_two"
+            app:front_width="10dp"
+            app:is_need_content="true"
+            app:is_need_title="true"
+            app:is_need_unit="true"
+            app:string_title="您的心率值为"
+            app:string_unit="BPM"
+            app:total_engle="270" />
+    </LinearLayout>
+
 </LinearLayout>
