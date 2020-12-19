@@ -254,5 +254,30 @@ public class PlanningActivity extends BaseActivity implements View.OnFocusChange
         }
     }
 
+    /**
+     * 储存用户存入的相关信息
+     */
+    //1、存入开始日期 年 月 日
+    //2、存入结束日期 年 月 日
+    //3、存入体重范围值 标准最小值和标准最大值
+    //4、存入目标体重
+    private void saveCustomSettingValues(String start_dates,String stop_dates){
+        //1.
+        SaveKeyValues.putStringValues("plan_start_date",start_dates);
+        SaveKeyValues.putIntValues("plan_start_year", start_year);
+        SaveKeyValues.putIntValues("plan_start_month" , start_month);
+        SaveKeyValues.putIntValues("plan_start_day" , start_date);
+        //2.
+        SaveKeyValues.putStringValues("plan_stop_date",stop_dates);
+        SaveKeyValues.putIntValues("plan_stop_year", stop_year);
+        SaveKeyValues.putIntValues("plan_stop_month" , stop_month);
+        SaveKeyValues.putIntValues("plan_stop_day", stop_date);
+        //3.
+        SaveKeyValues.putFloatValues("plan_min_normal_weight_values",(float)((double)min_normal_weight));
+        SaveKeyValues.putFloatValues("plan_max_normal_weight_values",(float)((double)max_normal_weight));
+        //4.
+        SaveKeyValues.putIntValues("plan_want_weight_values",plan_want_weight);
+    }
+
 
 }
