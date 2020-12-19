@@ -131,9 +131,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
         }
     }
 
+    /**
+     * 初始化控件
+     */
     @Override
     protected void initViews() {
 
+        //======================================= 完善资料1/2 =======================================
+
+        personal_information_page_one = (LinearLayout) findViewById(R.id.personal_information_page_one);
+        group = (RadioGroup) findViewById(R.id.gender);
+        input_nick = (EditText) findViewById(R.id.input_nick);
+        input_birthday = (TextView) findViewById(R.id.input_birthday);
+        input_height = (TextView) findViewById(R.id.input_height);
+        next_action = (Button) findViewById(R.id.next);
+        //设置日期选择器
+        inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+        choose_date=(LinearLayout) findViewById(R.id.choose_date);
+        dateViewHelper = new DateViewHelper(this);
+        //设置身高选择器
+        choose_height = (LinearLayout) findViewById(R.id.choose_height);
+        height_picker = (PickerView) findViewById(R.id.height_picker);
+
+
+        //======================================= 完善资料2/2 =======================================
+
+        personal_information_page_two = (LinearLayout) findViewById(R.id.personal_information_page_two);
+        input_weight = (ScaleRulerView) findViewById(R.id.input_weight);
+        show_weight = (TextView) findViewById(R.id.show_weight);
+        input_length = (ScaleRulerView) findViewById(R.id.input_length);
+        show_length = (TextView) findViewById(R.id.show_length);
+        go_walk = (Button) findViewById(R.id.walk);
+        go_make = (Button) findViewById(R.id.make);
     }
 
     @Override
