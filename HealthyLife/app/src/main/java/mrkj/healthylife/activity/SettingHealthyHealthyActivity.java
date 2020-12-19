@@ -1,11 +1,13 @@
 package mrkj.healthylife.activity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import mrkj.healthylife.db.DatasDao;
 
@@ -48,5 +50,19 @@ public class SettingHealthyHealthyActivity extends AppCompatActivity implements 
 //        Log.e("minute", minute + " 分");
         alarmhour = hourOfDay;
         alarmminute = minute;
+    }
+
+    private void insertData(ContentValues values){
+        if (isToSave){
+            //向数据库中插入数据
+            long result = datasDao.insertValue("plans",values);
+            if (result > 0){
+                Toast.makeText(this,"设置计划成功！",Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK);
+                finish();
+            }else {
+                Toast.makeText(this,"设置计划失败！请重新设置计划！",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
