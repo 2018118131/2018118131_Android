@@ -542,4 +542,60 @@ public class HeartFragment extends BaseFragment implements View.OnClickListener 
         }
     };
 
+    /**
+     * 跟新图标
+     */
+    private void updateChart() {
+        if (flag == 1)
+            addY = 10;
+        else {
+            flag = 1;
+            if (imageReslutValues < 200) {
+                if (values[20] > 1) {
+                    Toast.makeText(context, "请用您的指尖盖住摄像头镜头！", Toast.LENGTH_SHORT).show();
+                    values[20] = 0;
+                }
+                values[20]++;
+                return;
+            } else
+                values[20] = 10;
+            count = 0;
+
+        }
+        if (count < 20) {
+            addY = values[count];
+            count++;
+        }
+
+        //移除数据集中旧的点集
+        mDataset.removeSeries(series);
+
+        //判断当前点集中到底有多少点，因为屏幕总共只能容纳100个，所以当点数超过100时，长度永远是100
+        int length = series.getItemCount();
+        int bz = 0;
+        if (length > 300) {
+            length = 300;
+            bz = 1;
+        }
+        addX = length;
+        //将旧的点集中x和y的数值取出来放入backup中，并且将x的值加1，造成曲线向右平移的效果
+        for (int i = 0; i < length; i++) {
+            xPoint[i] = (int) series.getX(i) - bz;
+            yPoint[i] = (int) series.getY(i);
+        }
+
+        //点集先清空，为了做成新的点集而准备
+        series.clear();
+        mDataset.addSeries(series);
+        //将新产生的点首先加入到点集中，然后在循环体中将坐标变换后的一系列点都重新加入到点集中
+        //这里可以试验一下把顺序颠倒过来是什么效果，即先运行循环体，再添加新产生的点
+        series.add(addX, addY);
+        for (int k = 0; k < length; k++) {
+            series.add(xPoint[k], yPoint[k]);
+        }
+        //视图更新，没有这一步，曲线不会呈现动态
+        //如果在非UI主线程中，需要调用postInvalidate()，具体参考api
+        chart.invalidate();
+    }
+
 }
