@@ -3,6 +3,7 @@ package mrkj.healthylife.service;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -268,6 +269,16 @@ public class ExecuteHealthyPlanService extends Service {
             }
         }
         return 1000;
+    }
+
+    /**
+     * 更新数据
+     * @param index
+     */
+    private void setNumberValuerToDataValues(int id,int index){
+        ContentValues values = new ContentValues();
+        values.put("number_values" , index);
+        datasDao.updateValue("plans", values, "_id=?", new String[]{String.valueOf(id)});
     }
 
 }
