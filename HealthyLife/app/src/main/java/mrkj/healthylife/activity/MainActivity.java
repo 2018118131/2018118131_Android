@@ -269,9 +269,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,P
 
 
 
+    /**
+     * 获取身高信息
+     * @param text
+     */
     @Override
-    public void onSelect(String s) {
-
+    public void onSelect(String text) {
+        input_height.setText(text + getString(R.string.cm));
     }
 
     /**
