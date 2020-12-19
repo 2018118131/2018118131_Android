@@ -79,7 +79,12 @@ public class CompileDetailsActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void setActivityTitle() {
-
+        initTitle();
+        setTitle("更改个人信息", this);
+        setMyBackGround(R.color.watm_background_gray);
+        setTitleTextColor(R.color.theme_blue_two);
+        setTitleLeftImage(R.mipmap.mrkj_back_blue);
+        setResult(RESULT_OK);
     }
 
     @Override
