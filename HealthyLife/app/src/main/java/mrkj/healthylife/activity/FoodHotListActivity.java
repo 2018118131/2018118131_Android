@@ -148,9 +148,13 @@ public class FoodHotListActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 绑定适配器
+     */
     @Override
     protected void setViewsFunction() {
-
+        MyFoodAdapter adapter = new MyFoodAdapter();
+        data_list.setAdapter(adapter);
     }
 
 
