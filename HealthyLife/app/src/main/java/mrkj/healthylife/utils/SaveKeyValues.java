@@ -105,4 +105,18 @@ public class SaveKeyValues {
         return editor.commit();
     }
 
+    /**
+     * 取出long类型的值
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static long getLongValues(String key,long defValue){
+        if (isUnCreate()){
+            return 0;
+        }
+        long long_value = sharedPreferences.getLong(key, defValue);
+        return long_value;
+    }
+
 }
