@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.FunctionActivity">
-
+    <!--底部四个功能按钮切换四个界面-->
     <FrameLayout
         android:id="@+id/frag_home"
         android:layout_width="match_parent"

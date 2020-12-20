@@ -1,8 +1,9 @@
 package mrkj.healthylife.utils;
 
 /**
- *
+ 用户信息
  */
+
 public class HealthyUtils {
 
     /**

@@ -12,6 +12,10 @@ import android.widget.TextView;
 import mrkj.healthylife.R;
 
 
+/**
+ * 完成一部分共有的界面设置，供其他Activity继承
+ */
+
 public abstract class BaseActivity extends AppCompatActivity{
 
     private TextView title_center;//标题的中间部分

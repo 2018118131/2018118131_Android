@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/width_size_30"
     tools:context="mrkj.healthylife.activity.PlanningActivity">
     <include layout="@layout/title_layout"/>
+    <!--开机后完善当前体重信息，并设置时间-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

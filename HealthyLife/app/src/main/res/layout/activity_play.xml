@@ -7,7 +7,7 @@
     tools:context="mrkj.healthylife.activity.PlayActivity">
 
     <include layout="@layout/title_layout" />
-
+    <!--播放热身动画的界面-->
     <TextView
         android:id="@+id/play_name"
         android:layout_width="match_parent"

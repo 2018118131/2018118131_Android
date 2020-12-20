@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="mrkj.healthylife.activity.ShowBPMActivity">
     <include layout="@layout/title_layout"/>
+    <!--展示心率结果的界面-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/width_size_0"

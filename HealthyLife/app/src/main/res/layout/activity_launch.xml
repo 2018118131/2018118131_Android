@@ -5,5 +5,5 @@
     android:layout_height="match_parent"
     android:background="@mipmap/sport"
     tools:context="mrkj.healthylife.activity.LaunchActivity">
-
+    <!--开机动画-->
 </RelativeLayout>

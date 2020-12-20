@@ -13,8 +13,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 /**
- *
- */
+ *本地图片信息
+ *  */
 public class GetPictureFromLocation {
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

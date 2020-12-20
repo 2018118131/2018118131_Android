@@ -22,6 +22,7 @@ import mrkj.healthylife.utils.StepDetector;
 /**
  * 记录保存服务(此处用于记录值)
  */
+
 public class RecordedSaveService extends Service {
     public static final String cancelSaveService = "mrkj.healthylife.RECORDED";
     private DatasDao datasDao;

@@ -26,8 +26,9 @@ import mrkj.healthylife.utils.StepDetector;
 /**
  * 计步服务
  *
- * @author Administrator
+ *
  */
+
 public class StepCounterService extends Service {
     public static final String alarmSaveService = "mrkj.healthylife.SETALARM";
     private static final String TAG = "StepCounterService";

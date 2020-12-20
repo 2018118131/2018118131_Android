@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * 位置信息配置
  */
+
 public class GetLocation {
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();

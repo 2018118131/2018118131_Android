@@ -26,7 +26,7 @@ import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.DateUtils;
 
 /**
- * 添加计划的界面
+ * 添加计划的界面-->设置相关信息
  */
 public class SettingHealthyHealthyActivity extends AppCompatActivity implements TimePicker.OnTimeChangedListener, View.OnClickListener {
 

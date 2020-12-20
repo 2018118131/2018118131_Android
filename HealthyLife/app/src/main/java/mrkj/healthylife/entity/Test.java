@@ -1,7 +1,7 @@
 package mrkj.healthylife.entity;
 
 /**
- *
+ * 测试的实体
  */
 public class Test {
     private String address;

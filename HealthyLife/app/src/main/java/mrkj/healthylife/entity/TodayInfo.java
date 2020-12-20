@@ -2,7 +2,7 @@ package mrkj.healthylife.entity;
 
 /**
  * 今日天气信息
- * @author Administrator
+ *
  *
  */
 public class TodayInfo {

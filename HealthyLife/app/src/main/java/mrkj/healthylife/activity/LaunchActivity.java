@@ -13,8 +13,8 @@ import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.SaveKeyValues;
 
 /**
- * 启动页
- */
+ * 启动页，判断是否第一次启动，是否加载动画
+ * */
 public class LaunchActivity extends AppCompatActivity {
     private boolean isFirst;//是否为第一次启动
     private Handler handler = new Handler(new Handler.Callback() {

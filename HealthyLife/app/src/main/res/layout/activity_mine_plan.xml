@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.MinePlanActivity">
     <include layout="@layout/title_layout"/>
+    <!--我的计划列表-->
     <ListView
         android:id="@+id/plan_list"
         android:layout_margin="@dimen/width_size_5"

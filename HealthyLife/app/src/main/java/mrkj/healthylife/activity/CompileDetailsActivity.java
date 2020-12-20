@@ -30,7 +30,7 @@ import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circleimageview.CircleImageView;
 
 /**
- * 更改用户信息
+ * 更改用户信息、头像、步长等
  */
 public class CompileDetailsActivity extends BaseActivity implements View.OnClickListener{
     private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照

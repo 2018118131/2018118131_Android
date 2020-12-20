@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.WarmUpActivity">
     <include layout="@layout/title_layout"/>
+    <!--热身引导界面-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_margin="@dimen/width_size_20"

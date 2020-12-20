@@ -23,8 +23,7 @@ import mrkj.healthylife.entity.TodayInfo;
 
 /**
  * 下载数据的工具类
- * 
- * @author Administrator
+ *
  *
  */
 public class HttpUtils {

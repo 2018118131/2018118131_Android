@@ -15,6 +15,7 @@ import java.io.InputStream;
  * 读取assets下的数据库到本地
  *
  */
+
 public class BringData {
     //数据库路径
     public static final String DATA_PATH = "/data/data/mrkj.healthylife/databases/";

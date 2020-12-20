@@ -1,8 +1,8 @@
 package mrkj.healthylife.entity;
 
 /**
- *
- */
+ *数据实体
+ *  */
 public class Data {
     private String date_data ;
     private  int step_data ;

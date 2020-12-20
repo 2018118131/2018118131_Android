@@ -22,6 +22,10 @@ import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.db.DatasDao;
 import mrkj.healthylife.utils.SaveKeyValues;
 
+/**
+ * 查看运动记录
+ */
+
 public class SportMessageActivity extends BaseActivity implements View.OnClickListener{
 
     private TextView finish_plans;

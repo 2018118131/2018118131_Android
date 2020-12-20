@@ -5,6 +5,7 @@
     android:gravity="center_horizontal"
     android:layout_height="match_parent">
     <!-- 显示城市气温等相关信息 -->
+    <!--显示步数的界面-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

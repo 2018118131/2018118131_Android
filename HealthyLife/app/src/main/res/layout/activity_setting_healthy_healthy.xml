@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.SettingHealthyHealthyActivity">
-
+    <!--制定计划时的弹窗，显示计划的动作类型并设置时间-->
     <TextView
         android:id="@+id/to_back"
         android:layout_width="match_parent"

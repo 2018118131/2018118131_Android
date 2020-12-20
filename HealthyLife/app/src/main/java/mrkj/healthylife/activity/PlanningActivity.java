@@ -21,7 +21,7 @@ import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
 
 /**
- * 制定计划-->设置相关信息
+ * 制定计划-->设置相关信息：时间，期望值等
  */
 public class PlanningActivity extends BaseActivity implements View.OnFocusChangeListener,View.OnClickListener{
 

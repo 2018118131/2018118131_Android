@@ -38,6 +38,7 @@ import mrkj.library.wheelview.circlebar.CircleBar;
  * 展示一走的里程和消耗的热量
  * 跳转界面的功能按钮
  */
+
 public class SportFragment extends BaseFragment {//此处直接继承Fragment即可
     private static final int WEATHER_MESSAGE = 1;//显示天气信息
     private static final int STEP_PROGRESS = 2;//显示步数信息

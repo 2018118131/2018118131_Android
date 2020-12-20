@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.SportMessageActivity">
     <include layout="@layout/title_layout"/>
-
+    <!--运动历史界面-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/width_size_0"

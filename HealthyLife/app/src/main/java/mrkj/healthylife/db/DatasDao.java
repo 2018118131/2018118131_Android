@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- *
+ *  数据库操作
  */
 public class DatasDao {
     private DatasDB myDB;

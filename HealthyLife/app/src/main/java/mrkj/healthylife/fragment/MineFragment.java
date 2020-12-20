@@ -42,7 +42,7 @@ import mrkj.library.wheelview.circleimageview.CircleImageView;
 
 /**
  * 我的界面
- * Created by Administrator on 2016/5/27.
+ *
  */
 public class MineFragment extends BaseFragment implements View.OnClickListener {
     private static final int CHANGE = 200;

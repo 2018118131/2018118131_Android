@@ -30,7 +30,7 @@ import mrkj.healthylife.service.ExecuteHealthyPlanService;
 import mrkj.healthylife.utils.Constant;
 
 /**
- * Created by Administrator on 2016/5/27.
+ * 发现界面的相关设置
  */
 public class FindFragment extends BaseFragment{
     private View view;//界面的布局

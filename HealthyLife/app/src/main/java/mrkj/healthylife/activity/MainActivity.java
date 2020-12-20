@@ -30,7 +30,7 @@ import mrkj.library.wheelview.scalerulerview.ScaleRulerView;
 import mrkj.library.wheelview.utils.DateViewHelper;
 
 /**
- * 完善信息界面
+ * 第一次启动后的完善信息界面
  * -->主界面是FunctionActivity
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener,PickerView.onSelectListener,RadioGroup.OnCheckedChangeListener,DateViewHelper.OnResultMessageListener,View.OnFocusChangeListener{

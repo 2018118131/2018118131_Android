@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:fa="http://schemas.android.com/apk/res-auto"
     >
+    <!--测试心率的界面，显示摄像头拍摄的界面和心率折线图-->
     <RelativeLayout
         android:id="@+id/show_progress"
         android:layout_width="match_parent"

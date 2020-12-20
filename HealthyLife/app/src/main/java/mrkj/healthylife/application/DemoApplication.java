@@ -13,7 +13,7 @@ import mrkj.healthylife.utils.GetLocation;
 import mrkj.healthylife.utils.SaveKeyValues;
 
 /**
- * Created by Administrator on 2016/5/25.
+ * 热身动作
  */
 public class DemoApplication extends Application{
     public static Bitmap[] bitmaps = new Bitmap[5];

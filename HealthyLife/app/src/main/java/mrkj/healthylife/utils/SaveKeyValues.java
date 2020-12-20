@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 /**
- * Created by Administrator on 2016/5/25.
+ * 数据类型
  */
 public class SaveKeyValues {
 

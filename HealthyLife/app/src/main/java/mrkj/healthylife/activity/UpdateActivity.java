@@ -22,6 +22,10 @@ import mrkj.healthylife.service.ExecuteHealthyPlanService;
 import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.DateUtils;
 
+/**
+ * 更新计划
+ */
+
 public class UpdateActivity extends AppCompatActivity implements View.OnClickListener,TimePicker.OnTimeChangedListener{
 
 

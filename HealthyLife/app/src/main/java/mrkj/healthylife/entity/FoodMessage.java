@@ -1,8 +1,7 @@
 package mrkj.healthylife.entity;
 
 /**
- *
- */
+ *事物信息实体 */
 public class FoodMessage {
     private String food_name;
     private String hot;

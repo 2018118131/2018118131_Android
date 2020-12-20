@@ -12,6 +12,10 @@ import mrkj.healthylife.application.DemoApplication;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.fragment.FindFragment;
 
+/**
+ * 热身界面
+ */
+
 public class WarmUpActivity extends BaseActivity {
 
     private int what;

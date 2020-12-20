@@ -25,6 +25,7 @@ import mrkj.healthylife.utils.SaveKeyValues;
 /**
  * 执行运动计划的服务
  */
+
 public class ExecuteHealthyPlanService extends Service {
     public static final String planSaveService = "mrkj.healthylife.PLAN";
     //用于操作数据库

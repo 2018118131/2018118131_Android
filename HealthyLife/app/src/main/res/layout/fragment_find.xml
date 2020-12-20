@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/watm_background_gray"
     >
-
+    <!--发现列表，显示五个热身动作-->
     <ListView
         android:id="@+id/find_list"
         android:layout_width="match_parent"

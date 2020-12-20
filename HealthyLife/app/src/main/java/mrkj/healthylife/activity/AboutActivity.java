@@ -11,6 +11,10 @@ import java.io.InputStream;
 import mrkj.healthylife.R;
 import mrkj.healthylife.base.BaseActivity;
 
+/**
+ * 读取“关于我们”的信息
+ */
+
 public class AboutActivity extends BaseActivity {
     // 声明标题栏控件
     private TextView showTxt;

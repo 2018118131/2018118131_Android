@@ -1,5 +1,11 @@
 package mrkj.healthylife.utils;
 
+/**
+ * 图片处理
+ *
+ *
+ */
+
 public abstract class ImageProcessing {
 
 	private static int decodeYUV420SPtoRedSum(byte[] yuv420sp, int width,int height) {

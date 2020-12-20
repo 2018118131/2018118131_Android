@@ -18,7 +18,7 @@ import mrkj.healthylife.utils.Constant;
 import mrkj.healthylife.utils.SaveKeyValues;
 
 /**
- * 功能界面
+ * 功能界面，切换四大主要界面
  */
 public class FunctionActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
 

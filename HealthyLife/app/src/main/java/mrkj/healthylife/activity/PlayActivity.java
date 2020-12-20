@@ -21,6 +21,10 @@ import mrkj.healthylife.application.DemoApplication;
 import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.SaveKeyValues;
 
+/**
+ * 播放热身动画
+ * */
+
 public class PlayActivity extends BaseActivity implements View.OnClickListener{
 
     private int index;

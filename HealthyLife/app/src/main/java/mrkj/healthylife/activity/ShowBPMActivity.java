@@ -10,6 +10,10 @@ import mrkj.healthylife.base.BaseActivity;
 import mrkj.healthylife.utils.SaveKeyValues;
 import mrkj.library.wheelview.circlebar.ColorArcProgressBar;
 
+/**
+ * 显示心率
+ */
+
 public class ShowBPMActivity extends BaseActivity {
 
     private TextView one,two,three;

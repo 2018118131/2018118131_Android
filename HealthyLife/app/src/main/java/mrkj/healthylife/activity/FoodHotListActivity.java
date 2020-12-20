@@ -20,6 +20,11 @@ import mrkj.healthylife.entity.FoodMessage;
 import mrkj.healthylife.entity.FoodType;
 import mrkj.healthylife.utils.DBHelper;
 
+
+/**
+ * 各种食物对应的热量列表
+ */
+
 public class FoodHotListActivity extends BaseActivity {
     private int sign= - 1 ; //控制列表的展开
     private String[] food_type_array;//食物类型数组

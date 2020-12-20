@@ -18,7 +18,7 @@ import mrkj.healthylife.activity.SettingHealthyHealthyActivity;
 import mrkj.healthylife.fragment.FindFragment;
 
 /**
- * 适配器类
+ *  适配器类继承BaseAdapter
  */
 public class MyAdapter extends BaseAdapter {
 

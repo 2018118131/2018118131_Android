@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  * 获取BMI
  */
+
 public class GetBMIValuesHelper {
     public static final int VALUES_NULL = 0;
     public static final int EXTENUATION = 1;

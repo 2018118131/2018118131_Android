@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="mrkj.healthylife.activity.UpdateActivity">
+    <!--更改计划的界面-->
     <TextView
         android:id="@+id/to_back"
         android:layout_width="match_parent"

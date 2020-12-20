@@ -3,7 +3,7 @@ package mrkj.healthylife.entity;
 /**
  * PM2.5的信息实体类
  * 
- * @author Administrator
+ *
  *
  */
 public class PMInfo {

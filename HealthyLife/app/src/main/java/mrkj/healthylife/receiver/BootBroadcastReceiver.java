@@ -14,8 +14,8 @@ import mrkj.healthylife.service.StepCounterService;
 
 /**
  * 用于开机自启动
- * Created by Administrator on 2016/6/2.
-// */
+ *
+ */
 public class BootBroadcastReceiver extends BroadcastReceiver {
     //重写onReceive方法
     @Override

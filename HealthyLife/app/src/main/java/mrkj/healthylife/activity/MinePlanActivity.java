@@ -28,6 +28,10 @@ import mrkj.healthylife.fragment.FindFragment;
 import mrkj.healthylife.service.ExecuteHealthyPlanService;
 import mrkj.healthylife.utils.Constant;
 
+/**
+ * 我的计划
+ * */
+
 public class MinePlanActivity extends BaseActivity {
 
     private List<Map<String,Object>> plan_List;//储存计划数据
