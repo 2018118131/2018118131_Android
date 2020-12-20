@@ -78,7 +78,7 @@
 
 ##### **实验报告[请点击](https://github.com/JacCloud/2018118131_Android/blob/master/mywork_8/mywork_8%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md)**											
 
-​	
+##### 	
 
 ### 作业十(服务)：
 
@@ -100,7 +100,15 @@
 
 ##### **项目代码[请点击](https://github.com/JacCloud/2018118131_Android/tree/master/mywork_11)**
 
-**实验报告[请点击](https://github.com/JacCloud/2018118131_Android/blob/master/mywork_11/mywork_11实验报告.md)**
+##### **实验报告[请点击](https://github.com/JacCloud/2018118131_Android/blob/master/mywork_11/mywork_11实验报告.md)**
 
 
+
+## 期末课程设计
+
+### KeepFit健康计步器(Fragment+Service+Receiver+传感器)
+
+##### 项目代码[请点击](https://github.com/JacCloud/2018118131_Android/tree/master/HealthyLife)
+
+##### 实验报告[请点击](https://github.com/JacCloud/2018118131_Android/blob/master/HealthyLife/%E6%9C%9F%E6%9C%AB%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A.md)
 
